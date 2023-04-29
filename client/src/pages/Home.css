@@ -1,0 +1,28 @@
+:root {
+    --white: #E7ECEF;
+    --black: #272932;
+    --ochre: #CC7722;
+    --blue: #51808F;
+}
+copy code
+/* Center the box on the page */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Style the box */
+  .box {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Style the Login and Signup components */
+  .login,
+  .signup {
+    margin-bottom: 10px;
+  }
