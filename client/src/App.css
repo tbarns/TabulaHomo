@@ -1,15 +1,9 @@
 :root {
-  --chiliRed: #d64933;
-  --deepBlue: #003c53;
-  --deepPurp: #242038;
-  --greenBlue: #2364aa;
-  --liteBlue: #3da5d9;
-  --litePink: #eee5e9;
-  --mikado: #fec601;
-  --pumpkin: #ea7317;
-  --verdigris: #73bfb8;
+  --white: #E7ECEF;
+  --black: #272932;
+  --ochre: #CC7722;
+  --blue: #51808F;
 }
-
 .App {
   display: flex;
   flex-direction: column;
@@ -18,19 +12,15 @@
 }
 
 body {
-  background-image: linear-gradient(var(--litePink),
-      var(--liteBlue),
-      rgb(116, 119, 119),
-      var(--deepPurp));
+  background-color: var(--black);
 }
 
 div#root {
   display: flex-box;
   flex-direction: row-reverse;
   padding: 50px;
-  background-color: var(--greenBlue);
+  background-color: var(--black);
   box-sizing: border-box 30px;
-  border: 10px solid var(--deepBlue);
   font-size: 40px;
   text-align: center;
   display: center;
@@ -45,15 +35,9 @@ form {
   flex-direction: row-reverse;
   padding: 50px;
   background-color: var(--liteBlue);
-  box-sizing: border-box 30px;
-  border: 10px solid var(--deepPurp);
   font-size: 33px;
   text-align: center;
   display: center;
-  margin: auto;
-  width: 60%;
-  height: 60%;
-  padding: 50px;
 }
 
 button {
@@ -84,6 +68,7 @@ container {
   padding-left: 25px;
   padding-right: 25px;
   align-items: center;
+
 }
 
 form .btn {

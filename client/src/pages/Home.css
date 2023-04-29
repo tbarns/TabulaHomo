@@ -11,18 +11,20 @@ copy code
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: var(--blue);
   }
   
   /* Style the box */
   .box {
-    background-color: #f0f0f0;
+    background-color: var(--white);
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px var(--black);
   }
   
   /* Style the Login and Signup components */
   .login,
   .signup {
     margin-bottom: 10px;
+
   }

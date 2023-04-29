@@ -56,7 +56,7 @@ export default function Signup(props) {
                     </div>
 
 
-                    <div className="flex-row space-between my-2">
+                    <div className="flex-row  label">
                         <label htmlFor="email">Email:</label>
                         <input className="input-field"
                             value={formState.email}
