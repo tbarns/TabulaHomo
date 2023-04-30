@@ -60,9 +60,9 @@ export default function Login(props) {
       <div className="container my-1" id="login-component">
 
         <form autoComplete="off" className="form-title" onSubmit={handleLoginSubmit}>
-          Login
+          {/* Login */}
           <div className="flex-row space-between my-2">
-            <label htmlFor="username">Username:</label>
+            {/* <label htmlFor="username">Username:</label> */}
             <input
               className="input-field"
               placeholder="Enter Username"
@@ -73,7 +73,7 @@ export default function Login(props) {
             />
           </div>
           <div className="flex-row space-between my-2">
-            <label htmlFor="pwd">Password:</label>
+            {/* <label htmlFor="pwd">Password:</label> */}
             <input
               className="input-field"
               placeholder="******"
@@ -99,9 +99,9 @@ export default function Login(props) {
       <div className="container my-1" id="signup-component" style={{ display: "none" }}>
 
         <form autoComplete="off" className="form-title" onSubmit={handleSignupSubmit}>
-          Sign Up
+          {/* Sign Up */}
           <div className="flex-row space-between my-2">
-            <label htmlFor="username">Username:</label>
+            {/* <label htmlFor="username">Username:</label> */}
             <input
               className="input-field"
               placeholder="Enter Username"
@@ -112,7 +112,7 @@ export default function Login(props) {
             />
           </div>
           <div className="flex-row space-between my-2">
-            <label htmlFor="email">Email:</label>
+            {/* <label htmlFor="email">Email:</label> */}
             <input
               className="input-field"
               placeholder="email@email.com"
@@ -123,7 +123,7 @@ export default function Login(props) {
             />
           </div>
           <div className="flex-row space-between my-2">
-            <label htmlFor="pwd">Password:</label>
+            {/* <label htmlFor="pwd">Password:</label> */}
             <input
               className="input-field"
               placeholder="******"

@@ -7,10 +7,11 @@
 
 }
 .container {
-    width: 50%;
+    width: 37%;
     margin: 0 auto;
     background-color: var(--white);
     color: var(--black);
+    
   }
   
 .toggleContainer{
@@ -26,7 +27,8 @@
     background-size: 200% 200%;
     background-position: top right;
     transition: all 0.5s ease-out;
-    color: var(--black)
+    color: var(--black);
+    border: .2px solid var(--blue);
 }
 
   form {
@@ -53,7 +55,8 @@ button {
     background-size: 200% 200%;
     background-position: top right;
     transition: all 0.5s ease-out;
-    color: var(--black)
+    color: var(--black);
+    border: .2px solid var(--ochre);
   }
  
   button:hover,
