@@ -59,7 +59,7 @@
     justify-content: center;
 }
 
-#login-btn {
+#login-btn, #signUp-btn {
     margin: calc(0rem + 0.9vw) 0;
     padding: 0;
     width: 50%;
