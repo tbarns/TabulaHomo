@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import UserInfo from "../components/UserInfo";
 import { useState } from "react";
 import Auth from "../utils/auth";
-import BookSearch from "../components/BookSearch"
+
 export default function Profile() {
   const [query, setQuery] = useState("")
 
@@ -15,11 +15,7 @@ export default function Profile() {
             <UserInfo />
           </div>
           <div>
-            {/* FIRST Render MuscleGroups component with buttons by default */}
-            <BookSearch onQuery={setQuery} />
-            <br></br>
-            {/* THEN Render Exercise component 10x from API call for button selected */}
-             {/* <Exercise query={query} /> */}
+         
           </div>
         </div>
 

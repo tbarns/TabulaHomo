@@ -1,6 +1,6 @@
 import Login from './Login'
 import Signup from './Signup'
-import './Home.css';
+
 
 export default function Home() {
 
@@ -8,13 +8,11 @@ export default function Home() {
 
     <>
       <div className="container" id="test">
-      <div className="box">
         <br></br>
-        <Login className="login"  />
+        <Login />
         <br></br>
-        <Signup className="signup" />
+        <Signup />
         <br></br>
-        </div>
       </div>
 
     </>

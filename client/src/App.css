@@ -1,9 +1,11 @@
 :root {
-  --white: #E7ECEF;
-  --black: #272932;
   --ochre: #CC7722;
   --blue: #51808F;
+  --black: #272932;
+  --white: #E7ECEF;
+
 }
+
 .App {
   display: flex;
   flex-direction: column;
@@ -12,32 +14,17 @@
 }
 
 body {
-  background-color: var(--black);
+
+background-color: var(--black);
 }
 
 div#root {
-  display: flex-box;
-  flex-direction: row-reverse;
-  padding: 50px;
-  background-color: var(--black);
-  box-sizing: border-box 30px;
-  font-size: 40px;
-  text-align: center;
-  display: center;
-  margin: auto;
-  width: 66%;
-  height: 60%;
-  padding: 50px;
+color: var(--black);
+background-color: var(--black);
 }
 
 form {
-  display: flex-box;
-  flex-direction: row-reverse;
-  padding: 50px;
-  background-color: var(--liteBlue);
-  font-size: 33px;
-  text-align: center;
-  display: center;
+
 }
 
 button {
@@ -68,7 +55,6 @@ container {
   padding-left: 25px;
   padding-right: 25px;
   align-items: center;
-
 }
 
 form .btn {

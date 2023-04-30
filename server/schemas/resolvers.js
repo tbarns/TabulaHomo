@@ -1,4 +1,4 @@
-const { Book, User } = require('../models');
+const {  User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -13,9 +13,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    Books: async () => {
-      return await Book.find({});
-    },
+   
 
     Users: async (parent, args, context) => {
       return await User.find()

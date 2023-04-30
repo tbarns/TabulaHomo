@@ -1,8 +1,13 @@
 :root {
-    --white: #E7ECEF;
-    --black: #272932;
-    --ochre: #CC7722;
---blue: #51808F;
+    --chiliRed: #d64933;
+    --deepBlue: #003c53;
+    --deepPurp: #242038;
+    --greenBlue: #2364aa;
+    --liteBlue: #3da5d9;
+    --litePink: #eee5e9;
+    --mikado: #fec601;
+    --pumpkin: #ea7317;
+    --verdigris: #73bfb8;
 }
 
 .container {
@@ -10,26 +15,22 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: var(--black);
-    
-
 }
 
 .form-title {
-
-
+    color: var(--deepPurp);
+    width: 100%;
     font-size: 6.66vw;
     padding: 0;
-    background-color: var(--white);
 }
 
 .flex-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--black);
+    width: 100vw;
+    color: rgb(30, 50, 100);
     margin: 1rem 0;
-    background-color: var(--white);
 }
 
 .input-field {
@@ -63,7 +64,6 @@
     margin: calc(0rem + 0.9vw) 0;
     padding: 0;
     width: 50%;
-    height: calc(6rem + 2.5vw);
-    width: calc(6rem + 2.5vw);;
+    height: calc(0.38rem + 2.5vw);
     font-size: 2vw;
 }

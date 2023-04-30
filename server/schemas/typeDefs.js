@@ -15,11 +15,7 @@ type User {
 
 
 
-type Book {
-  _id: ID
-  name: String
 
-}
 
 
 type Auth {
@@ -30,7 +26,6 @@ type Auth {
   type Query {
     Users: [User]
     user: User
-    Books:[Book]
     me: User
   }
 
