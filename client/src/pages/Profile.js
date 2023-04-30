@@ -1,22 +1,24 @@
 import { Link } from "react-router-dom";
-import UserInfo from "../components/UserInfo";
 import { useState } from "react";
 import Auth from "../utils/auth";
-
+import "./Profile.css";
+import Logout from "../components/Logout";
 export default function Profile() {
   const [query, setQuery] = useState("")
 
   return (
     <>
       {Auth.loggedIn() ? (
-        <div>
+        <div className="temp">
+          <Logout/>
           <br></br>
-          <div>
-            <UserInfo />
+          <div id="landingPage">
+       <p >user landing page</p>
           </div>
           <div>
          
           </div>
+
         </div>
 
 

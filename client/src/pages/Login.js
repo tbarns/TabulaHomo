@@ -58,7 +58,7 @@ export default function Login(props) {
   return (
     <>
       <div className="container my-1" id="login-component">
-        <button onClick={showSignup}>Sign Up</button>
+
         <form autoComplete="off" className="form-title" onSubmit={handleLoginSubmit}>
           Login
           <div className="flex-row space-between my-2">
@@ -83,17 +83,21 @@ export default function Login(props) {
               onChange={handleChange}
             />
           </div>
-          {error ? <p className="error-text">The provided credentials are incorrect</p> : null}
+
           <div id="btn-container" className="flex-row flex-end">
             <button id="signUp-btn" type="submit">
-         Login
+              Login
             </button>
           </div>
         </form>
+        <div className="toggleContainer">
+          <p className="toggleText">Not a member? </p>
+          <button className="toggleBtn" onClick={showSignup}>Create an Account</button>
+        </div>
       </div>
 
       <div className="container my-1" id="signup-component" style={{ display: "none" }}>
-        <button onClick={showLogin}>Log in</button>
+
         <form autoComplete="off" className="form-title" onSubmit={handleSignupSubmit}>
           Sign Up
           <div className="flex-row space-between my-2">
@@ -133,8 +137,12 @@ export default function Login(props) {
             <button id="signUp-btn" type="submit">
               Sign up
             </button>
-            </div>
+          </div>
         </form>
+        <div className="toggleContainer">
+          <p className="toggleText">Already a member? </p>
+          <button className="toggleBtn" onClick={showLogin}>Log in</button>
+        </div>
       </div >
     </>
   );

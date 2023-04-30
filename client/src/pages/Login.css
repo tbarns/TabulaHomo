@@ -6,64 +6,69 @@
 
 
 }
-
-
 .container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: var(--white);
+    color: var(--black);
+  }
+  
+.toggleContainer{
+   margin-top: calc(.5*5rem);
+}
+
+  .toggleText{
+    font-size: medium;
+  }
+  
+.toggleBtn{
+    background: linear-gradient(45deg,var(--blue), var(--blue), var(--white),var(--white));
+    background-size: 200% 200%;
+    background-position: top right;
+    transition: all 0.5s ease-out;
+    color: var(--black)
+}
+
+  form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: var(--white);
-}
-
-.form-title {
-    color: var(--deepPurp);
-    width: 100%;
-    font-size: 6.66vw;
-    padding: 0;
-}
-
-.flex-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    color: rgb(30, 50, 100);
-    margin: 1rem 0;
-}
-
-.input-field {
-    height: calc(1px + 2vw);
-    font-size: calc(5px + 1vw);
-    text-align: center;
-    margin-left: 0.5rem;
-    position: relative;
-    top: calc(0rem + 0.5vw);
-}
-
-#username {
-    width: 50%;
-}
-
-#pwd {
-    width: 50%;
-}
-
-.error-text {
-    font-size: 5vw;
-}
-
-#btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#login-btn, #signUp-btn {
-    margin: calc(0rem + 0.9vw) 0;
-    padding: 0;
-    width: 50%;
-    height: calc(6rem + 2.5vw);
-    width: calc(6rem + 2.5vw);
-    font-size: 2vw;
-}
+  }
+  
+  label {
+    text-align: left;
+  }
+  
+/* button {
+    background-color: var(--ochre);
+} */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--white);
+    background: linear-gradient(45deg,var(--ochre), var(--ochre), var(--white),var(--white));
+    background-size: 200% 200%;
+    background-position: top right;
+    transition: all 0.5s ease-out;
+    color: var(--black)
+  }
+ 
+  button:hover,
+  .toggleBtn:hover {
+    transform: scale(1.1);
+    background-position: bottom left;
+  }
+  .toggleBtn:hover {
+    color: var(--white);
+  }
+  
+  @media screen and (max-width: 600px) {
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+  

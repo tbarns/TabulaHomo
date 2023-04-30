@@ -6,3 +6,11 @@
 
 
 }
+#landingPage {
+  font-size: 40px;
+  color: var(--ochre);
+}
+
+.temp{
+  background-color: var(--white);
+}
