@@ -1,5 +1,5 @@
 import Login from './Login'
-import Signup from './Signup'
+
 
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
         <br></br>
         <Login />
         <br></br>
-        <Signup />
+       
         <br></br>
       </div>
 

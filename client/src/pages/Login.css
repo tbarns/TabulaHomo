@@ -1,20 +1,19 @@
 :root {
-    --chiliRed: #d64933;
-    --deepBlue: #003c53;
-    --deepPurp: #242038;
-    --greenBlue: #2364aa;
-    --liteBlue: #3da5d9;
-    --litePink: #eee5e9;
-    --mikado: #fec601;
-    --pumpkin: #ea7317;
-    --verdigris: #73bfb8;
+  --ochre: #CC7722;
+  --blue: #51808F;
+  --black: #272932;
+  --white: #E7ECEF;
+
+
 }
+
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background-color: var(--white);
 }
 
 .form-title {
@@ -64,6 +63,7 @@
     margin: calc(0rem + 0.9vw) 0;
     padding: 0;
     width: 50%;
-    height: calc(0.38rem + 2.5vw);
+    height: calc(6rem + 2.5vw);
+    width: calc(6rem + 2.5vw);
     font-size: 2vw;
 }
