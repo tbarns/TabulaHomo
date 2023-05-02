@@ -29,6 +29,7 @@ export default function Login(props) {
       Auth.login(token);
     } catch (e) {
       console.log(e);
+      console.log(error)
     }
   };
 
