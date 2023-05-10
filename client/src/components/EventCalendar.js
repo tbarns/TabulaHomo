@@ -3,7 +3,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useQuery } from '@apollo/client';
-import { QUERY_EVENTS } from '../graphql/queries';
+import { QUERY_EVENTS } from '../utils/mutations.js';
 
 const localizer = momentLocalizer(moment);
 
