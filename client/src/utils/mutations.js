@@ -36,3 +36,12 @@ export const UPDATE_USER = gql`
     }
   }
 `
+export const QUERY_EVENTS = gql`
+  query Query {
+    events {
+      _id
+      title
+      startTime
+    }
+  }
+`
