@@ -11,6 +11,13 @@ const typeDefs = gql`
     weight: String
     isAdmin: Boolean
   }
+  type Merch {
+  _id: ID
+  name: String
+  description: String
+  price: Float
+  image: String
+}
 
   type Event {
     _id: ID
@@ -34,6 +41,8 @@ const typeDefs = gql`
     me: User
     events: [Event]
     event(_id: ID!): Event
+    merchItems: [Merch]
+    merchItem(_id: ID!): Merch
   }
 
   type Mutation {
@@ -45,6 +54,9 @@ const typeDefs = gql`
     updateEvent(_id: ID!, title: String, models: [String], theme: String, startTime: String, timeZone: String, description: String, images: [String]): Event
     deleteEvent(_id: ID!): Event
     adminLogin(username: String!, password: String!): Auth
+    createMerchItem(name: String!, description: String, price: Float!, image: String): Merch
+    updateMerchItem(_id: ID!, name: String, description: String, price: Float, image: String): Merch
+    deleteMerchItem(_id: ID!): Merch
   }
 
 `;

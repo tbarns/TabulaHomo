@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Event, Merch } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -19,6 +19,12 @@ const resolvers = {
     event: async (parent, { _id }) => {
       return await Event.findById(_id);
     },
+    merchItems: async () => {
+      return await Merch.find();
+    },
+    merchItem: async (parent, { _id }) => {
+      return await Merch.findById(_id);
+    },
     Users: async (parent, args, context) => {
       return await User.find()
 
@@ -36,22 +42,28 @@ const resolvers = {
 
       return { token, user };
     },
-    login: async (parent, { username, password }) => {
+   
+    login: async (parent, { username, password, isAdmin }) => {
       const user = await User.findOne({ username });
-
+    
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
       const correctPw = await user.isCorrectPassword(password);
-
+    
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
+      if (isAdmin && user.email !== "tbarnaby1@gmail.com") {
+        throw new AuthenticationError('Not authorized');
+      }
+    
       const token = signToken(user);
       return { token, user };
     },
+
     updateUser: async (parent, { height, weight, age }, context) => {
       if (context.user) {
         const user = await User.findOneAndUpdate(
@@ -107,6 +119,27 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    createMerchItem: async (parent, args, context) => {
+      if (context.user && context.user.isAdmin) {
+        const merchItem = await Merch.create(args);
+        return merchItem;
+      }
+      throw new AuthenticationError('Not authorized');
+    },
+    updateMerchItem: async (parent, args, context) => {
+      if (context.user && context.user.isAdmin) {
+        const updatedMerchItem = await Merch.findByIdAndUpdate(args._id, { $set: args }, { new: true });
+        return updatedMerchItem;
+      }
+      throw new AuthenticationError('Not authorized');
+    },
+    deleteMerchItem: async (parent, { _id }, context) => {
+      if (context.user && context.user.isAdmin) {
+        const deletedMerchItem = await Merch.findByIdAndDelete(_id);
+        return deletedMerchItem;
+      }
+      throw new AuthenticationError('Not authorized');
     },
   }
 };

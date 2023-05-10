@@ -9,7 +9,7 @@ export default function Login(props) {
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, error] = useMutation(LOGIN);
   const [addUser] = useMutation(ADD_USER);
-
+  const [isAdmin, setIsAdmin] = useState(false);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -17,12 +17,16 @@ export default function Login(props) {
       [name]: value,
     });
   };
-
+  
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: { username: formState.username, password: formState.password },
+        variables: {
+          username: formState.username,
+          password: formState.password,
+          isAdmin: isAdmin,
+        },
       });
       console.log(mutationResponse.data);
       const token = mutationResponse.data.login.token;
@@ -61,6 +65,16 @@ export default function Login(props) {
 
         <form autoComplete="off" className="form-title" onSubmit={handleLoginSubmit}>
           {/* Login */}
+          <div className="flex-row space-between my-2">
+            <label htmlFor="admin">Admin Login:</label>
+            <input
+              name="admin"
+              type="checkbox"
+              id="admin"
+              onChange={() => setIsAdmin(!isAdmin)}
+            />
+          </div>
+
           <div className="flex-row space-between my-2">
             {/* <label htmlFor="username">Username:</label> */}
             <input
