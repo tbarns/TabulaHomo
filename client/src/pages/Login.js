@@ -9,6 +9,10 @@ export default function Login(props) {
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, error] = useMutation(LOGIN);
   const [addUser] = useMutation(ADD_USER);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showSignupForm, setShowSignupForm] = useState(false);
+  const [showEnterButton, setShowEnterButton] = useState(true);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,11 +26,16 @@ export default function Login(props) {
     event.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: { username: formState.username, password: formState.password },
+        variables: {
+          username: formState.username,
+          password: formState.password,
+          isAdmin: isAdmin,
+        },
       });
       console.log(mutationResponse.data);
       const token = mutationResponse.data.login.token;
       Auth.login(token);
+      setShowEnterButton(false); // Hide the Enter button
     } catch (e) {
       console.log(e);
       console.log(error)
@@ -41,110 +50,136 @@ export default function Login(props) {
       });
       const token = mutationResponse.data.addUser.token;
       Auth.login(token);
+      setShowEnterButton(false); // Hide the Enter button
     } catch (e) {
       console.log(e);
     }
   };
 
   const showLogin = () => {
-    document.querySelector("#login-component").style.display = "block";
-    document.querySelector("#signup-component").style.display = "none";
+    setShowLoginForm(true);
+    setShowSignupForm(false);
+    setShowEnterButton(false); // Hide the Enter button
   };
 
   const showSignup = () => {
-    document.querySelector("#login-component").style.display = "none";
-    document.querySelector("#signup-component").style.display = "block";
+    setShowLoginForm(false);
+    setShowSignupForm(true);
+    setShowEnterButton(false); // Hide the Enter button
   };
+
 
   return (
     <>
-      <div className="container my-1" id="login-component">
-
-        <form autoComplete="off" className="form-title" onSubmit={handleLoginSubmit}>
-          {/* Login */}
-          <div className="flex-row space-between my-2">
-            {/* <label htmlFor="username">Username:</label> */}
-            <input
-              className="input-field"
-              placeholder="Enter Username"
-              name="username"
-              type="username"
-              id="username"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            {/* <label htmlFor="pwd">Password:</label> */}
-            <input
-              className="input-field"
-              placeholder="******"
-              name="password"
-              type="password"
-              id="pwd"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div id="btn-container" className="flex-row flex-end">
-            <button id="signUp-btn" type="submit">
-              Login
+      {showEnterButton && (
+        <button className="toggleBtn" onClick={showLogin}>
+          Enter
+        </button>
+      )}
+  
+      {showLoginForm && (
+        <div className="container my-1" id="login-component">
+          <form autoComplete="off" className="form-title" onSubmit={handleLoginSubmit}>
+            <div className="flex-row space-between my-2">
+              <label htmlFor="admin">Admin Login:</label>
+              <input
+                name="admin"
+                type="checkbox"
+                id="admin"
+                onChange={() => setIsAdmin(!isAdmin)}
+              />
+            </div>
+  
+            <div className="flex-row space-between my-2">
+              <input
+                className="input-field"
+                placeholder="Enter Username"
+                name="username"
+                type="username"
+                id="username"
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div className="flex-row space-between my-2">
+              <input
+                className="input-field"
+                placeholder="******"
+                name="password"
+                type="password"
+                id="pwd"
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div id="btn-container" className="flex-row flex-end">
+              <button id="signUp-btn" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
+  
+          <div className="toggleContainer">
+            <p className="toggleText">Not a member? </p>
+            <button className="toggleBtn" onClick={showSignup}>
+              Create an Account
             </button>
           </div>
-        </form>
-        <div className="toggleContainer">
-          <p className="toggleText">Not a member? </p>
-          <button className="toggleBtn" onClick={showSignup}>Create an Account</button>
         </div>
-      </div>
-
-      <div className="container my-1" id="signup-component" style={{ display: "none" }}>
-
-        <form autoComplete="off" className="form-title" onSubmit={handleSignupSubmit}>
-          {/* Sign Up */}
-          <div className="flex-row space-between my-2">
-            {/* <label htmlFor="username">Username:</label> */}
-            <input
-              className="input-field"
-              placeholder="Enter Username"
-              name="username"
-              type="username"
-              id="username"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            {/* <label htmlFor="email">Email:</label> */}
-            <input
-              className="input-field"
-              placeholder="email@email.com"
-              name="email"
-              type="email"
-              id="email"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            {/* <label htmlFor="pwd">Password:</label> */}
-            <input
-              className="input-field"
-              placeholder="******"
-              name="password"
-              type="password"
-              id="pwd"
-              onChange={handleChange}
-            />
-          </div>
-          <div id="btn-container" className="flex-row flex-end">
-            <button id="signUp-btn" type="submit">
-              Sign up
+      )}
+  
+      {showSignupForm && (
+        <div className="container my-1" id="signup-component">
+          <form autoComplete="off" className="form-title" onSubmit={handleSignupSubmit}>
+            <div className="flex-row space-between my-2">
+              <input
+                className="input-field"
+                placeholder="Enter Username"
+                name="username"
+                type="username"
+                id="username"
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div className="flex-row space-between my-2">
+              <input
+                className="input-field"
+                placeholder="email@email.com"
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div className="flex-row space-between my-2">
+              <input
+                className="input-field"
+                placeholder="******"
+                name="password"
+                type="password"
+                id="pwd"
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div id="btn-container" className="flex-row flex-end">
+              <button id="signUp-btn" type="submit">
+                Sign up
+              </button>
+            </div>
+          </form>
+  
+          <div className="toggleContainer">
+            <p className="toggleText">Already a member? </p>
+            <button className="toggleBtn" onClick={showLogin}>
+              Log in
             </button>
           </div>
-        </form>
-        <div className="toggleContainer">
-          <p className="toggleText">Already a member? </p>
-          <button className="toggleBtn" onClick={showLogin}>Log in</button>
         </div>
-      </div >
+      )}
     </>
   );
+  
 }
