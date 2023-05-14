@@ -42,24 +42,24 @@ const resolvers = {
 
       return { token, user };
     },
-   
+
     login: async (parent, { username, password, isAdmin }) => {
       const user = await User.findOne({ username });
-    
+
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-    
+
       const correctPw = await user.isCorrectPassword(password);
-    
+
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-    
+
       if (isAdmin && user.email !== "tbarnaby1@gmail.com") {
         throw new AuthenticationError('Not authorized');
       }
-    
+
       const token = signToken(user);
       return { token, user };
     },
@@ -75,10 +75,10 @@ const resolvers = {
     },
 
     deleteUser: async (parent, { username }) => {
-      const user = await User.findOneAndDelete(username);
+      const user = await User.findOneAndDelete({ username: username });
       return (`We will miss you ${user}`);
-
     },
+
     createEvent: async (parent, args, context) => {
       if (context.user) {
         const event = await Event.create(args);

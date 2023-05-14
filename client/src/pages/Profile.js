@@ -10,13 +10,13 @@ import './Event.css'
 
 const EventForm = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
-  const [models, setModels] = useState([]);
+  const [models, setModels] = useState('');
   const [theme, setTheme] = useState('');
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [timeZone, setTimeZone] = useState('');
   const [description, setDescription] = useState('');
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
 
   const handleStartDateChange = (date) => {
     setStartTime(date);
@@ -33,24 +33,23 @@ const EventForm = ({ onSubmit }) => {
       title,
       models,
       theme,
-      startTime,
-      endTime,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString(),
       timeZone,
       description,
-      images,
     };
-      // Call the createEvent mutation
-      try {
-        const { data } = await createEvent({
-          variables: event,
-        });
-        console.log('Event created successfully', data);
-        // Pass the event object to the onSubmit handler
-        onSubmit(event);
-      } catch (err) {
-        console.error('Failed to create event', err);
-      }
-  };  
+    // Call the createEvent mutation
+    try {
+      const { data } = await createEvent({
+        variables: event,
+      });
+      console.log('Event created successfully', data);
+      // Pass the event object to the onSubmit handler
+      onSubmit(event);
+    } catch (err) {
+      console.error('Failed to create event', err);
+    }
+  };
 
   return (
     <div>
@@ -70,8 +69,8 @@ const EventForm = ({ onSubmit }) => {
           <input
             type="text"
             id="models"
-            value={models.join(', ')}
-            onChange={(e) => setModels(e.target.value.split(', '))}
+            value={models}
+            onChange={(e) => setModels(e.target.value)}
           />
         </div>
         <div>
@@ -119,23 +118,26 @@ const EventForm = ({ onSubmit }) => {
           />
         </div>
         <div>
-  <label htmlFor="images">Images:</label>
-  <input
-    type="text"
-    id="images"
-    value={images.join(', ')}
-    onChange={(e) => setImages(e.target.value.split(', '))}
-  />
-</div>
-<div>
-  <button type="submit">Create Event</button>
-</div>
-</form>
-</div>
-);
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
+        <div>
+
+        </div>
+        <div>
+          <button type="submit">Create Event</button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
-  
+
 const Profile = () => {
 
   const handleEventSubmit = (event) => {

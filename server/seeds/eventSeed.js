@@ -19,10 +19,7 @@ for (let i = 1; i <= 20; i++) {
     startTime: startTime,
     timeZone: timeZone,
     description: `Description for Event ${i}`,
-    images: [
-      `https://via.placeholder.com/200?text=Event+${i}+Image+1`,
-      `https://via.placeholder.com/200?text=Event+${i}+Image+2`,
-    ],
+    
   };
 
   events.push(event);
