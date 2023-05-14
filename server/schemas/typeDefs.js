@@ -22,12 +22,11 @@ const typeDefs = gql`
   type Event {
     _id: ID
     title: String
-    models: [String]
+    models: String
     theme: String
     startTime: String
     timeZone: String
     description: String
-    images: [String]
   }
 
   type Auth {
@@ -50,8 +49,8 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     deleteUser(username: String!): User
     updateUser(height: String!, weight: String!, age: String!): User
-    createEvent(title: String!, models: [String], theme: String!, startTime: String!, timeZone: String!, description: String, images: [String]): Event
-    updateEvent(_id: ID!, title: String, models: [String], theme: String, startTime: String, timeZone: String, description: String, images: [String]): Event
+    createEvent(title: String!, models: String, theme: String!, startTime: String!, timeZone: String!, description: String): Event
+    updateEvent(_id: ID!, title: String, models: String, theme: String, startTime: String, timeZone: String, description: String,): Event
     deleteEvent(_id: ID!): Event
     adminLogin(username: String!, password: String!): Auth
     createMerchItem(name: String!, description: String, price: Float!, image: String): Merch

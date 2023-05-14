@@ -45,3 +45,18 @@ export const QUERY_EVENTS = gql`
     }
   }
 `
+export const CREATE_EVENT = gql`
+mutation CreateEvent($title: String!, $models: String, $theme: String!, $startTime: String!, $timeZone: String!, $description: String) {
+  createEvent(title: $title, models: $models, theme: $theme, startTime: $startTime, timeZone: $timeZone, description: $description) {
+    _id
+    title
+    models
+    theme
+    startTime
+    timeZone
+    description
+  }
+}
+`;
+
+

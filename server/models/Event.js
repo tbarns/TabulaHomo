@@ -5,7 +5,7 @@ const eventSchema = new Schema({
     type: String,
     required: true,
   },
-  models: [String],
+  models: String,
   theme: {
     type: String,
     required: true,
@@ -19,7 +19,6 @@ const eventSchema = new Schema({
     required: true,
   },
   description: String,
-  images: [String],
 });
 
 const Event = model('Event', eventSchema);
