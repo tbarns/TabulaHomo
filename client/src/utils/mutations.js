@@ -42,9 +42,11 @@ export const QUERY_EVENTS = gql`
       _id
       title
       startTime
+      models
     }
   }
 `
+
 
 
 export const GET_EVENT = gql`
@@ -78,4 +80,22 @@ mutation CreateEvent($title: String!, $models: String, $theme: String!, $startTi
 }
 `;
 
+export const DELETE_EVENT = gql`
+  mutation deleteEvent($_id: ID!) {
+    deleteEvent(_id: $_id) {
+      _id
+    }
+  }
+`;
+
+export const UPDATE_EVENT = gql`
+  mutation updateEvent($_id: ID!, $title: String, $models: String, $startTime: String) {
+    updateEvent(_id: $_id, title: $title, models: $models, startTime: $startTime) {
+      _id
+      title
+      models
+      startTime
+    }
+  }
+`;
 

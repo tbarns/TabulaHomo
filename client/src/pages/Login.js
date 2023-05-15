@@ -5,9 +5,10 @@ import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import "./Login.css";
 
-export default function Login(props) {
+export default function Login() {
   const [formState, setFormState] = useState({ username: "", password: "" });
-  const [login, error] = useMutation(LOGIN);
+  const [login, { error }] = useMutation(LOGIN);
+
   const [addUser] = useMutation(ADD_USER);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -21,7 +22,6 @@ export default function Login(props) {
       [name]: value,
     });
   };
-
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -36,11 +36,19 @@ export default function Login(props) {
       const token = mutationResponse.data.login.token;
       Auth.login(token);
       setShowEnterButton(false); // Hide the Enter button
+  
+      // Step 1: Check if the token is being set correctly
+      console.log(Auth.getToken());
+  
+      // Step 4: Test token expiration logic
+      const isExpired = Auth.isTokenExpired(token);
+      console.log('Token expired:', isExpired);
     } catch (e) {
       console.log(e);
       console.log(error)
     }
   };
+  
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();

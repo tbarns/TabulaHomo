@@ -1,45 +1,56 @@
 import decode from 'jwt-decode';
 
-class AuthService {
-  getProfile() {
-    return decode(this.getToken());
-  }
-
-  loggedIn() {
-    // Checks if there is a saved token and it's still valid
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
-  }
-
-  isTokenExpired(token) {
+const getProfile = () => {
+  const token = getToken();
+  if (token) {
     try {
-      const decoded = decode(token);
-      if (decoded.exp < Date.now() / 1000) {
-        return true;
-      } else return false;
-    } catch (err) {
-      return false;
+      return decode(token);
+    } catch (error) {
+      return null;
     }
   }
+  return null;
+};
 
-  getToken() {
-    // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token');
+const loggedIn = () => {
+  const token = getToken();
+  return !!token && !isTokenExpired(token);
+};
+
+const isTokenExpired = (token) => {
+  try {
+    const decoded = decode(token);
+    if (decoded.exp < Date.now() / 1000) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    return true; // Treat any error as an expired token
   }
+};
 
-  login(idToken) {
-    // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken);
+const getToken = () => {
+  return localStorage.getItem('id_token');
+};
 
-    window.location.assign('/profile');
-  }
+const login = (idToken) => {
+  localStorage.setItem('id_token', idToken);
+  window.location.assign('/profile');
+};
 
-  logout() {
-    // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
-    // this will reload the page and reset the state of the application
-    window.location.assign('/');
-  }
-}
-// eslint-disable-next-line
-export default new AuthService();
+const logout = () => {
+  localStorage.removeItem('id_token');
+  window.location.assign('/');
+};
+
+const Auth = {
+  getProfile,
+  loggedIn,
+  isTokenExpired,
+  getToken,
+  login,
+  logout,
+};
+
+export default Auth;
