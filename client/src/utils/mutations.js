@@ -42,9 +42,11 @@ export const QUERY_EVENTS = gql`
       _id
       title
       startTime
+      models
     }
   }
 `
+
 
 
 export const GET_EVENT = gql`
