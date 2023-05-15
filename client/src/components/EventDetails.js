@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { GET_EVENT } from '../utils/mutations';
+import './EventDetails.css'
 
 const EventDetails = () => {
     const { eventId } = useParams();
@@ -27,7 +28,7 @@ const EventDetails = () => {
         <p id="eventStartTime">Start Time: {event.startTime}</p>
         <p id="eventDescription">{event.description}</p>
       </div>
-    );
+    );    
   };
   
 

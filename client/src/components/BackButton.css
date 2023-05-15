@@ -1,0 +1,23 @@
+.backButton {
+    z-index: 1000;
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--white);
+    background: linear-gradient(45deg,var(--ochre), var(--ochre), var(--white),var(--white));
+    background-size: 200% 200%;
+    background-position: top right;
+    transition: all 0.5s ease-out;
+    color: var(--white);
+    border: .2px solid var(--ochre);
+    margin-bottom: 20px;
+}
+
+.backButton:hover {
+    transform: scale(1.1);
+    background-position: bottom left;
+    color: var(--white);
+}

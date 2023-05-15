@@ -1,0 +1,49 @@
+:root {
+    --ochre: #CC7722;
+    --blue: #51808F;
+    --black: #272932;
+    --white: #E7ECEF;
+  }
+  
+  .container {
+    width: 90%;
+    margin: 2rem auto;
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .eventCard {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+  
+  .eventCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .link {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--white);
+    background: var(--ochre);
+    text-align: center;
+    margin: 1rem 0;
+    transition: all 0.5s ease-out;
+  }
+  
+  .link:hover {
+    transform: scale(1.1);
+  }
+  
