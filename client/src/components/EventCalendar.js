@@ -4,7 +4,8 @@ import moment from 'moment-timezone';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_EVENTS, DELETE_EVENT, UPDATE_EVENT } from '../utils/mutations.js';
-import './EventCalendar.css'
+import './EventCalendar.css';
+import Auth from '../utils/auth.js';
 
 const localizer = momentLocalizer(moment);
 
@@ -13,6 +14,8 @@ const EventCalendar = () => {
   const [events, setEvents] = useState([]);
   const [deleteEvent] = useMutation(DELETE_EVENT);
   const [updateEvent] = useMutation(UPDATE_EVENT);
+  const profile = Auth.getProfile();
+  const isAdmin = profile && profile.isAdmin;
 
   useEffect(() => {
     if (data) {
@@ -24,7 +27,6 @@ const EventCalendar = () => {
       setEvents(formattedEvents);
     }
   }, [data]);
-
 
   const handleDeleteEvent = async (event) => {
     if (window.confirm(`Are you sure you want to delete the event "${event.title}" on ${event.startTime}?`)) {
@@ -37,32 +39,10 @@ const EventCalendar = () => {
     const title = window.prompt('Update title:', event.title);
     const models = window.prompt('Update models:', event.models);
     const startTime = window.prompt('Update start time:', event.startTime);
-    
+
     if (title && models && startTime) {
       await updateEvent({ variables: { _id: event._id, title, models, startTime } });
       // Refresh events
-    }
-  };
-
-
-  useEffect(() => {
-    if (data) {
-      const formattedEvents = data.events.map(event => ({
-        ...event,
-        start: new Date(event.startTime),
-        end: new Date(event.startTime),
-      }));
-      setEvents(formattedEvents);
-    }
-  }, [data]);
-
-  const eventClickHandler = (event, e) => {
-    if (e.target.classList.contains('delete-event')) {
-      handleDeleteEvent(event);
-    } else if (e.target.classList.contains('update-event')) {
-      handleUpdateEvent(event);
-    } else {
-      window.location.href = `/event/${event._id}`;
     }
   };
 
@@ -71,44 +51,35 @@ const EventCalendar = () => {
   };
 
   const titleAccessor = event => `
-  
     ${event.title} - ${event.models || 'No models'} - ${moment(event.start).format('hh:mm A')} - ${moment.tz(event.start, 'America/Los_Angeles').format('z')}
+  `;
 
-  <button class="delete-event">X</button>
-  <button class="update-event">+</button>
-`;
+  const eventWrapper = ({ event, children }) => {
+    return (
+      <div>
+        {children}
+        {isAdmin && (
+          <div>
+            <button className="delete-event" onClick={() => handleDeleteEvent(event)}>X</button>
+            <button className="update-event" onClick={() => handleUpdateEvent(event)}>+</button>
+          </div>
+        )}
+      </div>
+    );
+  };
 
-const CustomEvent = ({ event }) => {
   return (
-    <div>
-      <div>
-        {event.title} - {event.models || 'No models'} - {moment(event.start).format('hh:mm A')} - {moment.tz(event.start, 'America/Los_Angeles').format('z')}
-      </div>
-      <div>
-        <button className="delete-event" onClick={(e) => { e.stopPropagation(); handleDeleteEvent(event); }}>X</button>
-        <button className="update-event" onClick={(e) => { e.stopPropagation(); handleUpdateEvent(event); }}>+</button>
-      </div>
+    <div style={{ height: '500px' }}>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        components={{ eventWrapper }}
+        titleAccessor={titleAccessor}
+        onSelectEvent={event => window.location.href = `/event/${event._id}`}
+      />
     </div>
   );
 };
-
-
-
-
-return (
-  <div style={{ height: '500px' }}>
-    <Calendar
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      components={{ event: CustomEvent }}
-      titleAccessor={titleAccessor}
-      onSelectEvent={eventClickHandler}
-    />
-  </div>
-);
-
-};
-
 
 export default EventCalendar;
