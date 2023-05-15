@@ -71,4 +71,44 @@ input,
   color: var(--white);
 }
 
+/* DatePicker.css */
+.DatePicker {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--black);
+  color: var(--black);
+}
 
+
+.calendar {
+  width: min-content;
+}
+
+.popper {
+  /* Customize the popper appearance */
+}
+
+
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.3s linear;
+}
+
+.input-error {
+  animation: blink 1s linear infinite;
+  border-color: red;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 0; }
+  50%, 100% { opacity: 1; }
+}

@@ -34,6 +34,8 @@
   form {
     display: flex;
     flex-direction: column;
+    position: relative;
+  width: fit-content;
   }
   
   label {
@@ -68,6 +70,19 @@ button {
     color: var(--white);
   }
   
+  #enterdiv{
+    position: relative;
+  }
+
+
+  #enterBtn{
+    inset:0;
+    position: absolute;
+    margin: auto;
+    aspect-ratio: 3;  
+  }
+
+
   @media screen and (max-width: 600px) {
     .container {
       width: 80%;

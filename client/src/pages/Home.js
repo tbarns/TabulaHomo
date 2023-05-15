@@ -3,6 +3,9 @@ import Login from './Login'
 
 
 
+
+
+
 export default function Home() {
 
   return (
@@ -12,7 +15,6 @@ export default function Home() {
         <br></br>
         <Login />
         <br></br>
-
         <br></br>
       </div>
       <div> <EventCalendar />

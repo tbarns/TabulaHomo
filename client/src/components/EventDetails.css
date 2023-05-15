@@ -1,0 +1,31 @@
+.eventDetails {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  #eventTitle {
+    font-size: 24px;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  
+  #eventModel {
+    font-size: 18px;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  
+  #eventStartTime {
+    font-size: 16px;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+  
+  #eventDescription {
+    font-size: 16px;
+    color: var(--black);
+    margin-bottom: 0;
+  }
+  

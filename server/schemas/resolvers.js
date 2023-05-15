@@ -17,7 +17,13 @@ const resolvers = {
       return await Event.find();
     },
     event: async (parent, { _id }) => {
-      return await Event.findById(_id);
+      try {
+        const event = await Event.findById(_id);
+        return event;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch event');
+      }
     },
     merchItems: async () => {
       return await Merch.find();
