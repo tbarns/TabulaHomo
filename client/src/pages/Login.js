@@ -71,10 +71,11 @@ export default function Login(props) {
 
   return (
     <>
-      {showEnterButton && (
-        <button className="toggleBtn" onClick={showLogin}>
+      {showEnterButton && (<div id="enterdiv">
+        <button className="toggleBtn"  id="enterBtn"  onClick={showLogin}>
           Enter
         </button>
+        </div>
       )}
   
       {showLoginForm && (

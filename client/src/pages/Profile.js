@@ -7,8 +7,9 @@ import Auth from '../utils/auth';
 import Logout from '../components/Logout';
 import './Profile.css';
 import './Event.css'
+import Alert from 'react-bootstrap/Alert';
 
-const EventForm = ({ onSubmit }) => {
+const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert }) => {
   const [title, setTitle] = useState('');
   const [models, setModels] = useState('');
   const [theme, setTheme] = useState('');
@@ -16,6 +17,7 @@ const EventForm = ({ onSubmit }) => {
   const [endTime, setEndTime] = useState(null);
   const [timeZone, setTimeZone] = useState('');
   const [description, setDescription] = useState('');
+ 
   // const [images, setImages] = useState([]);
 
   const handleStartDateChange = (date) => {
@@ -28,7 +30,6 @@ const EventForm = ({ onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Prepare event object with form data
     const event = {
       title,
       models,
@@ -38,16 +39,29 @@ const EventForm = ({ onSubmit }) => {
       timeZone,
       description,
     };
-    // Call the createEvent mutation
+    
     try {
       const { data } = await createEvent({
         variables: event,
       });
       console.log('Event created successfully', data);
-      // Pass the event object to the onSubmit handler
       onSubmit(event);
+      setFormAlert('Event created successfully');
+      setShowAlert(true);
+      // Clear the input fields
+      setTitle('');
+      setModels('');
+      setTheme('');
+      setStartTime(null);
+      setEndTime(null);
+      setTimeZone('');
+      setDescription('');
+      setFormAlert('Event created successfully');
+      setShowAlert(true);
     } catch (err) {
       console.error('Failed to create event', err);
+      setFormAlert(`Failed to create event: ${err.message}`);
+      setShowAlert(true);
     }
   };
 
@@ -137,8 +151,9 @@ const EventForm = ({ onSubmit }) => {
   );
 };
 
-
 const Profile = () => {
+  const [formAlert, setFormAlert] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleEventSubmit = (event) => {
     console.log(event);
@@ -148,15 +163,27 @@ const Profile = () => {
   return (
     <>
       {Auth.loggedIn() ? (
-        <div className="temp">
-          <Logout />
-          <EventForm onSubmit={handleEventSubmit} />
-          {/* ... rest of the code here */}
+        <div>
+          <h2>Create Event</h2>
+          {showAlert && (
+            <Alert variant="info" onClose={() => setShowAlert(false)} dismissible>
+              {formAlert}
+            </Alert>
+          )}
+          <div className="temp">
+            <Logout />
+            <EventForm
+              onSubmit={handleEventSubmit}
+              formAlert={formAlert}
+              setFormAlert={setFormAlert}
+              showAlert={showAlert}
+              setShowAlert={setShowAlert}
+            />
+          </div>
         </div>
       ) : (
         <p>
-          You need to be logged in to view exercises. Please{' '}
-          <Link to="/">login</Link>.
+          You need to be logged in to view exercises. Please <Link to="/">login</Link>.
         </p>
       )}
     </>

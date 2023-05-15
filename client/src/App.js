@@ -9,7 +9,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-
+import Events from './pages/SingleEvent';
+import EventDetails from './components/EventDetails';
 import "./App.css";
 
 // Construct our main GraphQL API endpoint
@@ -41,12 +42,12 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-         
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/event/:eventId" element={<EventDetails />} />
           </Routes>
-          
         </div>
       </Router>
     </ApolloProvider>

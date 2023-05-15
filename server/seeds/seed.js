@@ -1,16 +1,12 @@
 const db = require('../config/connection');
-const { User } = require('../models');
-
+const seedMerch = require('./merchSeed.js');
+const { Merch } = require('../models');
 
 
 db.once('open', async () => {
-
-  await User.deleteMany({});
-  
-
-  // bulk create each model
-  const users = await User.insertMany(userData);
- 
+  await Merch.deleteMany({}); // Call deleteMany on Merch
+  const seedData = await seedMerch(); // Call your seedMerch function
+  await Merch.insertMany(seedData); // Call insertMany on Merch with the seedData
 
   console.log('all done!');
   process.exit(0);

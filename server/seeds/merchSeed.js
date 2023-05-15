@@ -24,6 +24,6 @@ for (let i = 1; i <= 100; i++) {
 const seedMerch = async () => {
   await Merch.deleteMany({});
   await Merch.insertMany(merchItems);
+  return merchItems; // Return the merchItems array
 };
-
 module.exports = seedMerch;
