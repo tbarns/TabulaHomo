@@ -8,6 +8,7 @@ import Logout from '../components/Logout';
 import './Profile.css';
 import './Event.css'
 import Alert from 'react-bootstrap/Alert';
+import EventCalendar from '../components/EventCalendar';
 
 const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert }) => {
   const [title, setTitle] = useState('');
@@ -154,6 +155,8 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
 const Profile = () => {
   const [formAlert, setFormAlert] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false); 
+
 
   const handleEventSubmit = (event) => {
     console.log(event);
@@ -172,6 +175,8 @@ const Profile = () => {
           )}
           <div className="temp">
             <Logout />
+            <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button> {/* NEW */}
+      {showCalendar && <EventCalendar />} {/* NEW */}
             <EventForm
               onSubmit={handleEventSubmit}
               formAlert={formAlert}
