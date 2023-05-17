@@ -99,3 +99,16 @@ export const UPDATE_EVENT = gql`
   }
 `;
 
+export const GET_USER = gql`
+  query GetUser {
+    getUser {
+      _id
+      username
+      email
+      age
+      height
+      weight
+      isAdmin
+    }
+  }
+`;

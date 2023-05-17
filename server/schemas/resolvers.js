@@ -13,6 +13,13 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    getUser: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).select('-__v -password');
+        return user;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
     events: async () => {
       return await Event.find();
     },

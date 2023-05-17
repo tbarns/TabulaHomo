@@ -38,6 +38,7 @@ const typeDefs = gql`
     Users: [User]
     user: User
     me: User
+    getUser: User
     events: [Event]
     event(_id: ID!): Event
     merchItems: [Merch]
