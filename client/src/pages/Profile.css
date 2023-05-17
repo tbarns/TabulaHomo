@@ -81,15 +81,6 @@ input,
 }
 
 
-.calendar {
-  width: min-content;
-}
-
-.popper {
-  /* Customize the popper appearance */
-}
-
-
 
 @keyframes shake {
   0% { transform: translateX(0); }

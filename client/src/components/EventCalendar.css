@@ -9,18 +9,40 @@
   width: 100%;
   color: var(--black);
   background-color: var(--white);
+  
 }
+
+.rbc-day-slot .rbc-event {
+  overflow: visible;
+  position: static;
+}
+
+.rbc-time-content {
+  height: auto;
+}
+
 
 .rbc-event {
   background-color: var(--blue);
   color: var(--white);
-  
+  padding: 2px;
+  font-size: 12px;
+  white-space: normal; /* Allow text to wrap */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rbc-event-content {
   font-size: 14px;
   width: fit-content;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.rbc-event-content > div {
+  margin-bottom: 4px; /* Adjust the margin as needed */
 }
 
 .rbc-time-view .rbc-time-slot {
@@ -40,4 +62,26 @@
 .event-calendar .rbc-time-view .rbc-time-gutter,
 .event-calendar .rbc-time-view .rbc-time-content {
   min-width: 80px;
+}
+
+
+.rbc-event-content > div {
+  margin-bottom: 4px;
+}
+
+
+
+@media (max-width: 768px) {
+  .rbc-event-content {
+    font-size: 12px;
+  }
+  
+  .rbc-event {
+    font-size: 10px;
+  }
+  
+  .event-calendar-container {
+    height: auto;
+    max-height: 100%;
+  }
 }

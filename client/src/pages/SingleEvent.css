@@ -5,18 +5,9 @@
     --white: #E7ECEF;
   }
   
-  .container {
-    width: 90%;
-    margin: 2rem auto;
-    background-color: var(--white);
-    color: var(--black);
-    border-radius: 5px;
-    padding: 1rem;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  }
   
   .eventCard {
-    background-color: var(--blue);
+    background-color: var(--black);
     color: var(--white);
     padding: 1rem;
     margin: 1rem 0;

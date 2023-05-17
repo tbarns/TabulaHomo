@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import Logout from '../components/Logout';
 import './Profile.css';
-import './Event.css'
 import Alert from 'react-bootstrap/Alert';
 import EventCalendar from '../components/EventCalendar';
 

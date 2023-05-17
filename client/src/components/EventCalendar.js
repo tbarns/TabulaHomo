@@ -50,13 +50,18 @@ const EventCalendar = () => {
     return moment(date).format('YYYY-MM-DD HH:mm');
   };
 
-  const titleAccessor = event => `
-    ${event.title} - ${event.models || 'No models'} - ${moment(event.start).format('hh:mm A')} - ${moment.tz(event.start, 'America/Los_Angeles').format('z')}
-  `;
-
+  const titleAccessor = event => (
+    <div>
+      <div>{event.title}</div>
+      <div>Featuring :{event.models || 'No models'}</div>
+      <div>{moment(event.start).format('hh:mm A')}</div>
+      <div>{moment.tz(event.start, 'America/Los_Angeles').format('z')}</div>
+    </div>
+  );
+  
   const eventWrapper = ({ event, children }) => {
     return (
-      <div>
+      <div className="event-wrapper">
         {children}
         {isAdmin && (
           <div>
