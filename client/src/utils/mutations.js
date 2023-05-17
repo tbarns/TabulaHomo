@@ -6,10 +6,12 @@ export const LOGIN = gql`
       token
       user {
         _id
+        email
       }
     }
   }
 `;
+
 
 
 export const ADD_USER = gql`
@@ -63,6 +65,20 @@ export const GET_EVENT = gql`
   }
 `;
 
+export const GET_USER = gql`
+  query GetUser {
+    getUser {
+      _id
+      username
+      email
+      age
+      height
+      weight
+      isAdmin
+    }
+  }
+`;
+
 
 
 
@@ -99,16 +115,3 @@ export const UPDATE_EVENT = gql`
   }
 `;
 
-export const GET_USER = gql`
-  query GetUser {
-    getUser {
-      _id
-      username
-      email
-      age
-      height
-      weight
-      isAdmin
-    }
-  }
-`;

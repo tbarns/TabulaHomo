@@ -25,15 +25,15 @@ export default function Login() {
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await login({
+      const {data} = await login({
         variables: {
           username: formState.username,
           password: formState.password,
           isAdmin: isAdmin,
         },
       });
-      console.log(mutationResponse.data);
-      const token = mutationResponse.data.login.token;
+      console.log(data);
+      const token = data.login.token;
       Auth.login(token);
       setShowEnterButton(false); // Hide the Enter button
   
