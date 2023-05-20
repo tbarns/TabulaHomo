@@ -1,24 +1,37 @@
-:root {
-  --ochre: #CC7722;
-  --blue: #51808F;
-  --black: #272932;
-  --white: #E7ECEF;
-}
-
-.eventDetails {
-  width: 90%;
-  margin: 2rem auto;
-  background-color: var(--white);
-  color: var(--black);
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--blue);
+  color: var(--white);
   border-radius: 5px;
-  padding: 1rem;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#eventTitle, #eventModel {
-  color: var(--blue);
+.button.disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 
-#eventStartTime, #eventDescription {
-  color: var(--ochre);
+.button.disabled:hover {
+  background-color: gray;
+}
+
+.button:hover {
+  background-color: var(--ochre);
+}
+
+.email-input:invalid {
+  border-color: red;
+}
+
+.email-input:invalid ~ .venmo-button .button {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
 }

@@ -6,15 +6,17 @@ export const LOGIN = gql`
       token
       user {
         _id
+        email
       }
     }
   }
 `;
 
 
+
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($username: String!, $email: String!, $password: String!, $isAdmin: Boolean!) {
+    addUser(username: $username, email: $email, password: $password, isAdmin: $isAdmin) {
       token
     }
   }
@@ -59,6 +61,20 @@ export const GET_EVENT = gql`
       startTime
       timeZone
       description
+    }
+  }
+`;
+
+export const GET_USER = gql`
+  query GetUser {
+    getUser {
+      _id
+      username
+      email
+      age
+      height
+      weight
+      isAdmin
     }
   }
 `;

@@ -4,15 +4,15 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
-
-        return userData;
+        const user = await User.findById(context.user._id).select('-__v -password');
+        return user;
       }
-
+      // Instead of returning null, you can throw an error if the user is not logged in
       throw new AuthenticationError('Not logged in');
     },
+    
     events: async () => {
       return await Event.find();
     },
@@ -35,54 +35,53 @@ const resolvers = {
       return await User.find()
 
     },
-    user: async (parent, args, context) => {
-      return await User.findById(context.user._id)
-        ;
-    }
-
+    getUser: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).select('-__v -password');
+        return user;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
-
       return { token, user };
     },
 
-    login: async (parent, { username, password, isAdmin }) => {
+    login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
-
+  
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
+  
       const correctPw = await user.isCorrectPassword(password);
-
+  
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
-      if (isAdmin && user.email !== "tbarnaby1@gmail.com") {
-        throw new AuthenticationError('Not authorized');
-      }
-
+  
       const token = signToken(user);
-      return { token, user };
+      return { token, user: { ...user.toObject(), email: user.email } };
     },
 
     updateUser: async (parent, { height, weight, age }, context) => {
       if (context.user) {
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $set: { age: age, height: height, weight: weight } },
-          { new: true })
+          { $set: { age, height, weight } },
+          { new: true }
+        );
         return user;
       }
+      throw new AuthenticationError('Not logged in');
     },
-
+    
     deleteUser: async (parent, { username }) => {
-      const user = await User.findOneAndDelete({ username: username });
-      return (`We will miss you ${user}`);
+      const user = await User.findOneAndDelete({ username });
+      return (`We will miss you ${user.username}`);
     },
 
     createEvent: async (parent, args, context) => {

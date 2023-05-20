@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { CREATE_EVENT } from '../utils/mutations';
+import { useMutation,  useQuery } from '@apollo/client';
+import { CREATE_EVENT, GET_USER } from '../utils/mutations';
 import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
@@ -17,7 +17,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
   const [endTime, setEndTime] = useState(null);
   const [timeZone, setTimeZone] = useState('');
   const [description, setDescription] = useState('');
- 
+
   // const [images, setImages] = useState([]);
 
   const handleStartDateChange = (date) => {
@@ -30,19 +30,24 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = Auth.getToken()
     const event = {
       title,
       models,
       theme,
       startTime: startTime.toISOString(),
-      endTime: endTime.toISOString(),
       timeZone,
       description,
     };
-    
+
     try {
       const { data } = await createEvent({
         variables: event,
+        context: {
+          headers: {
+            authorization: token ? `Bearer ${token}` : '',
+          },
+        },
       });
       console.log('Event created successfully', data);
       onSubmit(event);
@@ -64,6 +69,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
       setShowAlert(true);
     }
   };
+
 
   return (
     <div>
@@ -150,13 +156,20 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
     </div>
   );
 };
-
 const Profile = () => {
   const [formAlert, setFormAlert] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false); 
+  const [showCalendar, setShowCalendar] = useState(false);
 
-
+  const { loading, data } = useQuery(GET_USER);
+  console.log(data)
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+console.log(Auth.loggedIn())
+  const user = data?.getUser;
+  const userEmail = user?.email;
+console.log(userEmail)
   const handleEventSubmit = (event) => {
     console.log(event);
     // Here you could add more logic to handle the event data if needed
@@ -174,24 +187,26 @@ const Profile = () => {
           )}
           <div className="temp">
             <Logout />
-            <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button> {/* NEW */}
-      {showCalendar && <EventCalendar />} {/* NEW */}
+            <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
+            {showCalendar && <EventCalendar />}
             <EventForm
               onSubmit={handleEventSubmit}
               formAlert={formAlert}
               setFormAlert={setFormAlert}
               showAlert={showAlert}
               setShowAlert={setShowAlert}
+              userEmail={userEmail} // Pass the userEmail to the EventForm component
             />
           </div>
         </div>
       ) : (
         <p>
-          You need to be logged in to view exercises. Please <Link to="/">login</Link>.
+          You need to be logged in. Please <Link to="/">login</Link>.
         </p>
       )}
     </>
   );
 };
+
 
 export default Profile;

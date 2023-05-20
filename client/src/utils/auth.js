@@ -34,8 +34,9 @@ const getToken = () => {
   return localStorage.getItem('id_token');
 };
 
-const login = (idToken) => {
+const login = (idToken, email) => {
   localStorage.setItem('id_token', idToken);
+  localStorage.setItem('email', JSON.stringify(email));
   window.location.assign('/profile');
 };
 
