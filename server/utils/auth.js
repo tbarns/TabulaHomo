@@ -18,13 +18,14 @@ module.exports = {
     }
 
     try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data; // Attach the user object to req.user
-    } catch {
-      console.log('Invalid token');
+      const decodedToken = jwt.verify(token, secret);
+      console.log('Decoded Token:', decodedToken);
+      req.user = decodedToken.data; // Attach the user object to req.user
+    } catch (error) {
+      console.log('Invalid token:', error.message);
     }
 
-    return { req }; // Return the modified req object
+    return req; // Return the modified req object
   },
   signToken: function ({ username, _id, age, weight, height, email, isAdmin }) {
     const payload = { username, _id, age, weight, height, email, isAdmin };

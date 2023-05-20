@@ -36,7 +36,7 @@ const getToken = () => {
 
 const login = (idToken, email) => {
   localStorage.setItem('id_token', idToken);
-  localStorage.setItem('email', email);
+  localStorage.setItem('email', JSON.stringify(email));
   window.location.assign('/profile');
 };
 
