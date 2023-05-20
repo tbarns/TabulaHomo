@@ -3,33 +3,43 @@
   --blue: #51808F;
   --black: #272932;
   --white: #E7ECEF;
+  --gray: #F0F0F0; /* Add a new variable for gray color */
+  --future-blue: #E6F1F6; /* Add a new variable for future dates' blue background */
 }
 
 .rbc-calendar {
   width: 100%;
   color: var(--black);
   background-color: var(--white);
-  
 }
 
-.rbc-day-slot .rbc-event {
-  overflow: visible;
-  position: static;
+
+/* Style future dates */
+.rbc-date-cell.rbc-future {
+  background-color: black;
+
 }
+
+.rbc-now {
+  background-color: var(--white);
+}
+
 
 .rbc-time-content {
   height: auto;
 }
-
 
 .rbc-event {
   background-color: var(--blue);
   color: var(--white);
   padding: 2px;
   font-size: 12px;
-  white-space: normal; /* Allow text to wrap */
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family:monospace;
+  
+
 }
 
 .rbc-event-content {
@@ -42,7 +52,8 @@
 }
 
 .rbc-event-content > div {
-  margin-bottom: 4px; /* Adjust the margin as needed */
+  margin-bottom: 4px;
+
 }
 
 .rbc-time-view .rbc-time-slot {
@@ -50,7 +61,7 @@
 }
 
 .event-calendar-container {
-  border: 1px solid var(--ochre);
+  border: 3px solid var(--ochre);
   height: 500px;
 }
 
@@ -64,12 +75,9 @@
   min-width: 80px;
 }
 
-
 .rbc-event-content > div {
   margin-bottom: 4px;
 }
-
-
 
 @media (max-width: 768px) {
   .rbc-event-content {

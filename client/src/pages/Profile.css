@@ -14,12 +14,7 @@
 .temp{
   background-color: var(--white);
 }
-:root {
-  --ochre: #CC7722;
-  --blue: #51808F;
-  --black: #272932;
-  --white: #E7ECEF;
-}
+
 
 body {
   background-color: var(--black);
@@ -98,6 +93,84 @@ input,
   animation: blink 1s linear infinite;
   border-color: red;
 }
+
+/* Import the react-datepicker CSS file */
+@import 'react-datepicker/dist/react-datepicker.css';
+
+/* Add custom styles for the date selector popup */
+.react-datepicker {
+  font-family: Arial, sans-serif;
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999; /* Ensure the popup appears on top of other elements */
+}
+
+.react-datepicker__header {
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 5px 5px 0 0;
+  text-align: center; /* Center align the month and year */
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+  font-size: 18px;
+  color: var(--black); /* Change arrow toggle button color to black */
+  background-color: transparent; /* Remove background color for the arrows */
+  border: none;
+}
+
+.react-datepicker__navigation--previous:hover,
+.react-datepicker__navigation--next:hover {
+  background-color: var(--black);
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+.react-datepicker__month-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  justify-items: center;
+
+}
+
+.react-datepicker__month {
+  margin: 10px;
+  width: 280px; /* Adjust the width as needed */
+}
+
+.react-datepicker__week {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.react-datepicker__day {
+  text-align: center;
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  display: block;
+  text-align: center;
+}
+
+.react-datepicker__input-container input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--black);
+  color: var(--white);
+}
+
 
 @keyframes blink {
   0%, 49% { opacity: 0; }
