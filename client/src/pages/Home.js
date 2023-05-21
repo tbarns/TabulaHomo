@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_EVENTS } from '../utils/mutations';
 import EventCalendar from '../components/EventCalendar';
 import Login from './Login';
+import './Home.css'
 
 export default function Home() {
   // Fetch events data using useQuery
@@ -21,11 +22,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="container" id="test">
-        <br />
-        <Login />
-        <br />
-        <br />
+      <div className="container" id="homeDiv">
+
       </div>
       <div>
         <EventCalendar events={events} />

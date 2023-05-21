@@ -73,7 +73,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
 
   return (
     <div>
-      <h2>Create Event</h2>
+  
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>
@@ -187,7 +187,7 @@ console.log(userEmail)
           )}
           <div className="temp">
             <Logout />
-            <button onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
+            <button id = 'toggleCal' onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
             {showCalendar && <EventCalendar />}
             <EventForm
               onSubmit={handleEventSubmit}

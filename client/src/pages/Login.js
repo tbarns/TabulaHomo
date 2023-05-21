@@ -47,24 +47,24 @@ export default function Login() {
     }
   };
 
-  const handleSignupSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const mutationResponse = await addUser({
-        variables: {
-          username: formState.username,
-          password: formState.password,
-          email: formState.email,
-          isAdmin: isAdmin, 
-        },
-      });
-      const token = mutationResponse.data.addUser.token;
-      Auth.login(token, formState.email); // Pass the email value to Auth.login
-      setShowEnterButton(false); // Hide the Enter button
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const handleSignupSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const mutationResponse = await addUser({
+  //       variables: {
+  //         username: formState.username,
+  //         password: formState.password,
+  //         email: formState.email,
+  //         isAdmin: isAdmin, 
+  //       },
+  //     });
+  //     const token = mutationResponse.data.addUser.token;
+  //     Auth.login(token, formState.email); // Pass the email value to Auth.login
+  //     setShowEnterButton(false); // Hide the Enter button
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   const showLogin = () => {
     setShowLoginForm(true);
@@ -129,17 +129,17 @@ export default function Login() {
               </button>
             </div>
           </form>
-
+{/* 
           <div className="toggleContainer">
             <p className="toggleText">Not a member? </p>
             <button className="toggleBtn" onClick={showSignup}>
               Create an Account
-            </button>
-          </div>
+            </button> */}
+          {/* </div> */}
         </div>
       )}
 
-      {showSignupForm && (
+      {/* {showSignupForm && (
         <div className="container my-1" id="signup-component">
           <form autoComplete="off" className="form-title" onSubmit={handleSignupSubmit}>
       
@@ -203,7 +203,7 @@ export default function Login() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }
