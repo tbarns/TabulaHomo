@@ -73,6 +73,7 @@ input,
   border-radius: 5px;
   background-color: var(--black);
   color: var(--black);
+  width: fit-content;
 }
 
 
@@ -106,6 +107,7 @@ input,
   border: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 9999; /* Ensure the popup appears on top of other elements */
+  width: fit-content;
 }
 
 .react-datepicker__header {
@@ -135,28 +137,43 @@ input,
 }
 
 .react-datepicker__month-container {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  justify-items: center;
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
 }
 
 .react-datepicker__month {
   margin: 10px;
   width: 280px; /* Adjust the width as needed */
-}
-
-.react-datepicker__week {
   display: flex;
   flex-wrap: wrap;
 
 }
 
+.react-datepicker__week {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+
+}
+.react-datepicker__day-names{
+position:absolute;
+justify-content:center
+}
+.react-datepicker__day-name{
+  padding: .75rem;
+}
+
 .react-datepicker__day {
   text-align: center;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .react-datepicker__input-container {
   display: block;
