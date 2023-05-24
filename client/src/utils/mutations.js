@@ -47,6 +47,7 @@ export const QUERY_EVENTS = gql`
       models
       timeZone
       description
+      price
     }
   }
 `
@@ -63,6 +64,7 @@ export const GET_EVENT = gql`
       startTime
       timeZone
       description
+      price
     }
   }
 `;
@@ -85,8 +87,8 @@ export const GET_USER = gql`
 
 
 export const CREATE_EVENT = gql`
-mutation CreateEvent($title: String!, $models: String, $theme: String!, $startTime: String!, $timeZone: String!, $description: String) {
-  createEvent(title: $title, models: $models, theme: $theme, startTime: $startTime, timeZone: $timeZone, description: $description) {
+mutation CreateEvent($title: String!, $models: String, $theme: String!, $startTime: String!, $timeZone: String!, $description: String, $price: String) {
+  createEvent(title: $title, models: $models, theme: $theme, startTime: $startTime, timeZone: $timeZone, description: $description, price: $price) {
     _id
     title
     models
@@ -94,6 +96,7 @@ mutation CreateEvent($title: String!, $models: String, $theme: String!, $startTi
     startTime
     timeZone
     description
+    price
   }
 }
 `;

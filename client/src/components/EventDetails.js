@@ -69,6 +69,7 @@ const EventDetails = () => {
       <div className="eventDetails">
         <h4 id="eventTitle">{event.title}</h4>
         <h2 id="eventModel">{event.models}</h2>
+        <h4 id="eventPrice">{event.price}</h4>
         <p id="eventStartTime">Start Time: {moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}</p>
         <p id="eventDescription">{event.description}</p>
       </div>

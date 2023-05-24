@@ -31,11 +31,14 @@ position: relative;
 }
 
 #eventStartTime{
-
+  color: blueviolet;
 }
 
 #eventDescription{
 color: blueviolet;
+}
+#eventPrice{
+  color: blueviolet;
 }
 
 .venmo-button{

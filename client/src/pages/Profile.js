@@ -16,7 +16,8 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [timeZone, setTimeZone] = useState('');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('');  
+  const [price, setPrice] = useState('');
 
   // const [images, setImages] = useState([]);
 
@@ -38,7 +39,9 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
       startTime: startTime.toISOString(),
       timeZone,
       description,
+      price
     };
+    console.log(event)
 
     try {
       const { data } = await createEvent({
@@ -61,6 +64,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
       setEndTime(null);
       setTimeZone('');
       setDescription('');
+      setPrice('');
       setFormAlert('Event created successfully');
       setShowAlert(true);
     } catch (err) {
@@ -144,6 +148,13 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+        </div>  <div>
+          <label htmlFor="price">Price:</label>
+          <textarea
+            id="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </div>
 
         <div>
@@ -162,14 +173,12 @@ const Profile = () => {
   const [showCalendar, setShowCalendar] = useState(false);
 
   const { loading, data } = useQuery(GET_USER);
-  console.log(data)
+ 
   if (loading) {
     return <div>Loading...</div>;
   }
-console.log(Auth.loggedIn())
   const user = data?.getUser;
   const userEmail = user?.email;
-console.log(userEmail)
   const handleEventSubmit = (event) => {
     console.log(event);
     // Here you could add more logic to handle the event data if needed

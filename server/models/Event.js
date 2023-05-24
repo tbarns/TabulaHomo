@@ -19,6 +19,7 @@ const eventSchema = new Schema({
     required: true,
   },
   description: String,
+  price: String,
 });
 
 const Event = model('Event', eventSchema);
