@@ -8,8 +8,8 @@ position: relative;
   background-color: var(--blue);
   inset: 0 ;
   margin: auto;
-  width: 25%;
-  aspect-ratio: 1;
+  width: 50%;
+ 
   
 }
 #paymentDiv{
@@ -35,11 +35,11 @@ position: relative;
 }
 
 #eventDescription{
-
+color: blueviolet;
 }
 
 .venmo-button{
-
+  color: blueviolet;
 }
 
 
