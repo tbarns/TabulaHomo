@@ -45,6 +45,7 @@ export const QUERY_EVENTS = gql`
       title
       startTime
       models
+      timeZone
     }
   }
 `

@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <h1 className="navbar-title">Tabula Homo</h1>
+        <h1 className="navbar-title"style={{ fontFamily: 'Rampart One' }}>Tabula Homo</h1>
         <div className="navbar-links">
           <div id = 'navBtn' className="navbar-menu" onClick={handleDropdownToggle}>
             <div className="navbar-menu-icon smallPercent" />

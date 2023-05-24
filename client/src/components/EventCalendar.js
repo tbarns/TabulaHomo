@@ -47,9 +47,7 @@ const EventCalendar = () => {
     }
   };
 
-  const formatDate = (date) => {
-    return moment(date).format('YYYY-MM-DD HH:mm');
-  };
+ 
 
   const titleAccessor = event => (
     <div>

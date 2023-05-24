@@ -7,8 +7,6 @@
 
 
 #logoutBtn{
-  position: absolute;
-  top: 0;
-  right: 3%;
-  aspect-ratio: 1;
+  position: relative;
+
 }

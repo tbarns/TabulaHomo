@@ -1,3 +1,48 @@
+#eventContainter{
+position: relative;
+}
+
+.eventDetails{
+  position: relative;
+  align-content: center;
+  background-color: var(--blue);
+  inset: 0 ;
+  margin: auto;
+  width: 25%;
+  aspect-ratio: 1;
+  
+}
+#paymentDiv{
+  background-color: pink;
+  position: relative;
+  inset:0;
+  margin: auto;
+  width: 25%;
+}
+
+#eventTitle{
+  color:var(--ochre);
+
+}
+
+#eventModel{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#eventStartTime{
+
+}
+
+#eventDescription{
+
+}
+
+.venmo-button{
+
+}
+
+
 .button {
   display: inline-block;
   padding: 0.5rem 1rem;
