@@ -24,6 +24,7 @@ const EventCalendar = () => {
         start: new Date(event.startTime),
         end: new Date(event.startTime),
       }));
+      console.log(events)
       setEvents(formattedEvents);
     }
   }, [data]);

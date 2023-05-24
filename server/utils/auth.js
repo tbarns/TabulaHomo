@@ -19,7 +19,7 @@ module.exports = {
 
     try {
       const decodedToken = jwt.verify(token, secret);
-      console.log('Decoded Token:', decodedToken);
+      // console.log('Decoded Token:', decodedToken);
       req.user = decodedToken.data; // Attach the user object to req.user
     } catch (error) {
       console.log('Invalid token:', error.message);

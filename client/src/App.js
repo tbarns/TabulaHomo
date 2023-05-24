@@ -8,7 +8,10 @@ import "./App.css";
 import Navbar from "./components/Navbar"; 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import LoginPage from "./pages/LoginPage"; // Import the LoginPage component
+import LoginPage from "./pages/LoginPage";
+import Shop from "./pages/Shop";
+import About from "./pages/About";
+import Connect from "./pages/Connect";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -46,7 +49,9 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/event/:eventId" element={<EventDetails />} />
             <Route path="/login" element={<LoginPage />} /> 
-            {/* // Add the route for the LoginPage component */}
+            <Route path="/shop" element={<Shop />}/>
+            <Route path="/connect" element={<Connect />}/>
+            <Route path="/about" element={<About />}/>
           </Routes>
         </div>
       </Router>
