@@ -1,55 +1,59 @@
-#eventContainter{
-position: relative;
+#eventContainter {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.eventDetails{
-  position: relative;
-  align-content: center;
+.eventDetails {
+  flex: 2;
+  background-color: var(--ochre);
+  padding: 20px;
+  color: var(--white);
+}
+
+#paymentDiv {
+  flex: 1;
   background-color: var(--blue);
-  inset: 0 ;
-  margin: auto;
-  width: 50%;
- 
-  
-}
-#paymentDiv{
-  background-color: pink;
-  position: relative;
-  inset:0;
-  margin: auto;
-  width: 25%;
+  padding: 20px;
+  color: var(--white);
 }
 
-#eventTitle{
-  color:var(--ochre);
-
+#eventTitle {
+  color: var(--white);
+  font-size: 24px;
+  text-align: center;
 }
 
-#eventModel{
+#eventModel {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+  margin-top: 10px;
 }
 
-#eventStartTime{
-  color: blueviolet;
+#eventPrice {
+  color: var(--white);
+  margin-top: 10px;
+  text-align: center;
 }
 
-#eventDescription{
-color: blueviolet;
-}
-#eventPrice{
-  color: blueviolet;
-}
-
-.venmo-button{
-  color: blueviolet;
+#eventStartTime {
+  color: var(--white);
+  margin-top: 10px;
+  text-align: center;
 }
 
+#eventDescription {
+  color: var(--white);
+  margin-top: 10px;
+}
+
+.venmo-button {
+  margin-top: 20px;
+}
 
 .button {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: var(--blue);
+  background-color: var(--ochre);
   color: var(--white);
   border-radius: 5px;
   cursor: pointer;
@@ -66,7 +70,7 @@ color: blueviolet;
 }
 
 .button:hover {
-  background-color: var(--ochre);
+  background-color: var(--blue);
 }
 
 .email-input:invalid {
@@ -77,9 +81,54 @@ color: blueviolet;
   animation: shake 0.5s;
 }
 
+.getTicketButton {
+  display: none;
+  margin-top: 10px;
+}
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   75% { transform: translateX(5px); }
   100% { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  #eventContainter {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eventDetails {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+  }
+
+  #paymentDiv {
+    position: static;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  
+  .getTicketButton {
+    display: block;
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+ 
+
 }

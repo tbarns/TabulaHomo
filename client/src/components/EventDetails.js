@@ -18,6 +18,10 @@ const EventDetails = () => {
   // State for email input
   const [email, setEmail] = useState('');
   const [isEmailValid, setEmailValid] = useState(false);
+  const handleGetTicket = () => {
+    const paymentDiv = document.getElementById('paymentDiv');
+    paymentDiv.scrollIntoView({ behavior: 'smooth' });
+  };
 
   if (eventsLoading || userLoading) {
     return <div>Loading...</div>;
@@ -67,7 +71,10 @@ const EventDetails = () => {
   return (
     <div id = "eventContainter">
       <div className="eventDetails">
-        <h4 id="eventTitle">{event.title}</h4>
+      <div className="getTicketButton" onClick={handleGetTicket}>
+          Get Your Ticket
+        </div>
+        <p id="eventTitle">{event.title}</p>
         <h2 id="eventModel">{event.models}</h2>
         <h4 id="eventPrice">{event.price}</h4>
         <p id="eventStartTime">Start Time: {moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}</p>
