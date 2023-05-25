@@ -43,10 +43,7 @@ form {
 
 
 #toggleCal{
-  aspect-ratio: 1;
-  position: absolute;
-  left: 3%;
-  top:0;
+  position: relative;
 }
 
 

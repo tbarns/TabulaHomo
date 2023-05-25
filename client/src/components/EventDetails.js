@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_EVENTS, GET_USER } from '../utils/mutations';
 import './EventDetails.css';
+import moment from 'moment';
+
 
 const EventDetails = () => {
   const { eventId } = useParams();
@@ -16,6 +18,10 @@ const EventDetails = () => {
   // State for email input
   const [email, setEmail] = useState('');
   const [isEmailValid, setEmailValid] = useState(false);
+  const handleGetTicket = () => {
+    const paymentDiv = document.getElementById('paymentDiv');
+    paymentDiv.scrollIntoView({ behavior: 'smooth' });
+  };
 
   if (eventsLoading || userLoading) {
     return <div>Loading...</div>;
@@ -63,13 +69,18 @@ const EventDetails = () => {
   };
 
   return (
-    <div>
+    <div id = "eventContainter">
       <div className="eventDetails">
-        <h2 id="eventTitle">{event.title}</h2>
+      <div className="getTicketButton" onClick={handleGetTicket}>
+          Get Your Ticket
+        </div>
+        <p id="eventTitle">{event.title}</p>
         <h2 id="eventModel">{event.models}</h2>
-        <p id="eventStartTime">Start Time: {event.startTime}</p>
+        <h4 id="eventPrice">{event.price}</h4>
+        <p id="eventStartTime">Start Time: {moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}</p>
         <p id="eventDescription">{event.description}</p>
       </div>
+      <div id='paymentDiv' >
       <div className="venmo-button">
         {/* Email input */}
         <input
@@ -85,10 +96,11 @@ const EventDetails = () => {
           Pay with Venmo
         </div>
         {!isEmailValid && (
-    <div className="signup-text">
-      <p>Enter your email then click Pay to sign up.</p>
-    </div>
-  )}
+          <div className="signup-text">
+            <p>Enter your email then click Pay to sign up.</p>
+          </div>
+        )}
+      </div>
       </div>
     </div>
   );

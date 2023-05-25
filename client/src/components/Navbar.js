@@ -31,13 +31,15 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <h1 className="navbar-title">Tabula Homo</h1>
+        <h1 className="navbar-title"style={{ fontFamily: 'Rampart One' }}>Tabula Homo</h1>
         <div className="navbar-links">
           <div id = 'navBtn' className="navbar-menu" onClick={handleDropdownToggle}>
+            <div className="navbar-menu-icon smallPercent" />
+            <div className="navbar-menu-icon largePercent" />
             <div className="navbar-menu-icon" />
-            
-            <div className="navbar-menu-icon" />
-            <div className="navbar-menu-icon" />
+            <div className="navbar-menu-icon verticalIcon" />
+            <div className="navbar-menu-icon largePercent" />
+            <div className="navbar-menu-icon smallPercent" />
           </div>
           {isDropdownOpen && (
             <div className="navbar-dropdown">
