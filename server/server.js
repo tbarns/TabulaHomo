@@ -1,3 +1,5 @@
+// server.js
+
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -46,25 +48,17 @@ const connectToMongoDB = async () => {
 
 const startApolloServer = async () => {
   await server.start();
-
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-
-    // Serve the static files
-    app.get('/static/js/*.js', (req, res) => {
-      res.sendFile(path.resolve(__dirname, '../client/build/static/js', 'main.js'));
-    });
-
-    app.get('/static/css/*.css', (req, res) => {
-      res.sendFile(path.resolve(__dirname, '../client/build/static/css', 'main.css'));
-    });
-  }
-
   server.applyMiddleware({ app });
 
   connectToMongoDB();
 
-  app.get('/', (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    // Serve static files from the React client
+    app.use(express.static(path.join(__dirname, '../client/build')));
+  }
+
+  // All other routes will be handled by the React client
+  app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 
