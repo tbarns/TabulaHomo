@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
-  server: 'us10', 
+  server: 'us10',
 });
 
 // Mailchimp health check
@@ -33,7 +33,7 @@ const server = new ApolloServer({
 
 const connectToMongoDB = async () => {
   try {
-    const uri =  process.env.YOUR_CONNECTION_STRING; 
+    const uri = process.env.YOUR_CONNECTION_STRING;
     await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -46,13 +46,14 @@ const connectToMongoDB = async () => {
 
 const startApolloServer = async () => {
   await server.start();
-  server.applyMiddleware({ app });
-
-  connectToMongoDB();
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
   }
+
+  server.applyMiddleware({ app });
+
+  connectToMongoDB();
 
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
