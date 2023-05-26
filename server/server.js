@@ -49,6 +49,15 @@ const startApolloServer = async () => {
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
+
+    // Serve the static files
+    app.get('/static/js/*.js', (req, res) => {
+      res.sendFile(path.resolve(__dirname, '../client/build/static/js', 'main.js'));
+    });
+
+    app.get('/static/css/*.css', (req, res) => {
+      res.sendFile(path.resolve(__dirname, '../client/build/static/css', 'main.css'));
+    });
   }
 
   server.applyMiddleware({ app });
