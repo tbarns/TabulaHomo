@@ -15,6 +15,10 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   };
 
+  const handleHeaderClick = () => {
+    navigate('/about');
+  };
+
   const handleContactFormSubmit = (e) => {
     e.preventDefault();
     // Implement the logic to send the email with the user input
@@ -31,7 +35,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <h1 className="navbar-title"style={{ fontFamily: 'Rampart One' }}>Tabula Homo</h1>
+      <h1 className="navbar-title" style={{ fontFamily: 'Rampart One' }} onClick={handleHeaderClick}>
+  Tabula Homo
+</h1>
         <div className="navbar-links">
           <div id = 'navBtn' className="navbar-menu" onClick={handleDropdownToggle}>
             <div className="navbar-menu-icon smallPercent" />
