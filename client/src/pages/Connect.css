@@ -1,0 +1,12 @@
+.connectContainer{
+    display:flex;
+}
+
+
+#newsletterInfo{
+    background-color: var(--blue);
+    width: 66%;
+    border-radius: 10px;
+    margin-top: 2rem;
+    padding: 3rem;
+}

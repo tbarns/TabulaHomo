@@ -1,0 +1,41 @@
+
+.mailchimp-form {
+   background-color: var(--ochre);
+   position: relative;
+   height: calc(3*5.5rem);
+   aspect-ratio: inherit;
+    margin-top: 2rem;
+    width: fit-content;
+    align-content: center;
+
+  }
+  
+.mc-field-group{
+    width: fit-content;
+}
+
+  .form-label {
+    word-break: keep-all;
+    width: 50%;
+    white-space: nowrap;
+  }
+  
+  .form-input {
+   width: auto;
+  }
+  
+  .submit-button {
+   background-color: var(--blue);
+  }
+  
+  .brandingLogo {
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin-top: calc(2*6.88rem);
+  margin-left: calc(2*.62rem);
+  }
+ 
+  
+
+  

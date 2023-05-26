@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { gql } from 'graphql-tag';
+import './MailchimpSignupForm.css'; // Import your custom CSS file
 
 const SUBSCRIBE_EMAIL = gql`
   mutation SubscribeEmail($email: String!) {
@@ -21,10 +22,10 @@ const MailchimpSignupForm = ({ alert }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const { data } = await subscribeEmail({ variables: { email } });
-  
+
       if (data.subscribeEmail.success) {
         // Email subscription successful
         alert.success('Email subscribed successfully');
@@ -39,24 +40,23 @@ const MailchimpSignupForm = ({ alert }) => {
       alert.error('An error occurred while subscribing');
     }
   };
-  
 
   return (
     <div id="mc_embed_signup">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mailchimp-form">
         {/* Form fields and content */}
         {/* ... */}
 
         {/* Email input */}
         <div className="mc-field-group">
-          <label htmlFor="mce-EMAIL">
-            Email Address <span className="asterisk">*</span>
+          <label htmlFor="mce-EMAIL" className="form-label">
+            Email: 
           </label>
           <input
             type="email"
             value={email}
             name="EMAIL"
-            className="required email"
+            className="form-input"
             id="mce-EMAIL"
             required
             onChange={handleEmailChange}
@@ -67,13 +67,20 @@ const MailchimpSignupForm = ({ alert }) => {
         {/* Submit button */}
         <div className="optionalParent">
           <div className="clear foot">
-            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" />
+            <input
+              type="submit"
+              value="Subscribe"
+              name="subscribe"
+              id="mc-embedded-subscribe"
+              className="submit-button"
+            />
             {/* Mailchimp branding */}
             <p className="brandingLogo">
               <a href="http://eepurl.com/ir0-IQ" title="Mailchimp - email marketing made easy and fun">
                 <img
                   src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"
                   alt="Mailchimp"
+                  className="brandingLogo-image"
                 />
               </a>
             </p>
