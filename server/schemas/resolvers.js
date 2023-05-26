@@ -1,6 +1,7 @@
-const { User, Event, Merch } = require('../models');
+const { User, Event, Merch, Artist } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+
 require('dotenv').config();
 
 const mailchimp = require('@mailchimp/mailchimp_marketing');
@@ -49,6 +50,18 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError('Not logged in');
+    },
+    artist: async (parent, { _id }) => {
+      try {
+        const artist = await Artist.findById(_id);
+        return artist;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch artist');
+      }
+    },
+    artists: async () => {
+      return await Artist.find();
     },
   },
   Mutation: {
@@ -154,7 +167,27 @@ const resolvers = {
       }
       throw new AuthenticationError('Not authorized');
     },
- 
+    createArtist: async (parent, args, context) => {
+      if (context.user && context.user.isAdmin) {
+        const artist = await Artist.create(args.input);
+        return artist;
+      }
+      throw new AuthenticationError('Not authorized');
+    },
+    updateArtist: async (parent, args, context) => {
+      if (context.user && context.user.isAdmin) {
+        const updatedArtist = await Artist.findByIdAndUpdate(args._id, { $set: args.input }, { new: true });
+        return updatedArtist;
+      }
+      throw new AuthenticationError('Not authorized');
+    },
+    deleteArtist: async (parent, { _id }, context) => {
+      if (context.user && context.user.isAdmin) {
+        const deletedArtist = await Artist.findByIdAndDelete(_id);
+        return deletedArtist;
+      }
+      throw new AuthenticationError('Not authorized');
+    },
     subscribeEmail: async (parent, { email }) => {
       try {
         const response = await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID, {

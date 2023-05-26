@@ -14,6 +14,9 @@ import LoginPage from "./pages/LoginPage";
 import Shop from "./pages/Shop";
 import About from "./pages/About";
 import Connect from "./pages/Connect";
+import Artists from "./pages/Artists";
+import ArtistDetails from './components/ArtistDetails';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -61,6 +64,9 @@ function App() {
               <Route path="/shop" element={<Shop />}/>
               <Route path="/connect" element={<Connect />}/>
               <Route path="/about" element={<About />}/>
+              <Route path="/artists" element={<Artists />}/>
+              <Route path="/artist/:artistId" element={<ArtistDetails />} />
+
             </Routes>
           </div>
         </Router>

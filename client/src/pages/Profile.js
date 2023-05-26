@@ -8,6 +8,14 @@ import Logout from '../components/Logout';
 import './Profile.css';
 import Alert from 'react-bootstrap/Alert';
 import EventCalendar from '../components/EventCalendar';
+import ArtistUploadForm from '../components/ArtistUploadForm';
+
+
+const handleArtistSubmit = (artist) => {
+  // Handle the artist data
+  console.log(artist);
+};
+
 
 const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert }) => {
   const [title, setTitle] = useState('');
@@ -171,6 +179,7 @@ const Profile = () => {
   const [formAlert, setFormAlert] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [showArtistForm, setShowArtistForm] = useState(false);
 
   const { loading, data } = useQuery(GET_USER);
  
@@ -196,7 +205,26 @@ const Profile = () => {
           )}
           <div className="temp">
             <Logout />
-            <button id = 'toggleCal' onClick={() => setShowCalendar(!showCalendar)}>Toggle Calendar</button>
+            <button onClick={() => setShowArtistForm(!showArtistForm)}>
+              Upload Artist
+            </button>
+            {showAlert && (
+              <Alert variant="info" onClose={() => setShowAlert(false)} dismissible>
+                {formAlert}
+              </Alert>
+            )}
+            {showArtistForm && (
+              <ArtistUploadForm
+                onSubmit={handleArtistSubmit}
+                formAlert={formAlert}
+                setFormAlert={setFormAlert}
+                showAlert={showAlert}
+                setShowAlert={setShowAlert}
+              />
+            )}
+            <button id="toggleCal" onClick={() => setShowCalendar(!showCalendar)}>
+              Toggle Calendar
+            </button>
             {showCalendar && <EventCalendar />}
             <EventForm
               onSubmit={handleEventSubmit}
@@ -216,6 +244,5 @@ const Profile = () => {
     </>
   );
 };
-
 
 export default Profile;

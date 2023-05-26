@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const LOGIN = gql`
-  mutation login($username: String!, $password: String!) {
+  mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
       token
       user {
@@ -12,24 +12,56 @@ export const LOGIN = gql`
   }
 `;
 
+export const GET_ARTISTS = gql`
+  query GetArtists {
+    artists {
+      _id
+      name
+      socialMedia {
+        platform
+        link
+      }
+      profilePhoto
+      workImages
+      bio
+      location
+    }
+  }
+`;
 
+export const GET_ARTIST_BY_ID = gql`
+  query GetArtistByID($artistId: ID!) {
+    artist(_id: $artistId) {
+      _id
+      name
+      socialMedia {
+        platform
+        link
+      }
+      profilePhoto
+      workImages
+      bio
+      location
+    }
+  }
+`;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!, $isAdmin: Boolean!) {
+  mutation AddUser($username: String!, $email: String!, $password: String!, $isAdmin: Boolean!) {
     addUser(username: $username, email: $email, password: $password, isAdmin: $isAdmin) {
       token
     }
   }
-`
+`;
 
 export const DELETE_USER = gql`
-  mutation deleteUser($username: String!){ 
-    deleteUser(username:$username)
-}
-`
+  mutation DeleteUser($username: String!) { 
+    deleteUser(username: $username)
+  }
+`;
 
 export const UPDATE_USER = gql`
-  mutation updateUser($age: String!, $height: String!, $weight: String!) {
+  mutation UpdateUser($age: String!, $height: String!, $weight: String!) {
     updateUser(age: $age, height: $height, weight: $weight) {
       _id
       age
@@ -37,9 +69,10 @@ export const UPDATE_USER = gql`
       weight
     }
   }
-`
+`;
+
 export const QUERY_EVENTS = gql`
-  query Query {
+  query QueryEvents {
     events {
       _id
       title
@@ -50,9 +83,7 @@ export const QUERY_EVENTS = gql`
       price
     }
   }
-`
-
-
+`;
 
 export const GET_EVENT = gql`
   query GetEvent($eventId: ID!) {
@@ -83,26 +114,39 @@ export const GET_USER = gql`
   }
 `;
 
-
-
-
 export const CREATE_EVENT = gql`
-mutation CreateEvent($title: String!, $models: String, $theme: String!, $startTime: String!, $timeZone: String!, $description: String, $price: String) {
-  createEvent(title: $title, models: $models, theme: $theme, startTime: $startTime, timeZone: $timeZone, description: $description, price: $price) {
-    _id
-    title
-    models
-    theme
-    startTime
-    timeZone
-    description
-    price
+  mutation CreateEvent(
+    $title: String!,
+    $models: String,
+    $theme: String!,
+    $startTime: String!,
+    $timeZone: String!,
+    $description: String,
+    $price: String
+  ) {
+    createEvent(
+      title: $title,
+      models: $models,
+      theme: $theme,
+      startTime: $startTime,
+      timeZone: $timeZone,
+      description: $description,
+      price: $price
+    ) {
+      _id
+      title
+      models
+      theme
+      startTime
+      timeZone
+      description
+      price
+    }
   }
-}
 `;
 
 export const DELETE_EVENT = gql`
-  mutation deleteEvent($_id: ID!) {
+  mutation DeleteEvent($_id: ID!) {
     deleteEvent(_id: $_id) {
       _id
     }
@@ -110,7 +154,7 @@ export const DELETE_EVENT = gql`
 `;
 
 export const UPDATE_EVENT = gql`
-  mutation updateEvent($_id: ID!, $title: String, $models: String, $startTime: String) {
+  mutation UpdateEvent($_id: ID!, $title: String, $models: String, $startTime: String) {
     updateEvent(_id: $_id, title: $title, models: $models, startTime: $startTime) {
       _id
       title
@@ -120,3 +164,19 @@ export const UPDATE_EVENT = gql`
   }
 `;
 
+export const CREATE_ARTIST = gql`
+  mutation CreateArtist($artistInput: CreateArtistInput!) {
+    createArtist(input: $artistInput) {
+      _id
+      name
+      socialMedia {
+        platform
+        link
+      }
+      profilePhoto
+      workImages
+      bio
+      location
+    }
+  }
+`;
