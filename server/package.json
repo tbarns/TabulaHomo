@@ -18,6 +18,8 @@
     "apollo-server-express": "^3.6.2",
     "express": "^4.17.2",
     "graphql": "^16.3.0",
+    "dotenv": "^16.0.3",
+     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "mongoose": "^6.1.8"
   },
   "devDependencies": {

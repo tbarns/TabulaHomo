@@ -30,6 +30,11 @@ const typeDefs = gql`
     price: String
   }
 
+  type SubscriptionResponse {
+  success: Boolean!
+  message: String!
+}
+
   type Auth {
     token: ID
     user: User
@@ -46,6 +51,7 @@ const typeDefs = gql`
     merchItem(_id: ID!): Merch
   }
 
+
   type Mutation {
     addUser(username: String!, email: String!, password: String! isAdmin: Boolean!): Auth
     login(username: String!, password: String!): Auth
@@ -57,7 +63,8 @@ const typeDefs = gql`
     adminLogin(username: String!, password: String!): Auth
     createMerchItem(name: String!, description: String, price: Float!, image: String): Merch
     updateMerchItem(_id: ID!, name: String, description: String, price: Float, image: String): Merch
-    deleteMerchItem(_id: ID!): Merch
+    deleteMerchItem(_id: ID!): Merch,
+    subscribeEmail(email: String!): SubscriptionResponse!
   }
 
 `;

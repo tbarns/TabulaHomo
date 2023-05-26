@@ -18,6 +18,14 @@
   color: var(--white);
 }
 
+.emailInput{
+  flex: 1;
+  background-color: var(--black);
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
 #eventTitle {
   color: var(--white);
   font-size: 24px;

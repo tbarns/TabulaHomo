@@ -5,15 +5,31 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
+const mailchimp = require('@mailchimp/mailchimp_marketing');
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: 'us10', 
+});
+
+// Mailchimp health check
+const checkMailchimpHealth = async () => {
+  try {
+    const response = await mailchimp.ping.get();
+    console.log('Mailchimp health:', response);
+  } catch (error) {
+    console.error('Mailchimp health check failed:', error);
+  }
+};
+
+checkMailchimpHealth();
+
 const PORT = process.env.PORT || 4000;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware
-  },
-);
-
+  context: authMiddleware,
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -26,13 +42,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
-}
-
-// Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
@@ -45,5 +54,4 @@ const startApolloServer = async (typeDefs, resolvers) => {
   });
 };
 
-// Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
