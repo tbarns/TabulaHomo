@@ -1,9 +1,8 @@
 const { User, Event, Merch, Artist } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-
 require('dotenv').config();
-
+const listId ='ac42ab1a94'
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 
 mailchimp.setConfig({
@@ -188,9 +187,10 @@ const resolvers = {
       }
       throw new AuthenticationError('Not authorized');
     },
+   
     subscribeEmail: async (parent, { email }) => {
       try {
-        const response = await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID, {
+        const response = await mailchimp.lists.addListMember(listId, {
           email_address: email,
           status: 'subscribed',
         });
