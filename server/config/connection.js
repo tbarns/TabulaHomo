@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/tabulaHomo',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
 
-module.exports = mongoose.connection;
+const connectToMongoDB = async () => {
+  try {
+    const uri = process.env.YOUR_CONNECTION_STRING;
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB Atlas');
+  } catch (error) {
+    console.error('Error connecting to MongoDB Atlas:', error);
+  }
+};
+
+connectToMongoDB();
