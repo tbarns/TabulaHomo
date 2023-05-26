@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { useAlert } from 'react-alert';
+import MailchimpSignupForm from '../components/MailchimpSignupForm';
 
 const Connect = () => {
-  return (
-    <div>Connect coming soon</div>
-  )
-}
+  const alert = useAlert();
 
-export default Connect
+  return (
+    <div>
+      <MailchimpSignupForm alert={alert} />
+    </div>
+  );
+};
+
+export default Connect;

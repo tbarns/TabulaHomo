@@ -52,6 +52,9 @@ const Navbar = () => {
               <Link to="/connect" className="navbar-dropdown-link">
                 Connect
               </Link>
+              <Link to="/artists" className="navbar-dropdown-link">
+                Artist
+              </Link>
               <Link to="/shop" className="navbar-dropdown-link">
                 Shop
               </Link>

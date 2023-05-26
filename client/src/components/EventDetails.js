@@ -83,7 +83,7 @@ const EventDetails = () => {
       <div id='paymentDiv' >
       <div className="venmo-button">
         {/* Email input */}
-        <input
+        <input className = "emailInput"
           type="text"
           placeholder="Enter your email"
           value={email}
