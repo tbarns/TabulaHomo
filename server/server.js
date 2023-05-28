@@ -34,6 +34,7 @@ const server = new ApolloServer({
 });
 
 const connectToMongoDB = async () => {
+  
   try {
     const uri = process.env.YOUR_CONNECTION_STRING;
     await mongoose.connect(uri, {

@@ -3,27 +3,32 @@
   --blue: #51808F;
   --black: #272932;
   --white: #E7ECEF;
-  --gray: #F0F0F0; /* Add a new variable for gray color */
-  --future-blue: #E6F1F6; /* Add a new variable for future dates' blue background */
+  --gray: #F0F0F0;
+  --future-blue: #E6F1F6;
 }
 
 .rbc-calendar {
   width: 100%;
   color: var(--black);
   background-color: var(--white);
+  text-transform: none;
 }
 
+.rbc-date-cell {
+  height: calc(1*1.8rem);
+}
 
-/* Style future dates */
-.rbc-date-cell.rbc-future {
-  background-color: black;
-
+.special-date {
+  font-weight: bold;
+  color: red;
+  background-color: red;
+  text-transform: none !important;
 }
 
 .rbc-now {
-  background-color: var(--white);
+  background-color: #cc77227b;
+  
 }
-
 
 .rbc-time-content {
   height: auto;
@@ -32,28 +37,22 @@
 .rbc-event {
   background-color: var(--blue);
   color: var(--white);
-  padding: 2px;
-  font-size: 12px;
+  padding: 8px;
+  font-size: 14px;
   white-space: normal;
-  overflow: hidden;
   text-overflow: ellipsis;
-  font-family:monospace;
-  
-
+  font-family: monospace;
+  margin-top: 1.5rem;
+  border: 2px solid #CC7722;
 }
 
 .rbc-event-content {
   font-size: 14px;
   width: fit-content;
   height: fit-content;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.rbc-event-content > div {
-  margin-bottom: 4px;
-
 }
 
 .rbc-time-view .rbc-time-slot {
@@ -68,6 +67,26 @@
 .event-calendar {
   height: 100%;
   font-size: 14px;
+  text-transform: none;
+}
+button{
+  text-transform: none;
+}
+
+.rbc-month-view .rbc-month-row .rbc-day-bg .rbc-day-bg {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: none;
+}
+
+.eventSmallCard{
+  width: fit-content;
+  font-size: calc(2*.55rem);
+  white-space:nowrap ;
+  font-weight: 200;
+
+
 }
 
 .event-calendar .rbc-time-view .rbc-time-gutter,
@@ -75,8 +94,8 @@
   min-width: 80px;
 }
 
-.rbc-event-content > div {
-  margin-bottom: 4px;
+.rbc-button-link{
+  text-transform: none;
 }
 
 @media (max-width: 768px) {
@@ -91,5 +110,6 @@
   .event-calendar-container {
     height: auto;
     max-height: 100%;
+    text-transform: none !important;
   }
 }
