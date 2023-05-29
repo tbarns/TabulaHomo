@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ARTIST_BY_ID, UPDATE_ARTIST } from '../utils/mutations';
 import axios from 'axios';
+import Auth from '../utils/auth.js';
 
 const ArtistGallery = ({ artistId }) => {
   const { loading, error, data } = useQuery(GET_ARTIST_BY_ID, {
     variables: { artistId },
   });
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [newImage, setNewImage] = useState('');
   const [updateArtist] = useMutation(UPDATE_ARTIST);
+  const isLoggedIn = Auth.loggedIn();
 
   const handleFileInputChange = (e) => {
     const file = e.target.files?.[0];
@@ -64,22 +67,26 @@ const ArtistGallery = ({ artistId }) => {
         {artist.workImages.map((image, index) => (
           <div key={index}>
             <img src={image} alt={`Work Image ${index + 1}`} />
-            <button onClick={() => handleDeleteImage(image)}>Delete</button>
+            {isLoggedIn && (
+              <button onClick={() => handleDeleteImage(image)}>Delete</button>
+            )}
           </div>
         ))}
       </div>
-      <div>
-        <input
-          type="text"
-          placeholder="New Image URL"
-          disabled={uploadedImage !== null}
-        />
-        <label htmlFor="fileInput">Select File:</label>
-        <input type="file" id="fileInput" onChange={handleFileInputChange} />
-        <button onClick={handleAddImage} disabled={uploadedImage === null}>
-          Add Image
-        </button>
-      </div>
+      {isLoggedIn && (
+        <div>
+          <input
+            type="text"
+            placeholder="New Image URL"
+            disabled={uploadedImage !== null}
+          />
+          <label htmlFor="fileInput">Select File:</label>
+          <input type="file" id="fileInput" onChange={handleFileInputChange} />
+          <button onClick={handleAddImage} disabled={uploadedImage === null}>
+            Add Image
+          </button>
+        </div>
+      )}
     </div>
   );
 };
