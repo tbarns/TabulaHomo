@@ -24,21 +24,6 @@ const UploadForm = () => {
         updatedFields.push({ field, value });
       }
 
-      // Handle file inputs separately
-      if (field === 'profilePhoto' || field === 'workImages') {
-        const fileIndex = updatedFields.findIndex(
-          (f) => f.field === field && f.value instanceof File
-        );
-
-        if (fileIndex !== -1) {
-          updatedFields.splice(fileIndex, 1);
-        }
-
-        if (value instanceof File) {
-          updatedFields.push({ field, value });
-        }
-      }
-
       return updatedFields;
     });
   };
@@ -48,35 +33,34 @@ const UploadForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const modelFields = formFields.reduce((fields, { field, value }) => {
       fields[field] = value;
       return fields;
     }, {});
-  
+
     try {
       const formData = new FormData();
-  
+
       if (modelFields.profilePhoto instanceof File) {
         formData.append('file', modelFields.profilePhoto);
       }
-  
+
       const response = await axios.post(`/api/upload?model=${modelType}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-  
+
       console.log(response.data); // Log the response from Cloudinary API
-  
+
       // Set the image path in the modelFields object
       if (modelType === 'artist') {
-        modelFields.workImages = [response.data.result.path]; // Assuming workImages is an array
         modelFields.profilePhoto = response.data.result.path; // Set the profilePhoto field
       } else if (modelType === 'merch') {
         modelFields.photos = [response.data.result.path]; // Assuming photos is an array
       }
-  
+
       if (modelType === 'artist') {
         const { data } = await createArtist({
           variables: { artistInput: modelFields },
@@ -92,7 +76,7 @@ const UploadForm = () => {
         // Handle successful merch creation
         // ...
       }
-  
+
       // Clear the form fields
       setModelType('');
       setFormFields([]);
@@ -114,6 +98,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="name"
+                name="name"
                 onChange={(e) => handleFormFieldChange('name', e.target.value)}
               />
             </div>
@@ -122,6 +107,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="twitter"
+                name="twitter"
                 onChange={(e) => handleFormFieldChange('twitter', e.target.value)}
               />
             </div>
@@ -130,6 +116,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="instagram"
+                name="instagram"
                 onChange={(e) => handleFormFieldChange('instagram', e.target.value)}
               />
             </div>
@@ -138,6 +125,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="facebook"
+                name="facebook"
                 onChange={(e) => handleFormFieldChange('facebook', e.target.value)}
               />
             </div>
@@ -146,6 +134,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="website"
+                name="website"
                 onChange={(e) => handleFormFieldChange('website', e.target.value)}
               />
             </div>
@@ -153,15 +142,11 @@ const UploadForm = () => {
               label="Profile Photo"
               onFileChange={(file) => handleFormFieldChange('profilePhoto', file)}
             />
-            <ImageUploadForm
-              label="Work Images"
-              onFileChange={(file) => handleFormFieldChange('workImages', file)}
-              multiple
-            />
             <div>
               <label htmlFor="bio">Bio:</label>
               <textarea
                 id="bio"
+                name="bio"
                 onChange={(e) => handleFormFieldChange('bio', e.target.value)}
               />
             </div>
@@ -170,6 +155,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="location"
+                name="location"
                 onChange={(e) => handleFormFieldChange('location', e.target.value)}
               />
             </div>
@@ -183,6 +169,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="name"
+                name="name"
                 onChange={(e) => handleFormFieldChange('name', e.target.value)}
               />
             </div>
@@ -190,6 +177,7 @@ const UploadForm = () => {
               <label htmlFor="description">Description:</label>
               <textarea
                 id="description"
+                name="description" // Add the name attribute here
                 onChange={(e) => handleFormFieldChange('description', e.target.value)}
               />
             </div>
@@ -198,36 +186,8 @@ const UploadForm = () => {
               <input
                 type="number"
                 id="price"
+                name="price" // Add the name attribute here
                 onChange={(e) => handleFormFieldChange('price', parseFloat(e.target.value))}
-              />
-            </div>
-            <ImageUploadForm
-              label="Photos"
-              onFileChange={(file) => handleFormFieldChange('photos', file)}
-              multiple
-            />
-            <div>
-              <label htmlFor="apparel">Apparel:</label>
-              <input
-                type="checkbox"
-                id="apparel"
-                onChange={(e) => handleFormFieldChange('apparel', e.target.checked)}
-              />
-            </div>
-            <div>
-              <label htmlFor="sizes">Sizes:</label>
-              <input
-                type="text"
-                id="sizes"
-                onChange={(e) => handleFormFieldChange('sizes', e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="colors">Colors:</label>
-              <input
-                type="text"
-                id="colors"
-                onChange={(e) => handleFormFieldChange('colors', e.target.value)}
               />
             </div>
           </>

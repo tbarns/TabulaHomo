@@ -168,7 +168,7 @@ const resolvers = {
     },
     createArtist: async (parent, args, context) => {
       if (context.user && context.user.isAdmin) {
-        const artist = await Artist.create(args.artistInput);
+        const artist = await Artist.create(args.input);
         return artist;
       }
       throw new AuthenticationError('Not authorized');
