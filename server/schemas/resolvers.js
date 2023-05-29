@@ -184,10 +184,8 @@ const resolvers = {
       if (context.user && context.user.isAdmin) {
         const deletedArtist = await Artist.findByIdAndDelete(_id);
         return deletedArtist;
-      }
-      throw new AuthenticationError('Not authorized');
+      }  throw new AuthenticationError('Not authorized');
     },
-   
     subscribeEmail: async (parent, { email }) => {
       try {
         const response = await mailchimp.lists.addListMember(listId, {

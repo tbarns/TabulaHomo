@@ -18,12 +18,6 @@
   height: calc(1*1.8rem);
 }
 
-.special-date {
-  font-weight: bold;
-  color: red;
-  background-color: red;
-  text-transform: none !important;
-}
 
 .rbc-now {
   background-color: #cc77227b;

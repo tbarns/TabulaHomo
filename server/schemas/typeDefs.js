@@ -29,30 +29,30 @@ const typeDefs = gql`
     timeZone: String
     description: String
     price: String
+    modelPhotos: [String]
   }
 
-  input SocialMediaInput {
-    platform: String
-    link: String
-  }
-  type SocialMedia {
-  platform: String
-  link: String
-}
+ 
 
-  type Artist {
-    _id: ID!
+  input CreateArtistInput {
     name: String
-    socialMedia: [SocialMedia]
+    twitter: String
+    instagram: String
+    facebook: String
+    website: String
     profilePhoto: String
     workImages: [String]
     bio: String
     location: String
   }
 
-  input CreateArtistInput {
+  type Artist {
+    _id: ID!
     name: String
-    socialMedia: [SocialMediaInput]
+    twitter: String
+    instagram: String
+    facebook: String
+    website:String
     profilePhoto: String
     workImages: [String]
     bio: String

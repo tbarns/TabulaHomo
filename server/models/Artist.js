@@ -5,9 +5,21 @@ const artistSchema = new Schema({
     type: String,
     required: false,
   },
-  socialMedia: {
-    type: Map,
-    of: String,
+  twitter: {
+    type: String,
+    required: false,
+  },
+  instagram: {
+    type: String,
+    required: false,
+  },
+  facebook: {
+    type: String,
+    required: false,
+  },
+  website: {
+    type: String,
+    required: false,
   },
   profilePhoto: {
     type: String,

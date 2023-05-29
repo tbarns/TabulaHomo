@@ -5,13 +5,10 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 // Configure cloudinary settings
 cloudinary.config({
-  cloud_name: "your_cloudinary_cloud_name",
-  api_key: "your_cloudinary_api_key",
-  api_secret: "your_cloudinary_api_secret",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-// Export cloudinary for use in other files
-module.exports = cloudinary;
 
 // Create a new CloudinaryStorage instance to store uploaded files on Cloudinary
 const storage = new CloudinaryStorage({
@@ -40,15 +37,5 @@ const storage = new CloudinaryStorage({
 // Create a new multer instance to handle file uploads
 const upload = multer({ storage: storage }).single("file");
 
-// Export the upload function
-module.exports = (file) => {
-  return new Promise((resolve, reject) => {
-    upload(file, (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result);
-      }
-    });
-  });
-};
+// Export the cloudinary and upload functions
+module.exports = { cloudinary, upload };

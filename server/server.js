@@ -1,11 +1,12 @@
-// server.js
-
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const mongoose = require('mongoose');
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 mailchimp.setConfig({
@@ -34,7 +35,6 @@ const server = new ApolloServer({
 });
 
 const connectToMongoDB = async () => {
-  
   try {
     const uri = process.env.YOUR_CONNECTION_STRING;
     await mongoose.connect(uri, {
@@ -46,6 +46,53 @@ const connectToMongoDB = async () => {
     console.error('Error connecting to MongoDB Atlas:', error);
   }
 };
+
+// Configure cloudinary settings
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Create a new CloudinaryStorage instance to store uploaded files on Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'uploads',
+    allowed_formats: [
+      'jpeg',
+      'png',
+      'gif',
+      'bmp',
+      'tiff',
+      'webp',
+      'svg+xml',
+      'vnd.microsoft.icon',
+      'vnd.wap.wbmp',
+      'x-icon',
+      'x-jng',
+      'x-ms-bmp',
+      'x-portable-anymap',
+    ],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  },
+});
+
+// Create a new multer instance to handle file uploads
+const upload = multer({ storage: storage }).single('file');
+
+// Add the upload route handler for Cloudinary
+app.post('/api/upload', (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.error('Error uploading file:', err);
+      res.status(500).json({ success: false, error: 'File upload failed' });
+    } else {
+      // File uploaded successfully
+      res.json({ success: true, result: req.file });
+    }
+  });
+});
 
 const startApolloServer = async () => {
   await server.start();
