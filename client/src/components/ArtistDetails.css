@@ -1,0 +1,30 @@
+
+
+#artistDetailContainer{
+background-color: var(--blue);
+}
+
+#ArtistMain{
+background-color: var(--black);
+display: flex;
+
+}
+
+#artistProfilePhoto{
+border: 2rem solid var(--white);
+width: calc(7*3.2rem)
+}
+
+#artistText{
+    background-color: var(--ochre);
+    width: calc(100% - (7 * 3.2rem));
+}
+
+
+#artistLinks{
+    background-color: var(--ochre);
+}
+
+#artistName{
+   
+}
