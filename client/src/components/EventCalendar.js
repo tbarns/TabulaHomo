@@ -24,7 +24,6 @@ const EventCalendar = () => {
         start: new Date(event.startTime),
         end: new Date(event.startTime),
       }));
-      console.log(events)
       setEvents(formattedEvents);
     }
   }, [data]);
@@ -47,17 +46,18 @@ const EventCalendar = () => {
     }
   };
 
- 
+
 
   const titleAccessor = event => (
-    <div>
+    <div className='eventSmallCard'>
       <div>{event.title}</div>
-      <div>Featuring :{event.models || 'No models'}</div>
+      <div>Featuring: {event.models || 'No models'}</div>
       <div>{moment(event.start).format('hh:mm A')}</div>
       <div>{moment.tz(event.start, 'America/Los_Angeles').format('z')}</div>
+      
     </div>
   );
-  
+
   const eventWrapper = ({ event, children }) => {
     return (
       <div className="event-wrapper">
@@ -72,8 +72,10 @@ const EventCalendar = () => {
     );
   };
 
+
+
   return (
-    <div style={{ height: '500px' }}>
+    <div style={{ height: '100vh' }}>
       <Calendar
         localizer={localizer}
         events={events}
@@ -81,6 +83,7 @@ const EventCalendar = () => {
         components={{ eventWrapper }}
         titleAccessor={titleAccessor}
         onSelectEvent={event => window.location.href = `/event/${event._id}`}
+      
       />
     </div>
   );

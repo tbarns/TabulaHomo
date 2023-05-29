@@ -3,8 +3,6 @@
   --blue: #51808F;
   --black: #272932;
   --white: #E7ECEF;
-
-
 }
 .container {
     width: fit-content;
@@ -15,6 +13,8 @@
     color: var(--black);
     
   }
+
+ 
   
 .toggleContainer{
    margin-top: calc(.5*5rem);

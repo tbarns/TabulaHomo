@@ -17,10 +17,10 @@ export const GET_ARTISTS = gql`
     artists {
       _id
       name
-      socialMedia {
-        platform
-        link
-      }
+      twitter
+      instagram
+      facebook
+      website
       profilePhoto
       workImages
       bio
@@ -34,10 +34,10 @@ export const GET_ARTIST_BY_ID = gql`
     artist(_id: $artistId) {
       _id
       name
-      socialMedia {
-        platform
-        link
-      }
+      twitter
+      instagram
+      facebook
+      website
       profilePhoto
       workImages
       bio
@@ -164,15 +164,16 @@ export const UPDATE_EVENT = gql`
   }
 `;
 
+
 export const CREATE_ARTIST = gql`
   mutation CreateArtist($artistInput: CreateArtistInput!) {
     createArtist(input: $artistInput) {
       _id
       name
-      socialMedia {
-        platform
-        link
-      }
+      twitter
+      instagram
+      facebook
+      website
       profilePhoto
       workImages
       bio
@@ -180,3 +181,62 @@ export const CREATE_ARTIST = gql`
     }
   }
 `;
+
+export const UPDATE_ARTIST = gql`
+  mutation UpdateArtist($_id: ID!, $artistInput: CreateArtistInput!) {
+    updateArtist(_id: $_id, input: $artistInput) {
+      _id
+      name
+      twitter
+      instagram
+      facebook
+      website
+      profilePhoto
+      workImages
+      bio
+      location
+    }
+  }
+`;
+
+export const DELETE_ARTIST = gql`
+  mutation DeleteArtist($_id: ID!) {
+    deleteArtist(_id: $_id) {
+      _id
+    }
+  }
+`;
+
+export const CREATE_MERCH_ITEM = gql`
+  mutation CreateMerchItem($name: String!, $description: String, $price: Float!, $image: String) {
+    createMerchItem(name: $name, description: $description, price: $price, image: $image) {
+      _id
+      name
+      description
+      price
+      image
+    }
+  }
+`;
+
+
+export const DELETE_MERCH_ITEM = gql`
+  mutation DeleteMerchItem($_id: ID!) {
+    deleteMerchItem(_id: $_id) {
+      _id
+    }
+  }
+`;
+
+export const UPDATE_MERCH_ITEM = gql`
+  mutation UpdateMerchItem($_id: ID!, $name: String, $description: String, $price: Float, $image: String) {
+    updateMerchItem(_id: $_id, name: $name, description: $description, price: $price, image: $image) {
+      _id
+      name
+      description
+      price
+      image
+    }
+  }
+`;
+

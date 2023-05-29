@@ -22,7 +22,7 @@ const Artists = () => {
       {artists.map((artist) => (
         <div key={artist._id}>
           <h3>{artist.name}</h3>
-          <img src={artist.workImages[0]} alt={artist.name} />
+        
           <Link to={`/artist/${artist._id}`}>View Details</Link>
         </div>
         ))}

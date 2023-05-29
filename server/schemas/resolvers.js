@@ -168,7 +168,7 @@ const resolvers = {
     },
     createArtist: async (parent, args, context) => {
       if (context.user && context.user.isAdmin) {
-        const artist = await Artist.create(args.input);
+        const artist = await Artist.create(args.artistInput);
         return artist;
       }
       throw new AuthenticationError('Not authorized');
@@ -184,10 +184,8 @@ const resolvers = {
       if (context.user && context.user.isAdmin) {
         const deletedArtist = await Artist.findByIdAndDelete(_id);
         return deletedArtist;
-      }
-      throw new AuthenticationError('Not authorized');
+      }  throw new AuthenticationError('Not authorized');
     },
-   
     subscribeEmail: async (parent, { email }) => {
       try {
         const response = await mailchimp.lists.addListMember(listId, {

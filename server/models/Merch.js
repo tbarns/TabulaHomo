@@ -5,7 +5,7 @@ const merchSchema = new Schema({
   name: String,
   description: String,
   price: Number,
-  image: String,
+  photos: String,
   apparel: Boolean,
   sizes: [String],
   colors: [String],
