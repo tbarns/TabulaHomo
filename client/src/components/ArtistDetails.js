@@ -4,12 +4,11 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_ARTIST_BY_ID, DELETE_ARTIST } from '../utils/mutations';
 import axios from 'axios';
 import './ArtistDetails.css';
-
+import ArtistGallery from './ArtistGallery';
 
 const ArtistDetails = () => {
   const { artistId } = useParams();
   const [profilePhoto, setProfilePhoto] = useState(null);
-  const [workImages, setWorkImages] = useState([]);
   const [deleteArtist] = useMutation(DELETE_ARTIST);
 
   // Query the artist's data from the server
@@ -30,24 +29,6 @@ const ArtistDetails = () => {
           })
           .catch((error) => {
             console.error('Failed to retrieve profile photo', error);
-          });
-      }
-
-      // Retrieve and set the work images
-      if (artist.workImages.length > 0) {
-        const promises = artist.workImages.map((imagePath) =>
-          axios
-            .get(imagePath)
-            .then((response) => response.data)
-            .catch((error) => {
-              console.error('Failed to retrieve work image', error);
-              return null;
-            })
-        );
-
-        Promise.all(promises)
-          .then((images) => {
-            setWorkImages(images.filter((image) => image !== null));
           });
       }
     }
@@ -89,9 +70,7 @@ const ArtistDetails = () => {
         <p>Links</p>
         <p></p>
       </div>
-      {artist.workImages.map((image, index) => (
-        <img key={index} src={image} alt={`Work ${index + 1}`} />
-      ))}
+      <ArtistGallery artistId={artistId} />
     </div>
   );
 };

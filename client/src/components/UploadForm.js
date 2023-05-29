@@ -12,35 +12,22 @@ const UploadForm = () => {
     setModelType(e.target.value);
     setFormFields([]); // Clear existing form fields when model type changes
   };
+
   const handleFormFieldChange = (field, value) => {
     setFormFields((prevFields) => {
       const updatedFields = [...prevFields];
       const fieldIndex = updatedFields.findIndex((f) => f.field === field);
-  
+
       if (fieldIndex !== -1) {
         updatedFields[fieldIndex].value = value;
       } else {
         updatedFields.push({ field, value });
       }
-      const modelFields = {};
-      // Handle specific field types or assign values directly
-      switch (field) {
-        case 'apparel':
-          updatedFields[fieldIndex].value = value === 'true';
-          break;
-        case 'sizes':
-        case 'colors':
-          updatedFields[fieldIndex].value = value.split(',').map((item) => item.trim());
-          break;
-        default:
-          modelFields[field] = value;
-          break;
-      }
-  
+
       return updatedFields;
     });
   };
-  
+
   const [createArtist, { error: artistError }] = useMutation(CREATE_ARTIST);
   const [createMerch, { error: merchError }] = useMutation(CREATE_MERCH_ITEM);
 
@@ -51,8 +38,7 @@ const UploadForm = () => {
       fields[field] = value;
       return fields;
     }, {});
-    console.log('Model Type:', modelType);
-    console.log('Model Fields:', modelFields);
+
     try {
       const formData = new FormData();
 
@@ -70,7 +56,6 @@ const UploadForm = () => {
 
       // Set the image path in the modelFields object
       if (modelType === 'artist') {
-        modelFields.workImages = [response.data.result.path]; // Assuming workImages is an array
         modelFields.profilePhoto = response.data.result.path; // Set the profilePhoto field
       } else if (modelType === 'merch') {
         modelFields.photos = [response.data.result.path]; // Assuming photos is an array
@@ -113,7 +98,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="name"
-                name='name'
+                name="name"
                 onChange={(e) => handleFormFieldChange('name', e.target.value)}
               />
             </div>
@@ -122,7 +107,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="twitter"
-                name='twitter'
+                name="twitter"
                 onChange={(e) => handleFormFieldChange('twitter', e.target.value)}
               />
             </div>
@@ -131,7 +116,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="instagram"
-                name='instagram'
+                name="instagram"
                 onChange={(e) => handleFormFieldChange('instagram', e.target.value)}
               />
             </div>
@@ -140,7 +125,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="facebook"
-                name='facebook'
+                name="facebook"
                 onChange={(e) => handleFormFieldChange('facebook', e.target.value)}
               />
             </div>
@@ -149,7 +134,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="website"
-                name='website'
+                name="website"
                 onChange={(e) => handleFormFieldChange('website', e.target.value)}
               />
             </div>
@@ -157,16 +142,11 @@ const UploadForm = () => {
               label="Profile Photo"
               onFileChange={(file) => handleFormFieldChange('profilePhoto', file)}
             />
-            <ImageUploadForm
-              label="Work Images"
-              onFileChange={(file) => handleFormFieldChange('workImages', file)}
-              multiple
-            />
             <div>
               <label htmlFor="bio">Bio:</label>
               <textarea
                 id="bio"
-                name='bio'
+                name="bio"
                 onChange={(e) => handleFormFieldChange('bio', e.target.value)}
               />
             </div>
@@ -175,7 +155,7 @@ const UploadForm = () => {
               <input
                 type="text"
                 id="location"
-                name='location'
+                name="location"
                 onChange={(e) => handleFormFieldChange('location', e.target.value)}
               />
             </div>
@@ -210,7 +190,6 @@ const UploadForm = () => {
                 onChange={(e) => handleFormFieldChange('price', parseFloat(e.target.value))}
               />
             </div>
-
           </>
         );
       default:
