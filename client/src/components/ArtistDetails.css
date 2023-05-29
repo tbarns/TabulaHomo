@@ -1,30 +1,73 @@
-
-
-#artistDetailContainer{
-background-color: var(--blue);
-}
-
-#ArtistMain{
-background-color: var(--black);
-display: flex;
-
-}
-
-#artistProfilePhoto{
-border: 2rem solid var(--white);
-width: calc(7*3.2rem)
-}
-
-#artistText{
+#artistDetailContainer {
+    background-color: var(--black);
+    padding: 2rem;
+  }
+  
+  #deleteButton {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #ArtistMain {
+    display: flex;
+    align-items: center;
+  }
+  
+  #artistProfilePhoto {
+    border: 2px solid var(--white);
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    margin-right: 2rem;
+  }
+  
+  #artistText {
+    width: calc(100% - 10rem - 2rem);
+  }
+  
+  #artistName {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  
+  #artistLocation,
+  #artistBio {
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-size: calc(4*.38rem);
+  }
+  
+  #artistLinks {
     background-color: var(--ochre);
-    width: calc(100% - (7 * 3.2rem));
-}
-
-
-#artistLinks{
-    background-color: var(--ochre);
-}
-
-#artistName{
-   
-}
+    padding: 1rem;
+    margin-top: 2rem;
+    display: block;
+  }
+  
+  #artistLinks h3 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  
+  #artistLinks div {
+    display: block;
+    gap: 1rem;
+  }
+  
+  #artistLinks a {
+    color: var(--white);
+    text-decoration: none;
+  }
+  
+  #artistLinks a:hover {
+    text-decoration: underline;
+  }
+  
+  #twitter,
+  #ig, #fb,
+  #website{
+    display: block;
+  }

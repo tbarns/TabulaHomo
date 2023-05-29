@@ -62,7 +62,7 @@ const ArtistGallery = ({ artistId }) => {
 
     return (
         <div id='galleryContainer'>
-            <h2 id = "name">{artist.name} - Artist Gallery</h2>
+            <h2 id="name">{artist.name} - Artist Gallery</h2>
             <div id='gallery'>
                 {artist.workImages.map((image, index) => (
                     <div key={index}>
@@ -72,6 +72,13 @@ const ArtistGallery = ({ artistId }) => {
                         )}
                     </div>
                 ))}
+                <div>
+                    <p id="copyright">
+                        All artwork displayed in this gallery is the copyrighted work of {artist.name}.
+                        Unauthorized duplication or infringement of these works is strictly prohibited.
+                        The artist has granted permission to display their work in this gallery.
+                    </p>
+                </div>
             </div>
             {isLoggedIn && (
                 <div>
@@ -85,6 +92,7 @@ const ArtistGallery = ({ artistId }) => {
                     <button onClick={handleAddImage} disabled={uploadedImage === null}>
                         Add Image
                     </button>
+
                 </div>
             )}
         </div>

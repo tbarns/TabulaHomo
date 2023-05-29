@@ -1,5 +1,6 @@
 #galleryContainer{
-
+align-items: center;
+align-content: center;
 }
 
 #name{
@@ -8,8 +9,20 @@
 
 #gallery{
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically */
+
+ 
 }
 
 #singleImage{
     margin: calc(3*.23rem);
+    
+}
+#copyright{
+    font-size: calc(4*.25rem);
+    margin: .5rem;
+    white-space: pre-wrap;
 }

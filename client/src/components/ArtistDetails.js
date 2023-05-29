@@ -60,25 +60,24 @@ const ArtistDetails = () => {
   return (
     <div id='artistDetailContainer'>
       {isLoggedIn && (
-        <button onClick={handleDeleteArtist}>Delete Artist</button>
+        <button id="deleteButton" onClick={handleDeleteArtist}>Delete Artist</button>
       )}
       <div id='ArtistMain'>
         {profilePhoto && <img id="artistProfilePhoto" src={artist.profilePhoto} alt="Profile" />}
         <div id='artistText'>
           <h2 id='artistName'>{artist.name}</h2>
-          <p>Location: {artist.location}</p>
-          <p>Bio: {artist.bio}</p>
+          <p id='artistLocation'>Location: {artist.location}</p>
+          <p id='artistBio'>{artist.bio}</p>
         </div>
       </div>
       <div id='artistLinks'>
-        <p>Links</p>
-        <h4>
-          {artist.twitter}
-          {artist.instagram}
-          {artist.facebook}
-          {artist.website}
-        </h4>
-        <p></p>
+        <h4>Connect with {artist.name}:</h4>
+        <div>
+          {artist.twitter && <p id='twitter'>Twitter: {artist.twitter}</p>}
+          {artist.instagram && <p>Instagram : {artist.instagram}</p>}
+          {artist.facebook && <p>Facebook : {artist.facebook}</p>}
+          {artist.website && <a id="website" href={artist.website.startsWith("http") ? artist.website : `https://${artist.website}`} target="_blank" rel="noopener noreferrer">{artist.website}</a>}
+        </div>
       </div>
       <ArtistGallery artistId={artistId} />
     </div>
