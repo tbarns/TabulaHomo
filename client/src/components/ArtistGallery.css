@@ -1,0 +1,15 @@
+#galleryContainer{
+
+}
+
+#name{
+    display: block;
+}
+
+#gallery{
+    display: flex;
+}
+
+#singleImage{
+    margin: calc(3*.23rem);
+}

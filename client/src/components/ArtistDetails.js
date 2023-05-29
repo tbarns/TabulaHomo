@@ -5,11 +5,13 @@ import { GET_ARTIST_BY_ID, DELETE_ARTIST } from '../utils/mutations';
 import axios from 'axios';
 import './ArtistDetails.css';
 import ArtistGallery from './ArtistGallery';
+import Auth from '../utils/auth';
 
 const ArtistDetails = () => {
   const { artistId } = useParams();
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [deleteArtist] = useMutation(DELETE_ARTIST);
+  const isLoggedIn = Auth.loggedIn();
 
   // Query the artist's data from the server
   const { loading, error, data } = useQuery(GET_ARTIST_BY_ID, {
@@ -57,7 +59,9 @@ const ArtistDetails = () => {
 
   return (
     <div id='artistDetailContainer'>
-      <button onClick={handleDeleteArtist}>Delete Artist</button>
+      {isLoggedIn && (
+        <button onClick={handleDeleteArtist}>Delete Artist</button>
+      )}
       <div id='ArtistMain'>
         {profilePhoto && <img id="artistProfilePhoto" src={artist.profilePhoto} alt="Profile" />}
         <div id='artistText'>
@@ -68,6 +72,12 @@ const ArtistDetails = () => {
       </div>
       <div id='artistLinks'>
         <p>Links</p>
+        <h4>
+          {artist.twitter}
+          {artist.instagram}
+          {artist.facebook}
+          {artist.website}
+        </h4>
         <p></p>
       </div>
       <ArtistGallery artistId={artistId} />
