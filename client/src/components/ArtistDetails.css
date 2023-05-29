@@ -1,30 +1,146 @@
-
-
-#artistDetailContainer{
-background-color: var(--blue);
-}
-
-#ArtistMain{
-background-color: var(--black);
-display: flex;
-
-}
-
-#artistProfilePhoto{
-border: 2rem solid var(--white);
-width: calc(7*3.2rem)
-}
-
-#artistText{
-    background-color: var(--ochre);
-    width: calc(100% - (7 * 3.2rem));
-}
-
-
-#artistLinks{
-    background-color: var(--ochre);
-}
-
-#artistName{
+#artistDetailContainer {
+    background-color: var(--black);
+    padding: 2rem;
+  }
+  
+  #deleteButton {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #ArtistMain {
+    display: flex;
+    align-items: center;
+  }
+  
+  #artistProfilePhoto {
+    border: 2px solid var(--white);
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    margin-right: 2rem;
+  }
+  
+  #artistText {
+    width: calc(100% - 10rem - 2rem);
+  }
+  
+  #artistName {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  
+  #artistLocation,
+  #artistBio {
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-size: calc(4*.38rem);
+  }
+  
+  #artistLinks {
+    background-color: var(--blue);
+    padding: 1rem;
+    margin-top: 2rem;
+    display: block;
+     font-size: calc(5*.4rem);
+  }
+  
+  #artistLinks h3 {
+    color: var(--white);
+    margin-bottom: 1rem;
    
-}
+  }
+  
+  #artistLinks div {
+    display: block;
+    gap: 1rem;
+  }
+  
+  #artistLinks a {
+    color: var(--white);
+    text-decoration: none;
+    
+  }
+  
+  #artistLinks a:hover {
+    text-decoration: underline;
+  }
+  
+  #twitter,
+  #ig, #fb,
+  #website{
+    display: block;
+  }
+  @media screen and (max-width: 768px) {
+    #artistDetailContainer {
+      padding: 1rem;
+    }
+    
+    #artistProfilePhoto {
+      width: 8rem;
+      height: 8rem;
+      margin-right: 1rem;
+    }
+    
+    #artistText {
+      width: calc(100% - 8rem - 1rem);
+    }
+    
+    #artistName {
+      font-size: 1.5rem;
+    }
+    
+    #artistLocation,
+    #artistBio {
+      font-size: 1rem;
+    }
+    
+    #artistLinks {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    
+    #artistLinks h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    #artistDetailContainer {
+      padding: 0.5rem;
+    }
+    
+    #artistProfilePhoto {
+      width: 6rem;
+      height: 6rem;
+      margin-right: 0.5rem;
+    }
+    
+    #artistText {
+      width: calc(100% - 6rem - 0.5rem);
+    }
+    
+    #artistName {
+      font-size: 1.2rem;
+    }
+    
+    #artistLocation,
+    #artistBio {
+      font-size: 0.8rem;
+    }
+    
+    #artistLinks {
+      padding: 0.3rem;
+      font-size: 0.8rem;
+    }
+    
+    #artistLinks h3 {
+      margin-bottom: 0.3rem;
+      font-size: 0.8rem;
+    }
+  }
+  
