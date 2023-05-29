@@ -56,7 +56,10 @@ const UploadForm = () => {
   
     try {
       const formData = new FormData();
-      formData.append('file', modelFields.profilePhoto);
+  
+      if (modelFields.profilePhoto instanceof File) {
+        formData.append('file', modelFields.profilePhoto);
+      }
   
       const response = await axios.post(`/api/upload?model=${modelType}`, formData, {
         headers: {
@@ -68,10 +71,10 @@ const UploadForm = () => {
   
       // Set the image path in the modelFields object
       if (modelType === 'artist') {
-        modelFields.workImages = [response.data.path]; // Assuming workImages is an array
-        modelFields.profilePhoto = response.data.path; // Set the profilePhoto field
+        modelFields.workImages = [response.data.result.path]; // Assuming workImages is an array
+        modelFields.profilePhoto = response.data.result.path; // Set the profilePhoto field
       } else if (modelType === 'merch') {
-        modelFields.photos = [response.data.path]; // Assuming photos is an array
+        modelFields.photos = [response.data.result.path]; // Assuming photos is an array
       }
   
       if (modelType === 'artist') {
@@ -99,7 +102,6 @@ const UploadForm = () => {
       // ...
     }
   };
-  
 
   // Render the dynamic form fields based on the selected model type
   const renderFormFields = () => {
