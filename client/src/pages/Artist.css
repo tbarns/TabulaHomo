@@ -1,0 +1,15 @@
+#artistCard{
+background-color: var(--white);
+display: flex;
+width: fit-content;
+padding: 2rem;
+}
+
+
+#workImg{
+width: calc(4*3.7rem);
+}
+
+#artistLink{
+    margin-left: 1rem;
+}
