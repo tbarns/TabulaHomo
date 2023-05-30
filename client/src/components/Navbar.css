@@ -70,15 +70,15 @@
   width: 66%;
 }
 
-.verticalIcon{
+.verticalIcon {
   z-index: 100;
   background-color: var(--ochre);
-position: fixed;
-inset: 0;
-top:40%;
-left:40%;
-transform: rotate(90deg);
-width: 38%;
+  position: fixed;
+  inset: 0;
+  top: 40%;
+  left: 40%;
+  transform: rotate(90deg);
+  width: 38%;
 }
 
 
@@ -152,23 +152,51 @@ width: 38%;
   .navbar-dropdown-link {
     padding: 10px 0;
   }
+
   .smallPercent {
     width: 33%;
   }
-  
-  
+
+
   .largePercent {
     width: 66%;
   }
-  
-  .verticalIcon{
+
+  .verticalIcon {
     z-index: 100;
     background-color: var(--ochre);
-  position: fixed;
-  inset: 0;
-  top:40%;
-  left:40%;
-  transform: rotate(90deg);
-  width: 38%;
+    position: fixed;
+    inset: 0;
+    top: 40%;
+    left: 40%;
+    transform: rotate(90deg);
+    width: 38%;
   }
+
+  /* Hide the dropdown menu when the section is clicked */
+  .navbar-dropdown.is-open {
+    display: none;
+  }
+
+  .navbar-dropdown {
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    transform: none;
+    box-shadow: none;
+    z-index: 1000;
+    background-color: var(--white);
+    transition: none;
+  }
+
+  .navbar-dropdown-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+  }
+
 }

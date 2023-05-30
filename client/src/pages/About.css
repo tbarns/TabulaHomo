@@ -1,0 +1,124 @@
+#aboutContainer{
+    display: flex;
+   
+    
+}
+
+#quoteContainer{
+    padding:2rem;
+
+}
+
+#founderImg{
+   width: 20%;
+   height: 100%;
+}
+
+#textAbout{
+background-color: var(--blue);
+
+font-size: larger;
+
+
+}
+#tagline{
+    background-color: var(--white);
+    color:var(--black);
+    padding: 3rem;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#rules{
+    font-size: medium;
+
+}
+#end{
+    margin: 1rem;
+    padding: 2rem;
+}
+
+#punchy{
+    background-color: var(--ochre);
+    
+padding: 2rem;
+
+}
+
+#intro{
+    margin: 1rem;
+    padding: 2rem;
+
+}
+
+#aboutContainer {
+    display: flex;
+  }
+  
+  #quoteContainer {
+    padding: 2rem;
+  }
+  
+  #founderImg {
+    width: 20%;
+    height: 100%;
+  }
+  
+  #textAbout {
+    background-color: var(--blue);
+    font-size: larger;
+  }
+  
+  #tagline {
+    background-color: var(--white);
+    color: var(--black);
+    padding: 3rem;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  #rules {
+    font-size: medium;
+  }
+  
+  #end {
+    margin: 1rem;
+    padding: 2rem;
+  }
+  
+  #punchy {
+    background-color: var(--ochre);
+    padding: 2rem;
+  }
+  
+  #intro {
+    margin: 1rem;
+    padding: 2rem;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 1706px) {
+    #founderImg {
+      width: 40%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #aboutContainer {
+      flex-direction: column;
+    }
+  
+    #founderImg {
+      width: 100%;
+      height: auto;
+    }
+  
+    #tagline {
+      padding: 2rem;
+    }
+  
+    #rules {
+      font-size: small;
+    }
+  }
+  
