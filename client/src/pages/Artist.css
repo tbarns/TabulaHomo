@@ -1,8 +1,22 @@
+
+#artistPage{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+h2{
+    display: block;
+}
+
 #artistCard{
 background-color: var(--white);
 display: flex;
-width: fit-content;
 padding: 2rem;
+display: flex;
+margin: 1rem;
+box-sizing: border-box; 
+
 }
 
 
@@ -13,3 +27,19 @@ width: calc(4*3.7rem);
 #artistLink{
     margin-left: 1rem;
 }
+
+@media (max-width: 768px) {
+    /* Adjust the styles for mobile devices */
+    #artistCard {
+      width: 100%; /* Make the cards occupy the full width */
+    }
+    
+    #workImg {
+      width: 30%; /* Make the image occupy the full width */
+    }
+    
+    #artistLink {
+      margin-left: 0; /* Remove the left margin */
+      margin-top: 1rem; /* Add top margin for spacing */
+    }
+  }

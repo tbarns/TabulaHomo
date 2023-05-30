@@ -19,8 +19,11 @@ const Artists = () => {
     const artists = data.artists;
   
     return (
+
       <div>
-        <h2>Artists</h2>
+      <h2>Artists</h2>
+      <div id = 'artistPage'>
+        
       {artists.map((artist) => (
         <div id = 'artistCard' key={artist._id}>
         <img id = 'workImg'  src={artist.workImages[2]} alt='artist work' />
@@ -29,6 +32,7 @@ const Artists = () => {
         </div>
         </div>
         ))}
+      </div>
       </div>
     );
   };
