@@ -61,7 +61,7 @@ const About = () => {
 
         </p>
 
-        <p id = 'punchy'>
+        <p id = 'punchy'  style={{ fontFamily: 'Rampart One' }}>
           The thing about
           Tabula Homo is that
           when you attend

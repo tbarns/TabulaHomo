@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { QUERY_EVENTS, GET_USER } from '../utils/mutations';
+import { QUERY_EVENTS, GET_USER, DELETE_EVENT  } from '../utils/mutations';
 import './EventDetails.css';
 import moment from 'moment';
 
@@ -14,7 +14,7 @@ const EventDetails = () => {
 
   // Query user data
   const { loading: userLoading, data: userData } = useQuery(GET_USER);
-
+  const [deleteEvent] = useMutation(DELETE_EVENT);
   // State for email input
   const [email, setEmail] = useState('');
   const [isEmailValid, setEmailValid] = useState(false);
@@ -67,6 +67,20 @@ const EventDetails = () => {
     // Open the Venmo payment URL in a new tab
     window.open(venmoURL, '_blank');
   };
+    // Handler for delete button click
+    const handleDeleteEvent = async () => {
+      try {
+        await deleteEvent({
+          variables: { _id: event._id }, // Update variable name to _id
+        });
+    
+        // Redirect the user to the events page or perform any other necessary action
+        console.log('Event deleted successfully');
+      } catch (error) {
+        console.error('Failed to delete event:', error);
+      }
+    };
+  
 
   return (
     <div id = "eventContainter">
@@ -74,6 +88,9 @@ const EventDetails = () => {
       <div className="getTicketButton" onClick={handleGetTicket}>
           Get Your Ticket
         </div>
+        {userData?.user && (
+          <button onClick={handleDeleteEvent}>Delete Event</button>
+        )}
         <p id="eventTitle">{event.title}</p>
         <h2 id="eventModel">{event.models}</h2>
         <h4 id="eventPrice">{event.price}</h4>

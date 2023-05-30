@@ -6,44 +6,27 @@
 
 #quoteContainer{
     padding:2rem;
+   
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
 }
 
-#founderImg{
-   width: 20%;
-   height: 100%;
-}
-
-#textAbout{
-background-color: var(--blue);
-
-font-size: larger;
-
-
-}
 #tagline{
     background-color: var(--white);
     color:var(--black);
     padding: 3rem;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
 }
 
-#rules{
-    font-size: medium;
 
-}
 #end{
     margin: 1rem;
     padding: 2rem;
 }
 
-#punchy{
-    background-color: var(--ochre);
-    
-padding: 2rem;
 
-}
 
 #intro{
     margin: 1rem;
@@ -51,21 +34,14 @@ padding: 2rem;
 
 }
 
-#aboutContainer {
-    display: flex;
-  }
-  
-  #quoteContainer {
-    padding: 2rem;
-  }
-  
+
   #founderImg {
     width: 20%;
     height: 100%;
   }
   
   #textAbout {
-    background-color: var(--blue);
+    background-color: var(--black);
     font-size: larger;
   }
   
@@ -78,22 +54,29 @@ padding: 2rem;
   }
   
   #rules {
-    font-size: medium;
+    padding: 2rem;
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   
   #end {
     margin: 1rem;
     padding: 2rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   
   #punchy {
-    background-color: var(--ochre);
+    background-color: var(--white);
+    color: var(--black);
     padding: 2rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   
   #intro {
     margin: 1rem;
     padding: 2rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
   }
   
   /* Media Queries */
@@ -101,22 +84,42 @@ padding: 2rem;
     #founderImg {
       width: 40%;
     }
+    #quoteContainer{
+      font-size: large;
+    }
   }
   
   @media (max-width: 768px) {
     #aboutContainer {
       flex-direction: column;
     }
+    #quoteContainer{
+      font-size: medium;
+    }
   
     #founderImg {
       width: 100%;
       height: auto;
     }
-  
-    #tagline {
+   
+    #tagline
+   {
       padding: 2rem;
+      font-size: larger;
     }
-  
+
+    #punchy{
+      font-size: large;
+      
+    }
+
+    #intro,
+    #end {
+      padding: 2rem;
+      font-size: medium;
+    }
+
+
     #rules {
       font-size: small;
     }
