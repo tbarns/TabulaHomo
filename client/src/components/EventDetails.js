@@ -4,11 +4,13 @@ import { useParams } from 'react-router-dom';
 import { QUERY_EVENTS, GET_USER, DELETE_EVENT  } from '../utils/mutations';
 import './EventDetails.css';
 import moment from 'moment';
-
+import EventGallery from './EventGallery'
+import Auth from '../utils/auth';
 
 const EventDetails = () => {
   const { eventId } = useParams();
-
+  const isLoggedIn = Auth.loggedIn();
+  console.log(isLoggedIn)
   // Query event data
   const { loading: eventsLoading, error: eventsError, data: eventData } = useQuery(QUERY_EVENTS);
 
@@ -67,19 +69,17 @@ const EventDetails = () => {
     // Open the Venmo payment URL in a new tab
     window.open(venmoURL, '_blank');
   };
-    // Handler for delete button click
-    const handleDeleteEvent = async () => {
-      try {
-        await deleteEvent({
-          variables: { _id: event._id }, // Update variable name to _id
-        });
-    
-        // Redirect the user to the events page or perform any other necessary action
-        console.log('Event deleted successfully');
-      } catch (error) {
-        console.error('Failed to delete event:', error);
-      }
-    };
+  const handleDeleteEvent = async () => {
+    try {
+      const response = await deleteEvent({ variables: { _id: eventId } });
+      console.log('Event deleted successfully:', response);
+      alert('Event deleted successfully');
+    } catch (error) {
+      console.error('Failed to delete event:', error);
+      alert('Failed to delete event');
+    }
+  };
+
   
 
   return (
@@ -88,14 +88,15 @@ const EventDetails = () => {
       <div className="getTicketButton" onClick={handleGetTicket}>
           Get Your Ticket
         </div>
-        {userData?.user && (
-          <button onClick={handleDeleteEvent}>Delete Event</button>
-        )}
+        {isLoggedIn && (
+        <button id="deleteButton" onClick={handleDeleteEvent}>Delete Event</button>
+      )}
         <p id="eventTitle">{event.title}</p>
         <h2 id="eventModel">{event.models}</h2>
         <h4 id="eventPrice">{event.price}</h4>
         <p id="eventStartTime">Start Time: {moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}</p>
         <p id="eventDescription">{event.description}</p>
+        
       </div>
       <div id='paymentDiv' >
       <div className="venmo-button">
@@ -118,6 +119,9 @@ const EventDetails = () => {
           </div>
         )}
       </div>
+      <div id='eventGallery' >
+        { <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />}
+        </div>
       </div>
     </div>
   );

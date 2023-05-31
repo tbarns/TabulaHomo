@@ -96,6 +96,7 @@ export const GET_EVENT = gql`
       timeZone
       description
       price
+      modelPhotos
     }
   }
 `;
@@ -153,13 +154,15 @@ export const DELETE_EVENT = gql`
   }
 `;
 
+
 export const UPDATE_EVENT = gql`
-  mutation UpdateEvent($_id: ID!, $title: String, $models: String, $startTime: String) {
-    updateEvent(_id: $_id, title: $title, models: $models, startTime: $startTime) {
+  mutation UpdateEvent($_id: ID!, $eventInput: UpdateEventInput!) {
+    updateEvent(_id: $_id, eventInput: $eventInput) {
       _id
       title
       models
       startTime
+      modelPhotos
     }
   }
 `;

@@ -32,7 +32,17 @@ const typeDefs = gql`
     modelPhotos: [String]
   }
 
- 
+  input UpdateEventInput {
+    title: String
+    models: String
+    theme: String
+    startTime: String
+    timeZone: String
+    description: String
+    price: String
+    modelPhotos: [String]
+  }
+
 
   input CreateArtistInput {
     name: String
@@ -87,7 +97,7 @@ const typeDefs = gql`
     deleteUser(username: String!): User
     updateUser(height: String!, weight: String!, age: String!): User
     createEvent(title: String!, models: String, theme: String!, startTime: String!, timeZone: String!, description: String, price: String): Event
-    updateEvent(_id: ID!, title: String, models: String, theme: String, startTime: String, timeZone: String, description: String): Event
+    updateEvent(_id: ID!, eventInput: UpdateEventInput): Event
     deleteEvent(_id: ID!): Event
     adminLogin(username: String!, password: String!): Auth
     createMerchItem(name: String!, description: String, price: Float!, image: String): Merch

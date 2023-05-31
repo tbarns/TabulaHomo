@@ -111,13 +111,14 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-    updateEvent: async (parent, args, context) => {
+    updateEvent: async (parent, { _id, eventInput }, context) => {
       if (context.user) {
-        const updatedEvent = await Event.findByIdAndUpdate(args._id, { $set: args }, { new: true });
+        const updatedEvent = await Event.findByIdAndUpdate(_id, eventInput, { new: true });
         return updatedEvent;
       }
       throw new AuthenticationError('Not logged in');
     },
+  
     deleteEvent: async (parent, { _id }, context) => {
       if (context.user) {
         const deletedEvent = await Event.findByIdAndDelete(_id);
