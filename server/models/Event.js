@@ -23,7 +23,7 @@ const eventSchema = new Schema({
   modelPhotos: [
     {
       type: String,
-      required: true,
+     
     },
   ],
 });
