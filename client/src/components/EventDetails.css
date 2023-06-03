@@ -7,7 +7,6 @@
 .eventDetails {
   flex: 2;
   background-color: var(--ochre);
-  padding: 20px;
   color: var(--white);
 }
 
@@ -18,18 +17,30 @@
   color: var(--white);
 }
 
+#topBanner {
+  font-size: 2rem;
+  background-color: var(--black);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding: 2rem;
+}
+
+
 .emailInput{
   flex: 1;
   background-color: var(--black);
   display: block;
   margin-bottom: 1rem;
   color: var(--white);
+ 
 }
 
 #eventTitle {
   color: var(--white);
   font-size: 24px;
   text-align: center;
+  font-size: 3rem;
 }
 
 #eventModel {
@@ -43,15 +54,25 @@
   text-align: center;
 }
 
+#eventCountdown {
+  color: var(--white);
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
 #eventStartTime {
   color: var(--white);
-  margin-top: 10px;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  font-size: 3rem;
 }
 
 #eventDescription {
   color: var(--white);
   margin-top: 10px;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .venmo-button {
@@ -110,9 +131,9 @@
     position: relative;
     flex: 1;
     width: 100%;
-    padding: 20px;
     margin-bottom: 20px;
     overflow-y: auto;
+    background-color: var(--black);
   }
 
   #paymentDiv {
@@ -128,6 +149,8 @@
 
   
   .getTicketButton {
+    text-align: center;
+
     display: block;
     background-color: var(--blue);
     color: var(--white);
@@ -137,6 +160,24 @@
     transition: background-color 0.3s ease;
   }
 
- 
+  #topBanner {
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--ochre);
+  }
+
+  #eventStartTime,
+  #eventCountdown {
+    align-items: center;
+
+  }
+
+  #eventStartTime {
+    font-size: 3rem;
+  }
+
+  #eventCountdown {
+    font-size: 1.2rem;
+  }
 
 }
