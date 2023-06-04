@@ -78,7 +78,7 @@ const EventGallery = ({ eventId, isLoggedIn }) => {
 
   return (
     <div id='galleryContainer'>
-      <h2 id='title'>{event.title} - Event Gallery</h2>
+      <h2 id='title'>{event.title}</h2>
       <div id='gallery'>
         {event.modelPhotos?.map((photo, index) => (
           <div key={index}>
