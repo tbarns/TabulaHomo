@@ -93,12 +93,13 @@ const EventDetails = () => {
       // Display error message or shake the button
       return;
     }
-
+  
     // Construct the Venmo payment URL with email, event details, etc.
+    const comment = `Email: ${email}, Event: ${event.title}`;
     const venmoURL = `https://venmo.com/u/timothy-barnaby?event=${encodeURIComponent(
       event.title
-    )}&email=${encodeURIComponent(email)}`;
-
+    )}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(comment)}`;
+  
     // Open the Venmo payment URL in a new tab
     window.open(venmoURL, '_blank');
   };

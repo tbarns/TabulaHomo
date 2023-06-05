@@ -12,7 +12,7 @@
 
 #paymentDiv {
   flex: 1;
-  background-color: var(--blue);
+  background-color: var(--white);
   padding: 20px;
   color: var(--white);
 }
