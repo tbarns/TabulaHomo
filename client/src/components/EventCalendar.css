@@ -96,7 +96,25 @@ button{
   .rbc-event-content {
     font-size: 12px;
   }
-  
+  .rbc-toolbar-label {
+    display: none;
+  }
+
+  .rbc-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .rbc-header > .rbc-date-cell {
+    flex: 1;
+    text-align: center;
+  }
+
+  .rbc-header > .rbc-date-cell > .rbc-header-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
   .rbc-event {
     font-size: 10px;
   }
