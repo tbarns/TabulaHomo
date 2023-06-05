@@ -10,7 +10,7 @@ const Connect = () => {
       <div id = 'newsletterInfo'>
 
       <p>
-        Not in on the Tabula Homo newsletter? Get signed up for all the latest updates and offerings.
+        Not receiving the Tabula Homo newsletter? Get signed up for all the latest updates and offerings.
       </p>
       </div>
       <MailchimpSignupForm alert={alert} />
