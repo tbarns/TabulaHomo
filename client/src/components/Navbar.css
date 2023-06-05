@@ -8,6 +8,7 @@
 }
 
 .navbar-title {
+  padding-left: 1rem;
   color: var(--white);
   text-align: center;
   position: relative;

@@ -21,16 +21,17 @@ const Artists = () => {
     return (
 
       <div>
-      <h2>Artists</h2>
+      <h2>The Artists</h2>
       <div id = 'artistPage'>
         
       {artists.map((artist) => (
-        <div id = 'artistCard' key={artist._id}>
+        <Link to={`/artist/${artist._id}`}> <div id = 'artistCard' key={artist._id}>
         <img id = 'workImg'  src={artist.workImages[2]} alt='artist work' />
         <div id = 'artistLink'>
-          <Link to={`/artist/${artist._id}`}>{artist.name}</Link>
+         {artist.name}
+          <p id="artistBioMain">{artist.bio}</p>
         </div>
-        </div>
+        </div></Link>
         ))}
       </div>
       </div>

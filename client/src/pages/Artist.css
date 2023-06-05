@@ -1,45 +1,80 @@
-
-#artistPage{
-    display: flex;
-    flex-wrap: wrap;
-    
+#artistPage {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--blue);
+  height: 100vh;
+justify-content: center;
 }
 
-h2{
-    display: block;
-}
-
-#artistCard{
-background-color: var(--white);
-display: flex;
-padding: 2rem;
-display: flex;
-margin: 1rem;
-box-sizing: border-box; 
+h2 {
+  display: block;
+  text-transform: capitalize;
 
 }
 
-
-#workImg{
-width: calc(4*3.7rem);
+#artistCard {
+  background-color: var(--white);
+  width: 20rem; /* Set a fixed width for the card */
+  height: 20rem; /* Set a fixed height for the card */
+  display: flex;
+  flex-direction: column; /* Change to column direction */
+  padding: 2rem;
+  margin: 1.5rem;
+  margin-top: 4rem;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-#artistLink{
-    margin-left: 1rem;
+#artistBioMain {
+  display: none;
+  color: var(--black);
+  font-size: 1rem;
+}
+
+#artistCard:hover {
+  transform: scale(1.1);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  height: fit-content;
+}
+
+#artistCard:hover #artistBioMain {
+  display: block;
+}
+
+#workImg {
+  width: 100%; /* Adjust image width to fill the card */
+  height: auto; /* Allow image height to adjust proportionally */
+  max-height: 60%; /* Set a maximum height for the image */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  margin-bottom: 1rem; /* Add margin to the bottom of the image */
+}
+
+#artistLink {
+  margin-top: auto; /* Push the link to the bottom of the card */
 }
 
 @media (max-width: 768px) {
-    /* Adjust the styles for mobile devices */
-    #artistCard {
-      width: 100%; /* Make the cards occupy the full width */
-    }
-    
-    #workImg {
-      width: 30%; /* Make the image occupy the full width */
-    }
-    
-    #artistLink {
-      margin-left: 0; /* Remove the left margin */
-      margin-top: 1rem; /* Add top margin for spacing */
-    }
+  /* Adjust the styles for mobile devices */
+  #artistPage{
+    height: fit-content;
   }
+  #artistCard {
+    height: auto;
+  }
+
+  #workImg {
+    max-height: none;
+  }
+
+  #artistLink {
+    margin-top: 0;
+  }
+
+  #artistCard:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
