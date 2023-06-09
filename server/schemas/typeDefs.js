@@ -11,6 +11,10 @@ const typeDefs = gql`
     weight: String
     isAdmin: Boolean
   }
+  type EventPayment {
+    orderId: String
+    approveUrl: String
+  }
 
   type Merch {
     _id: ID
@@ -107,6 +111,7 @@ const typeDefs = gql`
     createArtist(input: CreateArtistInput): Artist
     updateArtist(_id: ID!, input: CreateArtistInput): Artist
     deleteArtist(_id: ID!): Artist
+    createEventPayment(eventId: ID!): EventPayment
   }
 `;
 

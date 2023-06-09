@@ -186,6 +186,29 @@ const resolvers = {
         const deletedArtist = await Artist.findByIdAndDelete(_id);
         return deletedArtist;
       }  throw new AuthenticationError('Not authorized');
+    }, Mutation: {
+      createEventPayment: async (parent, { eventId }, context) => {
+        if (context.user) {
+          try {
+            // Fetch the event by ID
+            const event = await Event.findById(eventId);
+  
+            if (!event) {
+              throw new Error('Event not found');
+            }
+  
+            // Call the PayPalClient to create the payment using the event price
+            const payment = await PayPalClient.createPayment(event.price, 'USD');
+  
+            return payment;
+          } catch (error) {
+            console.error('Error creating event payment:', error);
+            throw new Error('Failed to create event payment.');
+          }
+        } else {
+          throw new AuthenticationError('Not logged in');
+        }
+      },
     },
     subscribeEmail: async (parent, { email }) => {
       try {

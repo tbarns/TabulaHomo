@@ -6,6 +6,7 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import Events from './pages/SingleEvent';
 import EventDetails from './components/EventDetails';
+import PaymentPage from './pages/PaymentPage'; 
 import "./App.css";
 import Navbar from "./components/Navbar"; 
 import Home from "./pages/Home";
@@ -60,6 +61,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/events" element={<Events />} />
               <Route path="/event/:eventId" element={<EventDetails />} />
+              <Route path="/event/:eventId/payment" element={<PaymentPage />} /> {/* Add this route */}
               <Route path="/login" element={<LoginPage />} /> 
               <Route path="/shop" element={<Shop />}/>
               <Route path="/connect" element={<Connect />}/>

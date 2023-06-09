@@ -99,6 +99,28 @@ button{
   .rbc-toolbar-label {
     display: none;
   }
+  .eventSmallCard {
+    width: fit-content;
+    font-size: calc(1 * 0.55rem);
+    color: transparent;
+    white-space: nowrap;
+    font-weight: 200;
+    position: relative; /* Add a position property */
+  
+    /* Add a pseudo-element to display the small star */
+    &::before {
+      content: '\2605'; /* HTML entity for star */
+      display: inline-block;
+      font-size: calc(2*.95rem);
+      color: gold;
+      position: absolute;
+      
+      left:.20rem;
+
+   
+    }
+  }
+  
 
   .rbc-header {
     display: flex;

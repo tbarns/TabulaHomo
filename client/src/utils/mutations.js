@@ -243,3 +243,11 @@ export const UPDATE_MERCH_ITEM = gql`
   }
 `;
 
+export const CREATE_EVENT_PAYMENT = gql`
+mutation CreateEventPayment($eventId: ID!) {
+  createEventPayment(eventId: $eventId) {
+    orderId
+    approveUrl
+  }
+}
+`;
