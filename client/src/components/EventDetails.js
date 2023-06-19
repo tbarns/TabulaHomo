@@ -6,6 +6,7 @@ import './EventDetails.css';
 import moment from 'moment';
 import EventGallery from './EventGallery';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 
 const EventDetails = () => {
   const { eventId } = useParams();
@@ -29,35 +30,35 @@ const EventDetails = () => {
 
   useEffect(() => {
     if (!eventData || !eventData.events) return;
-  
+
     const event = eventData.events.find((event) => event._id === eventId);
-  
+
     if (!event) return;
-  
+
     const updateCountdown = () => {
       const startTime = moment(event.startTime);
       const currentTime = moment();
-  
+
       const duration = moment.duration(startTime.diff(currentTime));
       const days = duration.days();
       const hours = duration.hours();
       const minutes = duration.minutes();
       const seconds = duration.seconds();
-    
-  
+
+
       setTimeRemaining(`${days} days
        ${hours}h  ${minutes}m  ${seconds}s `);
     };
-  
+
     // Update countdown every second
     const intervalId = setInterval(updateCountdown, 1);
-  
+
     // Clear interval on component unmount
     return () => {
       clearInterval(intervalId);
     };
   }, [eventData, eventId]);
-  
+
   if (eventsLoading || userLoading) {
     return <div>Loading...</div>;
   }
@@ -93,13 +94,13 @@ const EventDetails = () => {
       // Display error message or shake the button
       return;
     }
-  
+
     // Construct the Venmo payment URL with email, event details, etc.
     const comment = `Email: ${email}, Event: ${event.title}`;
     const venmoURL = `https://venmo.com/u/timothy-barnaby?event=${encodeURIComponent(
       event.title
     )}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(comment)}`;
-  
+
     // Open the Venmo payment URL in a new tab
     window.open(venmoURL, '_blank');
   };
@@ -119,7 +120,7 @@ const EventDetails = () => {
     <div id="eventContainter">
       <div className="eventDetails">
         <div className="getTicketButton" onClick={handleGetTicket}>
-        🎟️Get Your Ticket🎟️
+          🎟️Get Your Ticket🎟️
         </div>
         {isLoggedIn && (
           <button id="deleteButton" onClick={handleDeleteEvent}>
@@ -153,7 +154,14 @@ const EventDetails = () => {
             onChange={handleEmailChange}
             required
           />
-
+          <Link
+            to={{
+              pathname: `/event/${eventId}/payment`,
+              state: { event },
+            }}
+          >
+            Proceed to Payment
+          </Link>
           {/* Venmo payment button */}
           <div className={`button ${isEmailValid ? '' : 'disabled'}`} onClick={handleVenmoPayment}>
             Pay with Venmo

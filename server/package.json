@@ -14,8 +14,12 @@
   "license": "ISC",
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "@paypal/paypalhttp": "^1.0.1",
     "apollo-server-express": "^3.6.2",
+    "axios": "^1.4.0",
     "bcrypt": "^4.0.1",
+    "browserify-zlib": "^0.2.0",
     "cloudinary": "^1.37.0",
     "dotenv": "^16.0.3",
     "express": "^4.17.2",
@@ -23,7 +27,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
     "multer": "^1.4.5-lts.1",
-    "multer-storage-cloudinary": "^4.0.0"
+    "multer-storage-cloudinary": "^4.0.0",
+    "querystring-es3": "^0.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
