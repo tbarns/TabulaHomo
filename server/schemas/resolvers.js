@@ -20,7 +20,6 @@ const resolvers = {
       // Instead of returning null, you can throw an error if the user is not logged in
       throw new AuthenticationError('Not logged in');
     },
-
     events: async () => {
       return await Event.find();
     },
@@ -40,8 +39,7 @@ const resolvers = {
       return await Merch.findById(_id);
     },
     Users: async (parent, args, context) => {
-      return await User.find()
-
+      return await User.find();
     },
     getUser: async (parent, args, context) => {
       if (context.user) {
@@ -69,7 +67,6 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
 
@@ -86,7 +83,6 @@ const resolvers = {
       const token = signToken(user);
       return { token, user: { ...user.toObject(), email: user.email } };
     },
-
     updateUser: async (parent, { height, weight, age }, context) => {
       if (context.user) {
         const user = await User.findOneAndUpdate(
@@ -98,12 +94,10 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-
     deleteUser: async (parent, { username }) => {
       const user = await User.findOneAndDelete({ username });
-      return (`We will miss you ${user.username}`);
+      return `We will miss you ${user.username}`;
     },
-
     createEvent: async (parent, args, context) => {
       if (context.user) {
         const event = await Event.create(args);
@@ -118,7 +112,6 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-  
     deleteEvent: async (parent, { _id }, context) => {
       if (context.user) {
         const deletedEvent = await Event.findByIdAndDelete(_id);
@@ -185,30 +178,30 @@ const resolvers = {
       if (context.user && context.user.isAdmin) {
         const deletedArtist = await Artist.findByIdAndDelete(_id);
         return deletedArtist;
-      }  throw new AuthenticationError('Not authorized');
-    }, Mutation: {
-      createEventPayment: async (parent, { eventId }, context) => {
-        if (context.user) {
-          try {
-            // Fetch the event by ID
-            const event = await Event.findById(eventId);
-  
-            if (!event) {
-              throw new Error('Event not found');
-            }
-  
-            // Call the PayPalClient to create the payment using the event price
-            const payment = await PayPalClient.createPayment(event.price, 'USD');
-  
-            return payment;
-          } catch (error) {
-            console.error('Error creating event payment:', error);
-            throw new Error('Failed to create event payment.');
+      }
+      throw new AuthenticationError('Not authorized');
+    },
+    createEventPayment: async (parent, { eventId }, context) => {
+      if (context.user) {
+        try {
+          // Fetch the event by ID
+          const event = await Event.findById(eventId);
+
+          if (!event) {
+            throw new Error('Event not found');
           }
-        } else {
-          throw new AuthenticationError('Not logged in');
+
+          // Call the PayPalClient to create the payment using the event price
+          const payment = await PayPalClient.createPayment(event.price, 'USD');
+
+          return payment;
+        } catch (error) {
+          console.error('Error creating event payment:', error);
+          throw new Error('Failed to create event payment.');
         }
-      },
+      } else {
+        throw new AuthenticationError('Not logged in');
+      }
     },
     subscribeEmail: async (parent, { email }) => {
       try {
