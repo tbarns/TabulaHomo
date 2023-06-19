@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_EVENT } from '../utils/mutations';
 import PayPalPayment from '../components/PayPalPayment';
+import './PaymentPage.css'
 
 const PaymentPage = () => {
   const { eventId } = useParams();
