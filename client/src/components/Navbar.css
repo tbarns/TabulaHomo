@@ -112,10 +112,14 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    justify-content: center;
+  }
 
   .navbar-container {
     flex-direction: column;
     align-items: center;
+
   }
 
   .navbar-title {

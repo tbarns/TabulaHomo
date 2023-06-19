@@ -7,11 +7,23 @@
   --future-blue: #E6F1F6;
 }
 
+
 .rbc-calendar {
   width: 100%;
   color: var(--black);
   background-color: var(--white);
   text-transform: none;
+}
+
+.rbc-toolbar button {
+  background-color: var(--blue);
+  color: var(--white);
+  margin: .31rem;
+}
+button.rbc:active {
+  background-color: var(--blue);
+  color: var(--white);
+  margin: .31rem;
 }
 
 .rbc-date-cell {
@@ -93,6 +105,9 @@ button{
 }
 
 @media (max-width: 768px) {
+  .rbc-header{
+    overflow: hidden;
+  }
   .rbc-event-content {
     font-size: 12px;
   }

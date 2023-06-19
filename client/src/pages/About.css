@@ -38,6 +38,8 @@
   padding: 2rem;
   font-size: larger;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: var(--blue);
+  
 }
 
 #end {
@@ -79,7 +81,8 @@
   }
 
   #quoteContainer {
-    font-size: medium;
+    font-size: 1.15rem;
+    padding: 1rem;
   }
 
   #founderImg {
@@ -99,12 +102,14 @@
 
   #intro,
   #end {
-    padding: 2rem;
+    padding:1rem;
     font-size: medium;
+
   }
 
 
   #rules {
-    font-size: small;
+    font-size: 1rem;
+    padding: .53rem;
   }
 }
