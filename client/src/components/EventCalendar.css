@@ -17,14 +17,11 @@
 
 .rbc-toolbar button {
   background-color: var(--blue);
-  color: var(--white);
+  color: var(--black);
   margin: .31rem;
 }
-button.rbc:active {
-  background-color: var(--blue);
-  color: var(--white);
-  margin: .31rem;
-}
+
+
 
 .rbc-date-cell {
   height: calc(1*1.8rem);

@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const EventDetails = () => {
   const { eventId } = useParams();
   const isLoggedIn = Auth.loggedIn();
-  console.log(isLoggedIn);
+
   // Query event data
   const { loading: eventsLoading, error: eventsError, data: eventData } = useQuery(QUERY_EVENTS);
 
@@ -39,19 +39,23 @@ const EventDetails = () => {
       const startTime = moment(event.startTime);
       const currentTime = moment();
 
-      const duration = moment.duration(startTime.diff(currentTime));
-      const days = duration.days();
-      const hours = duration.hours();
-      const minutes = duration.minutes();
-      const seconds = duration.seconds();
+      if (currentTime.isAfter(startTime)) {
+        // Event has started or passed
+        setTimeRemaining('');
+      } else {
+        // Event is upcoming
+        const duration = moment.duration(startTime.diff(currentTime));
+        const days = duration.days();
+        const hours = duration.hours();
+        const minutes = duration.minutes();
+        const seconds = duration.seconds();
 
-
-      setTimeRemaining(`${days} days
-       ${hours}h  ${minutes}m  ${seconds}s `);
+        setTimeRemaining(`${days} days ${hours}h ${minutes}m ${seconds}s`);
+      }
     };
 
     // Update countdown every second
-    const intervalId = setInterval(updateCountdown, 1);
+    const intervalId = setInterval(updateCountdown, 1000);
 
     // Clear interval on component unmount
     return () => {
@@ -117,65 +121,84 @@ const EventDetails = () => {
   };
 
   return (
-    <div id="eventContainter">
+    <div id="eventContainer">
       <div className="eventDetails">
-        <div className="getTicketButton" onClick={handleGetTicket}>
-          🎟️Get Your Ticket🎟️
-        </div>
-        {isLoggedIn && (
-          <button id="deleteButton" onClick={handleDeleteEvent}>
-            Delete Event
-          </button>
+        {timeRemaining ? (
+          <div>
+            <div id="topBanner">
+              <div id="eventStartTime">
+                <p>{moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}</p>
+              </div>
+              <div id="eventCountdown">
+                <div>{timeRemaining}</div>
+              </div>
+            </div>
+            <div className="getTicketButton" onClick={handleGetTicket}>
+              🎟️Get Your Ticket🎟️
+            </div>
+            {isLoggedIn && (
+              <button id="eventDeleteButton" onClick={handleDeleteEvent}>
+                Delete Event
+              </button>
+            )}
+          </div>
+        ) : (
+          <div id="eventPassed">
+            <p>Event has passed</p>
+          </div>
         )}
         <div>
-          <div id="topBanner">
-            <div id="eventStartTime">
-              <p>{moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}
-              </p>
-            </div>
-            <div id="eventCountdown">
-              <div>{timeRemaining}</div>
-            </div>
-          </div>
           <p id="eventTitle">{event.title}</p>
           <h2 id="eventModel">{event.models}</h2>
         </div>
         <p id="eventDescription">{event.description}</p>
       </div>
-      <div id="paymentDiv">
-        <h4 id="eventPrice">{event.price}</h4>
-        <div className="venmo-button">
-          {/* Email input */}
-          <input
-            className="emailInput"
-            type="text"
-            placeholder="Enter your email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          <Link
-            to={{
-              pathname: `/event/${eventId}/payment`,
-              state: { event },
-            }}
-          >
-            Proceed to Payment
-          </Link>
-          {/* Venmo payment button */}
-          <div className={`button ${isEmailValid ? '' : 'disabled'}`} onClick={handleVenmoPayment}>
-            Pay with Venmo
-          </div>
-          {!isEmailValid && (
-            <div className="signup-text">
-              <p>Enter your email then click Pay to sign up.</p>
+      {timeRemaining ? (
+        <div id="paymentDiv">
+          <h4 id="eventPrice">{event.price}</h4>
+          <div className="venmo-button">
+            {/* Email input */}
+            <input
+              className="emailInput"
+              type="text"
+              placeholder="Enter your email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+            <Link
+              to={{
+                pathname: `/event/${eventId}/payment`,
+                state: { event },
+              }}
+            >
+              Proceed to Payment
+            </Link>
+            {/* Venmo payment button */}
+            <div className={`button ${isEmailValid ? '' : 'disabled'}`} onClick={handleVenmoPayment}>
+              Pay with Venmo
             </div>
-          )}
+            {!isEmailValid && (
+              <div className="signup-text">
+                <p>Enter your email then click Pay to sign up.</p>
+              </div>
+            )}
+          </div>
+          <div id="eventGallery">
+            <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />
+          </div>
         </div>
-        <div id="eventGallery">
-          <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />
+      ) : (
+        <div id="eventPassedCard">
+          <div >
+            <p>Event has passed.</p>
+          </div>
+          <div id="eventGallery">
+            <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />
+          </div>
         </div>
-      </div>
+
+      )}
     </div>
   );
 };
