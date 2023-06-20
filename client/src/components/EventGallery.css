@@ -3,6 +3,7 @@
     text-align: center;
     z-index: 1000;
     display: block;
+    align-items: center;
   }
   
   #title {
@@ -17,7 +18,7 @@
   }
   
   #singleImage {
-    width: 90%;
+ 
     height: auto;
   }
   

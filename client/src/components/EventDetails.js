@@ -18,9 +18,6 @@ const EventDetails = () => {
   // Query user data
   const { loading: userLoading, data: userData } = useQuery(GET_USER);
   const [deleteEvent] = useMutation(DELETE_EVENT);
-  // State for email input
-  const [email, setEmail] = useState('');
-  const [isEmailValid, setEmailValid] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState('');
 
   const handleGetTicket = () => {
@@ -79,36 +76,6 @@ const EventDetails = () => {
     return <div>Event not found.</div>;
   }
 
-  // Handler for email input change
-  const handleEmailChange = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-    setEmailValid(validateEmail(email));
-  };
-
-  // Basic email validation using regular expression
-  const validateEmail = (email) => {
-    const emailRegex = /\S+@\S+\.\S+/;
-    return emailRegex.test(email);
-  };
-
-  // Handler for Venmo payment button click
-  const handleVenmoPayment = () => {
-    if (!isEmailValid) {
-      // Display error message or shake the button
-      return;
-    }
-
-    // Construct the Venmo payment URL with email, event details, etc.
-    const comment = `Email: ${email}, Event: ${event.title}`;
-    const venmoURL = `https://venmo.com/u/timothy-barnaby?event=${encodeURIComponent(
-      event.title
-    )}&email=${encodeURIComponent(email)}&note=${encodeURIComponent(comment)}`;
-
-    // Open the Venmo payment URL in a new tab
-    window.open(venmoURL, '_blank');
-  };
-
   const handleDeleteEvent = async () => {
     try {
       const response = await deleteEvent({ variables: { _id: eventId } });
@@ -149,55 +116,39 @@ const EventDetails = () => {
         )}
         <div>
           <p id="eventTitle">{event.title}</p>
-          <h2 id="eventModel">{event.models}</h2>
+          <h2 id="eventModel">
+            {event.models}</h2>
         </div>
         <p id="eventDescription">{event.description}</p>
       </div>
+      <div id="eventGallery">
+        <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />
+      </div>
       {timeRemaining ? (
         <div id="paymentDiv">
-          <h4 id="eventPrice">{event.price}</h4>
-          <div className="venmo-button">
-            {/* Email input */}
-            <input
-              className="emailInput"
-              type="text"
-              placeholder="Enter your email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
-            <Link
+          <p id="eventPrice">Price: {event.price}</p>
+          <div className='paymentBtn'>
+          <Link
               to={{
                 pathname: `/event/${eventId}/payment`,
                 state: { event },
               }}
             >
-              Proceed to Payment
+              Pay With Paypal
             </Link>
-            {/* Venmo payment button */}
-            <div className={`button ${isEmailValid ? '' : 'disabled'}`} onClick={handleVenmoPayment}>
-              Pay with Venmo
             </div>
-            {!isEmailValid && (
-              <div className="signup-text">
-                <p>Enter your email then click Pay to sign up.</p>
-              </div>
-            )}
-          </div>
-          <div id="eventGallery">
-            <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />
+          <div className='paymentBtn'>
+            <Link to="https://venmo.com/u/timothy-barnaby" target="_blank">
+              Pay with Venmo
+            </Link>
           </div>
         </div>
       ) : (
         <div id="eventPassedCard">
-          <div >
+          <div>
             <p>Event has passed.</p>
           </div>
-          <div id="eventGallery">
-            <EventGallery eventId={eventId} isLoggedIn={isLoggedIn} />
-          </div>
         </div>
-
       )}
     </div>
   );
