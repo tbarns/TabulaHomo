@@ -126,14 +126,16 @@ const EventDetails = () => {
       </div>
       {timeRemaining ? (
         <div id="paymentDiv">
-          <p id="eventPrice">Price: {event.price}</p>
-          <div className='paymentBtn'>
+          <p id="eventPrice">Price: {event.price} </p>
+         
+          <div  id= 'paypalBtn'  className='paymentBtn'>
           <Link
               to={{
                 pathname: `/event/${eventId}/payment`,
                 state: { event },
               }}
             >
+              
               Pay With Paypal
             </Link>
             </div>
@@ -142,6 +144,7 @@ const EventDetails = () => {
               Pay with Venmo
             </Link>
           </div>
+          <p className= "email"> please include your email in the payment comment section </p>
         </div>
       ) : (
         <div id="eventPassedCard">

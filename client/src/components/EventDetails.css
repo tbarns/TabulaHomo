@@ -64,6 +64,14 @@
   color: var(--white);
 
 }
+.email{
+font-size: 2.1rem;
+
+}
+#paypalBtn{
+  /* delete this block once paypal is set up  */
+  display: none
+}
 
 #eventTitle {
   color: var(--white);
@@ -188,7 +196,7 @@
     box-sizing: border-box;
     flex-wrap: wrap;
     text-align: center;
-    display: flex;
+   
     align-items: center;
     justify-content: center;
   }
