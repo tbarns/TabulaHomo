@@ -50,10 +50,10 @@ const EventCalendar = () => {
 
   const titleAccessor = event => (
     <div className='eventSmallCard'>
-      <div>{event.title}</div>
-      <div>Featuring: {event.models || 'No models'}</div>
-      <div>{moment(event.start).format('hh:mm A')}</div>
-      <div>{moment.tz(event.start, 'America/Los_Angeles').format('z')}</div>
+      <div className = 'hideOnMobile'>{event.title}</div>
+      <div className = 'hideOnMobile'>Featuring: {event.models || 'No models'}</div>
+      <div className = 'hideOnMobile'>{moment(event.start).format('hh:mm A')}</div>
+      <div className = 'hideOnMobile'>{moment.tz(event.start, 'America/Los_Angeles').format('z')}</div>
       
     </div>
   );
