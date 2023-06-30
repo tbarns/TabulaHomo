@@ -26,6 +26,10 @@ const eventSchema = new Schema({
      
     },
   ],
+  ssId: {
+    type: String,
+    required: false,
+  }
 });
 
 const Event = model('Event', eventSchema);
