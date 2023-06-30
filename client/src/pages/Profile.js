@@ -20,6 +20,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
   const [timeZone, setTimeZone] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [ssId, setSsId] = useState('');
   const [createEvent, { error: eventError }] = useMutation(CREATE_EVENT);
   const handleStartDateChange = (date) => {
     setStartTime(date);
@@ -40,6 +41,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
       timeZone,
       description,
       price,
+      ssId
     };
     console.log(event);
 
@@ -65,6 +67,7 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
       setTimeZone('');
       setDescription('');
       setPrice('');
+      setSsId('');
       setFormAlert('Event created successfully');
       setShowAlert(true);
     } catch (err) {
@@ -153,6 +156,14 @@ const EventForm = ({ onSubmit, formAlert, setFormAlert, showAlert, setShowAlert 
             id="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="ssId">SsId:</label>
+          <textarea
+            id="ssId"
+            value={ssId}
+            onChange={(e) => setSsId(e.target.value)}
           />
         </div>
 

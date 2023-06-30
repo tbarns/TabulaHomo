@@ -127,24 +127,34 @@ const EventDetails = () => {
       {timeRemaining ? (
         <div id="paymentDiv">
           <p id="eventPrice">Price: {event.price} </p>
-         
-          <div  id= 'paypalBtn'  className='paymentBtn'>
-          <Link
+
+          <div id='paypalBtn' className='paymentBtn'>
+            <Link
               to={{
                 pathname: `/event/${eventId}/payment`,
                 state: { event },
               }}
             >
-              
+
               Pay With Paypal
             </Link>
-            </div>
+          </div>
           <div className='paymentBtn'>
             <Link to="https://venmo.com/u/timothy-barnaby" target="_blank">
               Pay with Venmo
             </Link>
           </div>
-          <p className= "email"> please include your email in the payment comment section </p>
+          <div className='paymentBtn'
+            id='preferedPayment'>
+            <a href={
+             `https://silhouetteandshadow.org/life_sessions/${event.ssId}`} target="_blank">
+              Pay via Silhouette & Shadow
+              </a>
+          </div>
+
+
+
+          <p className="email"> please include your email in the payment comment section </p>
         </div>
       ) : (
         <div id="eventPassedCard">

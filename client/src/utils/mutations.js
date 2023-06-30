@@ -81,6 +81,7 @@ export const QUERY_EVENTS = gql`
       timeZone
       description
       price
+      ssId
     }
   }
 `;
@@ -97,6 +98,7 @@ export const GET_EVENT = gql`
       description
       price
       modelPhotos
+      ssId
     }
   }
 `;
@@ -142,6 +144,7 @@ export const CREATE_EVENT = gql`
       timeZone
       description
       price
+      ssId
     }
   }
 `;
@@ -163,6 +166,7 @@ export const UPDATE_EVENT = gql`
       models
       startTime
       modelPhotos
+      ssId
     }
   }
 `;
