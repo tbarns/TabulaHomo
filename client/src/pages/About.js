@@ -23,7 +23,7 @@ const About = () => {
             that I play. Or sometimes it’s just me and my
             raw emotions from my day. No session is ever
             the same cuz my energy and the energy of the
-            artists are never the same.""
+            artists are never the same."
           </p>
         </div>
       </div>

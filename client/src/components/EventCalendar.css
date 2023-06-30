@@ -112,12 +112,29 @@ button {
     display: none;
   }
 
+  .rbc-toolbar {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rbc-toolbar-label {
+    display: block;
+
+  }
+
+  .rbc-btn-group {
+    display: block;
+  }
+
+
   .rbc-event {
 
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 80%;
     inset: 0;
     margin: auto;
+    margin-top: 1rem;
   }
 
   .rbc-event-content {
@@ -127,9 +144,7 @@ button {
     font-size: 12px;
   }
 
-  .rbc-toolbar-label {
-    display: none;
-  }
+
 
   .eventSmallCard {
 
@@ -142,6 +157,7 @@ button {
     justify-content: center;
     align-items: center;
 
+
     /*pseudo-element to display the small star */
     &::before {
       content: '\2605';
@@ -151,6 +167,7 @@ button {
       color: gold;
       position: relative;
       margin-left: .061rem;
+      flex-shrink: 0;
     }
   }
 
