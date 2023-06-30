@@ -154,7 +154,7 @@ const EventDetails = () => {
 
 
 
-          <p className="email"> please include your email in the payment comment section </p>
+          <p className="emailPlease"> Please include your email in the payment comment section when paying with Venmo or Paypal </p>
         </div>
       ) : (
         <div id="eventPassedCard">

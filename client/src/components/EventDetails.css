@@ -15,6 +15,7 @@
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  padding: 1rem;
 
 }
 
@@ -29,9 +30,25 @@
   text-decoration: none;
 }
 
+.emailPlease{
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 .paymentBtn a:hover {
   background-color: var(--blue);
+  border: 3px solid var(--ochre);
 }
+
+  #preferedPayment a::after {
+    content: "* preferred method";
+    margin-right: 15px;
+    font-size: 20px;
+    color: var(--white);
+    display: flex;
+    margin-top: .5rem;
+  }
+
 
 
 #paymentDiv {
@@ -203,18 +220,6 @@
     justify-content: center;
   }
 
-  /* #preferedPayment a::before {
-    content: "* preferred method";
-    margin-right: 15px;
-    font-size: 20px;
-    color: var(--white);
-  }
-  #preferedPayment a::after {
-    content: "* preferred method";
-    margin-right: 15px;
-    font-size: 20px;
-    color: var(--white);
-  } */
 
   .getTicketButton {
 
