@@ -11,8 +11,19 @@
 .rbc-calendar {
   width: 100%;
   color: var(--black);
-  background-color: var(--white);
+  background-color: var(--blue);
   text-transform: none;
+  
+}
+
+.rbc-toolbar {
+  background-color: var(--ochre);
+}
+
+.rbc-toolbar-label {
+  font-size: 4rem;
+  background-color: var(--ochre);
+  color: var(--black);
 }
 
 .rbc-toolbar button {
@@ -30,7 +41,7 @@
 
 .rbc-now {
   background-color: #cc77227b;
-
+height: 100vh;
 }
 
 .rbc-time-content {
@@ -38,15 +49,17 @@
 }
 
 .rbc-event {
-  background-color: var(--blue);
+  background-color: var(--black);
   color: var(--white);
   padding: 8px;
   font-size: 14px;
+  
   white-space: normal;
   text-overflow: ellipsis;
   font-family: monospace;
   margin-top: 1.5rem;
-  border: 2px solid #CC7722;
+  border: 2px solid var(--white);
+  
 
 }
 
@@ -57,6 +70,7 @@
   display: block;
   flex-direction: column;
   align-items: flex-start;
+  white-space: normal !important;
 }
 
 .rbc-time-view .rbc-time-slot {
@@ -86,13 +100,10 @@ button {
 }
 
 .eventSmallCard {
-
-  font-size: calc(2*.55rem);
-  white-space: nowrap;
+  font-size: calc(2*.35rem);
   font-weight: 200;
-
-
 }
+
 
 .event-calendar .rbc-time-view .rbc-time-gutter,
 .event-calendar .rbc-time-view .rbc-time-content {
@@ -113,18 +124,21 @@ button {
   }
 
   .rbc-toolbar {
-    display: block;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    align-content: center;
   }
 
   .rbc-toolbar-label {
-    display: block;
+    display: flex;
+    font-size: 3rem;
 
   }
 
   .rbc-btn-group {
-    display: block;
+    display: flex;
   }
 
 
