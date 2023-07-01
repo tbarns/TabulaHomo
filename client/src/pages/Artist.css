@@ -2,79 +2,105 @@
   display: flex;
   flex-wrap: wrap;
   background-color: var(--blue);
-  height: 100vh;
-justify-content: center;
+  height: calc(100vh - .4rem);
+  justify-content: center;
+}
+
+a{
+  text-decoration: none; 
 }
 
 h2 {
   display: block;
   text-transform: capitalize;
-
 }
 
 #artistCard {
   background-color: var(--white);
-  width: 20rem; /* Set a fixed width for the card */
-  height: 20rem; /* Set a fixed height for the card */
-  display: flex;
-  flex-direction: column; /* Change to column direction */
+  width: 20rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
   padding: 2rem;
   margin: 1.5rem;
-  margin-top: 4rem;
+
   box-sizing: border-box;
-  transition: transform 0.3s ease;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), height 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   z-index: 1;
+  overflow: hidden;
+  height: 20rem; /* Set a fixed height for uniformity */
+ 
 }
 
-#artistBioMain {
-  display: none;
-  color: var(--black);
-  font-size: 1rem;
+.artistImage {
+  grid-row: 1;
+}
+
+.artistDetails {
+  grid-row: 2;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  height: 0;
+  overflow: hidden;
 }
 
 #artistCard:hover {
-  transform: scale(1.1);
-  z-index: 2;
+  transform: scale(1.05);
+  height: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  height: fit-content;
 }
 
-#artistCard:hover #artistBioMain {
-  display: block;
+#artistCard:hover .artistDetails {
+  opacity: 1;
+  height: auto;
 }
 
 #workImg {
-  width: 100%; /* Adjust image width to fill the card */
-  height: auto; /* Allow image height to adjust proportionally */
-  max-height: 60%; /* Set a maximum height for the image */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
-  margin-bottom: 1rem; /* Add margin to the bottom of the image */
+  width: 100%;
+  height: auto;
+  max-height: 60%;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
-#artistLink {
-  margin-top: auto; /* Push the link to the bottom of the card */
+.artistName {
+  text-align: center;
+  color: var(--black);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.artistBioMain {
+  color: var(--white);
+  background-color: var(--blue);
+  margin-bottom: .5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  max-height: 3.6rem; /* Adjust the height to fit two lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limit the number of lines to show */
+  -webkit-box-orient: vertical;
+  line-height: 1.2;
 }
 
 @media (max-width: 768px) {
   /* Adjust the styles for mobile devices */
-  #artistPage{
+  #artistPage {
     height: fit-content;
   }
   #artistCard {
     height: auto;
   }
-
   #workImg {
     max-height: none;
   }
-
-  #artistLink {
-    margin-top: 0;
-  }
-
   #artistCard:hover {
     transform: none;
     box-shadow: none;
+  }
+  #artistCard:hover .artistDetails {
+    opacity: 0;
   }
 }
