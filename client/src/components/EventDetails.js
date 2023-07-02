@@ -94,7 +94,7 @@ const EventDetails = () => {
           <div>
             <div id="topBanner">
               <div id="eventStartTime">
-                <p>{moment(event.startTime).format('MMM DD, HH:mm')}{event.timeZone}</p>
+                <p>{moment(event.startTime).format('MMM DD, HH:mm')}  {event.timeZone}</p>
               </div>
               <div id="eventCountdown">
                 <div>{timeRemaining}</div>
@@ -116,6 +116,7 @@ const EventDetails = () => {
         )}
         <div>
           <p id="eventTitle">{event.title}</p>
+          <p id='feat' >Featuring</p>
           <h2 id="eventModel">
             {event.models}</h2>
         </div>

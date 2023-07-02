@@ -6,7 +6,7 @@
 
 .eventDetails {
   flex: 2;
-  background-color: var(--ochre);
+  background-color: var(--black);
   color: var(--white);
   margin: 1rem;
 }
@@ -64,7 +64,7 @@
 
 #topBanner {
   font-size: 2rem;
-  background-color: var(--black);
+  background-color: var(--ochre);
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -94,9 +94,12 @@
 
 #eventTitle {
   color: var(--white);
-  font-size: 24px;
   text-align: center;
   font-size: 3rem;
+}
+#feat{
+  text-align: center;
+  font-size: 1rem;
 }
 
 #eventModel {
@@ -117,6 +120,8 @@
   align-items: flex-end;
   gap: 1rem;
   font-size: 1.5rem;
+  padding: 1rem;
+  background-color: var(--black);
 }
 
 #eventStartTime {
@@ -124,6 +129,7 @@
   display: flex;
   align-items: flex-end;
   font-size: 3rem;
+  padding: 1rem;
 }
 
 #eventDescription {

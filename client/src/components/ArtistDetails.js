@@ -65,7 +65,7 @@ const ArtistDetails = () => {
       <div id='ArtistMain'>
         {profilePhoto && <img id="artistProfilePhoto" src={artist.profilePhoto} alt="Profile" />}
         <div id='artistText'>
-          <h2 id='artistName'>{artist.name}</h2>
+          <h1 id='artistName'>{artist.name}</h1>
           <p id='artistLocation'>Location: {artist.location}</p>
           <p id='artistBio'>{artist.bio}</p>
         </div>
