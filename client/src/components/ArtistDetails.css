@@ -1,146 +1,167 @@
 #artistDetailContainer {
-    background-color: var(--black);
-    padding: 2rem;
-  }
+  background-color: var(--black);
+  padding: 2rem;
+}
+
+#deleteButton {
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+#ArtistMain {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+#artistProfilePhoto {
+  border: 2px solid var(--white);
+  width: 30rem;
+  height: 30rem;
+  object-fit: cover;
+  margin-right: 2rem;
+}
+
+#artistText {
+  width: calc(100% - 10rem - 2rem);
+}
+
+#artistName {
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+#artistLocation,
+#artistBio {
+  color: var(--white);
+  margin-bottom: 1rem;
+  font-size: calc(4*.38rem);
+}
+
+#artistLinksDiv {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  grid-gap: 1rem;
+  margin: 1rem;
+  margin-bottom: 5rem;
   
-  #deleteButton {
-    background-color: var(--black);
-    color: var(--white);
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-  }
+}
+
+#connectDiv {
+  text-align:left;
+  background-color: var(--ochre);
+  color: var(--white);
+  font-size: 3rem;
+  padding: 1rem;
+}
+
+#artistLinks {
+text-align: center;
+  background-color: var(--blue);
+  padding: 1rem;
+  font-size: calc(5 * .4rem);
+  padding-top: 1rem;
+}
+
+
+
+#artistLinks div {
   
-  #ArtistMain {
-    display: flex;
-    align-items: center;
+  gap: 1rem;
+}
+
+#artistLinks a {
+  color: var(--white);
+  text-decoration: none;
+
+}
+
+#artistLinks a:hover {
+  text-decoration: underline;
+}
+
+#twitter,
+#ig,
+#fb,
+#website {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  #artistDetailContainer {
+    padding: 1rem;
   }
-  
+
   #artistProfilePhoto {
-    border: 2px solid var(--white);
-    width: 30rem;
-    height: 30rem;
-    object-fit: cover;
-    margin-right: 2rem;
+    width: 8rem;
+    height: 8rem;
+    margin-right: 1rem;
   }
-  
+
   #artistText {
-    width: calc(100% - 10rem - 2rem);
+    width: calc(100% - 8rem - 1rem);
   }
-  
+
   #artistName {
-    color: var(--white);
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
   }
-  
+
   #artistLocation,
   #artistBio {
-    color: var(--white);
-    margin-bottom: 1rem;
-    font-size: calc(4*.38rem);
+    font-size: 1rem;
   }
-  
+  #artistLinksDiv {
+    font-size: 1rem;
+  }
+
+  #connectDiv {
+    width: 90%;
+    font-size: 1rem;
+  }
+
   #artistLinks {
-    background-color: var(--blue);
-    padding: 1rem;
-    margin-top: 2rem;
-    display: block;
-     font-size: calc(5*.4rem);
+    width: 90%;
+    font-size: 1rem;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  #artistDetailContainer {
+    padding: 0.5rem;
+  }
+
+  #artistProfilePhoto {
+    width: 6rem;
+    height: 6rem;
+    margin-right: 0.5rem;
+  }
+
+  #artistText {
+    width: calc(100% - 6rem - 0.5rem);
+  }
+
+  #artistName {
+    font-size: 1.2rem;
+  }
+
+  #artistLocation,
+  #artistBio {
+    font-size: 0.8rem;
   }
   
-  #artistLinks h3 {
-    color: var(--white);
-    margin-bottom: 1rem;
-   
+  #connectDiv {
+    width: 80%;
+    font-size: 1rem;
   }
+
+  #artistLinks {
+    width: 80%;
+    font-size: 1rem;
+  }
+ 
   
-  #artistLinks div {
-    display: block;
-    gap: 1rem;
-  }
-  
-  #artistLinks a {
-    color: var(--white);
-    text-decoration: none;
-    
-  }
-  
-  #artistLinks a:hover {
-    text-decoration: underline;
-  }
-  
-  #twitter,
-  #ig, #fb,
-  #website{
-    display: block;
-  }
-  @media screen and (max-width: 768px) {
-    #artistDetailContainer {
-      padding: 1rem;
-    }
-    
-    #artistProfilePhoto {
-      width: 8rem;
-      height: 8rem;
-      margin-right: 1rem;
-    }
-    
-    #artistText {
-      width: calc(100% - 8rem - 1rem);
-    }
-    
-    #artistName {
-      font-size: 1.5rem;
-    }
-    
-    #artistLocation,
-    #artistBio {
-      font-size: 1rem;
-    }
-    
-    #artistLinks {
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
-    
-    #artistLinks h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    #artistDetailContainer {
-      padding: 0.5rem;
-    }
-    
-    #artistProfilePhoto {
-      width: 6rem;
-      height: 6rem;
-      margin-right: 0.5rem;
-    }
-    
-    #artistText {
-      width: calc(100% - 6rem - 0.5rem);
-    }
-    
-    #artistName {
-      font-size: 1.2rem;
-    }
-    
-    #artistLocation,
-    #artistBio {
-      font-size: 0.8rem;
-    }
-    
-    #artistLinks {
-      padding: 0.3rem;
-      font-size: 0.8rem;
-    }
-    
-    #artistLinks h3 {
-      margin-bottom: 0.3rem;
-      font-size: 0.8rem;
-    }
-  }
-  
+}

@@ -62,7 +62,9 @@ const ArtistGallery = ({ artistId }) => {
 
     return (
         <div id='galleryContainer'>
-            <h2 id="name">{artist.name} - Artist Gallery</h2>
+             <h6 id="works" >Works by:</h6>
+
+            <p id="name" style={{ fontFamily: 'Rampart One' }}>{artist.name}</p>
             <div id='gallery'>
                 {artist.workImages.map((image, index) => (
                     <div key={index}>

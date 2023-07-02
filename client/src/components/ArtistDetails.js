@@ -70,9 +70,11 @@ const ArtistDetails = () => {
           <p id='artistBio'>{artist.bio}</p>
         </div>
       </div>
-      <div id='artistLinks'>
-        <h4>Connect with {artist.name}:</h4>
-        <div>
+      <div id='artistLinksDiv'>
+        <div id = 'connectDiv'>
+        <p>Connect with {artist.name}:</p>
+        </div>
+        <div id='artistLinks'>
           {artist.twitter && <p id='twitter'>Twitter: {artist.twitter}</p>}
           {artist.instagram && <p>Instagram : {artist.instagram}</p>}
           {artist.facebook && <p>Facebook : {artist.facebook}</p>}
