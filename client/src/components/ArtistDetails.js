@@ -66,7 +66,7 @@ const ArtistDetails = () => {
         {profilePhoto && <img id="artistProfilePhoto" src={artist.profilePhoto} alt="Profile" />}
         <div id='artistText'>
           <h1 id='artistName'>{artist.name}</h1>
-          <p id='artistLocation'>Location: {artist.location}</p>
+          <p id='artistLocation'>📍 {artist.location}</p>
           <p id='artistBio'>{artist.bio}</p>
         </div>
       </div>

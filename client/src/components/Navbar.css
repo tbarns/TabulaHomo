@@ -130,6 +130,7 @@
     width: 100%;
     text-align: center;
     margin-top: 10px;
+    
   }
 
   .navbar-menu {
@@ -155,7 +156,8 @@
   }
 
   .navbar-dropdown-link {
-    padding: 10px 0;
+    padding: 1px 0;
+    border: 1px solid var(--blue);
   }
 
   .smallPercent {
