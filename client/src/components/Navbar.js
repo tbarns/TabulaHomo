@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import TabulaLogo from '../images/TabulaHomo Logo.svg'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -37,9 +38,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <h1 className="navbar-title" style={{ fontFamily: 'Rampart One' }} onClick={handleHeaderClick}>
+      <img id="LogoSVG" src={TabulaLogo} atl='tabula homo founder posed nude in a seated position, the image is in black and white' />
+
+        {/* <h1 className="navbar-title" style={{ fontFamily: 'Rampart One' }} onClick={handleHeaderClick}>
           Tabula Homo
-        </h1>
+        </h1> */}
         <div className="navbar-links">
           <div
             id="navBtn"

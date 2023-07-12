@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding: 10px;
   position: relative;
+  height: 33vh;
 }
 
 .navbar-title {
@@ -18,7 +19,13 @@
   cursor: pointer;
 }
 
-
+#LogoSVG{
+   width: 30%;
+   border-radius: 100%;
+   position: absolute;
+   inset: 0;
+   margin: auto; 
+}
 
 #navBtn {
   background-color: var(--black);
@@ -114,6 +121,7 @@
 @media (max-width: 768px) {
   .navbar {
     justify-content: center;
+    height: 11rem;
   }
 
   .navbar-container {
@@ -127,11 +135,17 @@
   }
 
   .navbar-links {
-    width: 100%;
+    width: 33vw;
     text-align: center;
     margin-top: 10px;
     
   }
+  #LogoSVG{
+   
+    width: 40%;
+    border-radius: 100%; 
+
+ }
 
   .navbar-menu {
     right: 3%;
@@ -206,4 +220,13 @@
     padding: 0;
   }
 
+}
+
+@media (max-width: 493px) {
+#LogoSVG{
+   
+  width: 60%;
+  border-radius: 100%; 
+
+}
 }

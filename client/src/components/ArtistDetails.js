@@ -63,10 +63,14 @@ const ArtistDetails = () => {
         <button id="deleteButton" onClick={handleDeleteArtist}>Delete Artist</button>
       )}
       <div id='ArtistMain'>
-        {profilePhoto && <img id="artistProfilePhoto" src={artist.profilePhoto} alt="Profile" />}
-        <div id='artistText'>
-          <h1 id='artistName'>{artist.name}</h1>
+      <div id='artistHeader'>
+      <h1 id='artistName'>{artist.name}</h1>
           <p id='artistLocation'>📍 {artist.location}</p>
+        {profilePhoto && <img id="artistProfilePhoto" src={artist.profilePhoto} alt="Profile" />}
+       
+          </div>
+        <div id='artistText'>
+       
           <p id='artistBio'>{artist.bio}</p>
         </div>
       </div>

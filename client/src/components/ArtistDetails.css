@@ -18,20 +18,23 @@
 }
 
 #artistProfilePhoto {
-  border: 2px solid var(--white);
+  border: 1rem solid var(--ochre);
   width: 30rem;
   height: 30rem;
   object-fit: cover;
   margin-right: 2rem;
+  border-radius: 100%;
 }
 
+
 #artistText {
-  width: calc(100% - 10rem - 2rem);
+  width: calc(80% - 10rem);
 }
 
 #artistName {
   color: var(--white);
   margin-bottom: 1rem;
+  font-family: Rampart One
 }
 
 #artistLocation,
@@ -47,11 +50,10 @@
   grid-gap: 1rem;
   margin: 1rem;
   margin-bottom: 5rem;
-  
 }
 
 #connectDiv {
-  text-align:left;
+  text-align: left;
   background-color: var(--ochre);
   color: var(--white);
   font-size: 3rem;
@@ -59,7 +61,7 @@
 }
 
 #artistLinks {
-text-align: center;
+  text-align: center;
   background-color: var(--blue);
   padding: 1rem;
   font-size: calc(5 * .4rem);
@@ -69,7 +71,7 @@ text-align: center;
 
 
 #artistLinks div {
-  
+
   gap: 1rem;
 }
 
@@ -93,26 +95,51 @@ text-align: center;
 @media screen and (max-width: 768px) {
   #artistDetailContainer {
     padding: 1rem;
+
   }
 
+  #ArtistMain {
+    display: block;
+
+  }
+
+  #artistHeader {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8rem;
+    
+  }
+
+
   #artistProfilePhoto {
-    width: 8rem;
-    height: 8rem;
-    margin-right: 1rem;
+    position: absolute;
+    inset: 0;
+    margin-top: 60%;
+    margin-left: 50%;
+    width: 13rem;
+    height: 13rem;
+
+    border: .5rem solid var(--ochre);
   }
 
   #artistText {
-    width: calc(100% - 8rem - 1rem);
+    width: calc(100% - 1rem );
   }
 
   #artistName {
-    font-size: 1.5rem;
+    
+    font-size: 134%
   }
 
-  #artistLocation,
+  #artistLocation {
+    font-size: 2rem;
+  }
+
   #artistBio {
     font-size: 1rem;
   }
+
   #artistLinksDiv {
     font-size: 1rem;
   }
@@ -135,24 +162,32 @@ text-align: center;
   }
 
   #artistProfilePhoto {
-    width: 6rem;
-    height: 6rem;
-    margin-right: 0.5rem;
+    width: 9rem;
+    height: 9rem;
+    margin-left: 45%;
+    margin-top: 15rem;
   }
 
   #artistText {
-    width: calc(100% - 6rem - 0.5rem);
+    width: calc(100% - .32rem);
+
   }
 
+  #artistHeader {
+    padding-top: .75rem;
+    padding-bottom: 6.5rem;
+  }
+
+
   #artistName {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   #artistLocation,
   #artistBio {
     font-size: 0.8rem;
   }
-  
+
   #connectDiv {
     width: 80%;
     font-size: 1rem;
@@ -162,6 +197,16 @@ text-align: center;
     width: 80%;
     font-size: 1rem;
   }
- 
-  
+
+
+}
+@media screen and (max-width: 350px){
+  #artistProfilePhoto {
+    width: 6rem;
+    height: 6rem;
+    margin-left: 45%;
+    margin-top: 18rem;
+  }
+
+
 }
