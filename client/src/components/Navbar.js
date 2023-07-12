@@ -38,8 +38,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
+        <Link to="/about">
       <img id="LogoSVG" src={TabulaLogo} atl='tabula homo founder posed nude in a seated position, the image is in black and white' />
-
+      </Link>
         {/* <h1 className="navbar-title" style={{ fontFamily: 'Rampart One' }} onClick={handleHeaderClick}>
           Tabula Homo
         </h1> */}
