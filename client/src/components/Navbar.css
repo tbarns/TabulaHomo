@@ -121,7 +121,7 @@
 @media (max-width: 768px) {
   .navbar {
     justify-content: center;
-    height: 11rem;
+    height: 9rem;
   }
 
   .navbar-container {
@@ -161,7 +161,7 @@
   }
 
   .navbar-dropdown {
-    position: relative;
+    position: absolute;
     transform: translate(0, 0);
     right: auto;
     width: 100%;

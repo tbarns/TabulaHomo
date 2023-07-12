@@ -118,6 +118,10 @@ button {
   .rbc-header {
     overflow: hidden;
   }
+  .rbc-calendar {
+    height: 85vh;
+  }
+
 
   .hideOnMobile {
     display: none;
